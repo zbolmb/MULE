@@ -1,5 +1,5 @@
 apply plugin: 'java'
 
 dependencies {
-    compiles files ('lib/resources.jar')
+    compile files('lib/resources.jar')
 }
