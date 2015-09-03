@@ -2,7 +2,7 @@ apply plugin: 'java'
 
 jar {
     manifest {
-        atritubes 'Main-Class': 'edu.gatech.oad.antlab.pkg1.Main'
+        attributes 'Main-Class': 'edu.gatech.oad.antlab.pkg1.Main'
     }
 }
 
