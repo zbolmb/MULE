@@ -1,1 +1,10 @@
 apply plugin: 'java'
+jar {
+    manifest {
+        attributes('Main-Class': ' ' ','Class-Path':'')
+    }
+}
+
+dependencies {
+    compiles files (' ')
+}
