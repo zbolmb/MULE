@@ -1,0 +1,13 @@
+apply plugin: 'java'
+jar {
+    manifest {
+        attributes(
+        'AntLabMain.java': 'AntLabMain',
+        'M2\M2\src\main\java\edu\gatech\oad\antlab\pkg1':'pathToMain'
+        )
+    }
+}
+
+dependencies {
+    compiles files ('lib/resources.jar')
+}
