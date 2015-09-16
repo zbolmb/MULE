@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
  */
 public class Player {
 	protected String name;
-	protected int race;
+	protected String race;
 	protected Color color;
 
 

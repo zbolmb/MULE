@@ -8,14 +8,17 @@ import java.util.ArrayList;
  * Map Type: 0 = river, 1 = mountain, 2 = plain
  */
 public class Configurations {
-	protected int difficulty;
-	protected int map_Type;
+	protected String difficulty;
+	protected String map_Type;
 	protected int num_Players;
 
 	protected ArrayList<Player> players;
 
 	public Configurations() {
 		players = new ArrayList<>();
+		difficulty = "Easy";
+		map_Type = "River";
+		num_Players = 1;
 	}
 
 }
