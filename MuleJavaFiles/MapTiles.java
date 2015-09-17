@@ -20,44 +20,20 @@ public abstract class MapTiles {
 		setCrystalite(false);
 	}
 
-	public int getFood() {
-		return food;
-	}
+	/**
+	 * Getters and Setters
+	 * @return various
+	 */
 
-	public void setFood(int food) {
-		this.food = food;
-	}
-
-	public int getEnergy() {
-		return energy;
-	}
-
-	public void setEnergy(int energy) {
-		this.energy = energy;
-	}
-
-	public int getOre() {
-		return ore;
-	}
-
-	public void setOre(int ore) {
-		this.ore = ore;
-	}
-
-	public boolean isCrystalite() {
-		return crystalite;
-	}
-
-	public void setCrystalite(boolean crystalite) {
-		this.crystalite = crystalite;
-	}
-
-	public boolean isHighlightable() {
-		return highlightable;
-	}
-
-	public void setHighlightable(boolean highlightable) {
-		this.highlightable = highlightable;
-	}
+	public int getFood() { return food; }
+	public void setFood(int food) { this.food = food; }
+	public int getEnergy() { return energy; }
+	public void setEnergy(int energy) { this.energy = energy; }
+	public int getOre() { return ore; }
+	public void setOre(int ore) { this.ore = ore; }
+	public boolean isCrystalite() { return crystalite; }
+	public void setCrystalite(boolean crystalite) { this.crystalite = crystalite; }
+	public boolean isHighlightable() { return highlightable; }
+	public void setHighlightable(boolean highlightable) { this.highlightable = highlightable; }
 }
 

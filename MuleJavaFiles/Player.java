@@ -8,6 +8,6 @@ public class Player {
 	protected String name;
 	protected String race;
 	protected Color color;
-
+	protected int money;
 
 }
