@@ -8,6 +8,8 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -24,6 +26,7 @@ import javafx.util.Duration;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+
 
 
 
@@ -259,35 +262,20 @@ public class GUI extends Application{
         });
         grid.add(colorBox, 1, 3);
         Button toNext = new Button("Next");
-        toNext.setOnAction(ee -> {
+        toNext.setOnAction(e -> {
             p.name = nameField.getText();
             if (cur == config.num_Players - 1) {
                 Pane mapGui = map.generateMapGui();
                 gameScreen = new Scene(mapGui, 500, 900);
                 Chooser chooser = new Chooser();
                 chooser.start();
-                /** Temp gameScreen **/
-                //                GridPane tmpPane = new GridPane();
-                //                gameScreen = new Scene(tmpPane, 500, 500);
-                //                VBox tmpBox = new VBox();
-                //                tmpBox.getChildren().addAll(
-                //                        new Text("Difficulty : " + config.difficulty)
-                //                        , new Text("Map Type : " + config.map_Type)
-                //                        , new Text("Number Of Players : " + config.num_Players)
-                //                        );
-                //                for (int i = 0; i < config.num_Players; i++) {
-                //                    tmpBox.getChildren().addAll(
-                //                            new Text("Player " + (i + 1))
-                //                            , new Text("Name : " + config.players.get(i).name)
-                //                            , new Text("Race : " + config.players.get(i).race)
-                //                            , new Text("Color : " + config.players.get(i).color)
-                //                            );
-                //                }
-                //                tmpPane.add(tmpBox, 1, 1);
-
-                /** Temp gameScreen **/
+                gameScreen.addEventHandler(KeyEvent.KEY_RELEASED, k -> {
+                    if (k.getCode() == KeyCode.SPACE) {
+                        chooser.claimLand();
+                    };
+                });
                 primaryStage.setScene(gameScreen);
-                primaryStage.setTitle("MULE");		        
+                primaryStage.setTitle("MULE");
             } else {
                 primaryStage.setScene(players[cur + 1]);
                 primaryStage.setTitle("Player " + (cur + 2));
@@ -305,7 +293,7 @@ public class GUI extends Application{
     public static void main (String[] args) {
         launch(args);
     }
-    
+
     class Chooser{
 
         private int x;
@@ -313,27 +301,45 @@ public class GUI extends Application{
         private MapTiles curTile;
         private Rectangle curRect;
         private Timeline t;
-        
+        private Player curPlayer;
+        private int curPlayerNum;
+
         public Chooser() {
             curTile = map.aMap.get(x).get(y);
             curRect = curTile.getMapTileGui();
+            curPlayer = config.players.get(0);
+            curPlayerNum = 0;
             x = 0;
             y = 0;
             curRect.setFill(Color.HOTPINK);
             t = new Timeline(new KeyFrame(
                     Duration.millis(1000),
                     ae -> {
-                        curRect.setFill(curTile.getMapType());
-                        if (x == 4) {
-                            if (y == 8) {
-                                x = 0;
-                                y = 0;
+                        if (curTile.getOwner().equals("None")) {
+                            curRect.setFill(curTile.getMapType());
+                            if (x == map.aMap.size() - 1) {
+                                if (y == map.aMap.get(0).size() - 1) {
+                                    x = 0;
+                                    y = 0;
+                                } else {
+                                    x = 0;
+                                    y++;
+                                }
                             } else {
-                                x = 0;
-                                y++;
+                                x++;
                             }
                         } else {
-                            x++;
+                                if (x == map.aMap.size() - 1) {
+                                    if (y == map.aMap.get(0).size() - 1) {
+                                        x = 0;
+                                        y = 0;
+                                    } else {
+                                        x = 0;
+                                        y++;
+                                    }
+                                } else {
+                                    x++;
+                                }
                         }
                         curTile = map.aMap.get(x).get(y);
                         curRect = curTile.getMapTileGui();
@@ -341,48 +347,58 @@ public class GUI extends Application{
                     }));
             t.setCycleCount(Animation.INDEFINITE);
         }
-        
+
         public void start() { t.play(); }
         public void pause() { t.pause(); }
+        public boolean claimLand() { 
+            t.pause();
+            curTile.setOwner(curPlayer.name);
+            if (curPlayerNum == config.num_Players - 1) return true;
+            curPlayerNum++;
+            curPlayer = config.players.get(curPlayerNum);
+            curRect.setFill(curPlayer.color);
+            t.play();
+            return false;
+        }
 
     }
-    
+
     // Timer that allows players to choose initial plot
-//    class Chooser extends AnimationTimer {
-//
-//        private int x;
-//        private int y;
-//        private MapTiles curTile;
-//        private Rectangle curRect;
-//        private Timeline t;
-//        
-//        public Chooser() {
-//            curTile = map.aMap.get(x).get(y);
-//            curRect = curTile.getMapTileGui();
-//            x = 0;
-//            y = 0;
-//            curRect.setFill(Color.HOTPINK);
-//        }
-//
-//        public void handle(long now) {
-//            curRect.setFill(curTile.getMapType());
-//            if (x == 4) {
-//                if (y == 8) {
-//                    x = 0;
-//                    y = 0;
-//                } else {
-//                    x = 0;
-//                    y++;
-//                }
-//            } else {
-//                x++;
-//            }
-//            curTile = map.aMap.get(x).get(y);
-//            curRect = curTile.getMapTileGui();
-//            curRect.setFill(Color.HOTPINK);
-//        }
-//
-//    }
+    //    class Chooser extends AnimationTimer {
+    //
+    //        private int x;
+    //        private int y;
+    //        private MapTiles curTile;
+    //        private Rectangle curRect;
+    //        private Timeline t;
+    //        
+    //        public Chooser() {
+    //            curTile = map.aMap.get(x).get(y);
+    //            curRect = curTile.getMapTileGui();
+    //            x = 0;
+    //            y = 0;
+    //            curRect.setFill(Color.HOTPINK);
+    //        }
+    //
+    //        public void handle(long now) {
+    //            curRect.setFill(curTile.getMapType());
+    //            if (x == 4) {
+    //                if (y == 8) {
+    //                    x = 0;
+    //                    y = 0;
+    //                } else {
+    //                    x = 0;
+    //                    y++;
+    //                }
+    //            } else {
+    //                x++;
+    //            }
+    //            curTile = map.aMap.get(x).get(y);
+    //            curRect = curTile.getMapTileGui();
+    //            curRect.setFill(Color.HOTPINK);
+    //        }
+    //
+    //    }
 
     class LoopService extends AbstractLoopService {
 
