@@ -20,8 +20,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+
+
 
 
 
@@ -301,23 +305,14 @@ public class GUI extends Application{
     public static void main (String[] args) {
         launch(args);
     }
-
-//    public Timeline chooser() {
-//        int x;
-//        int y;
-//        MapTiles curTile;
-//        Rectangle curRect;
-//        
-//        Timeline temp = new Timeline(new KeyFrame(Duration.millis((3000)),ae -> ));
-//        temp.setCycleCount(Animation.INDEFINITE);
-//    }
-    // Timer that allows players to choose initial plot
-    class Chooser extends AnimationTimer {
+    
+    class Chooser{
 
         private int x;
         private int y;
         private MapTiles curTile;
         private Rectangle curRect;
+        private Timeline t;
         
         public Chooser() {
             curTile = map.aMap.get(x).get(y);
@@ -325,27 +320,69 @@ public class GUI extends Application{
             x = 0;
             y = 0;
             curRect.setFill(Color.HOTPINK);
+            t = new Timeline(new KeyFrame(
+                    Duration.millis(1000),
+                    ae -> {
+                        curRect.setFill(curTile.getMapType());
+                        if (x == 4) {
+                            if (y == 8) {
+                                x = 0;
+                                y = 0;
+                            } else {
+                                x = 0;
+                                y++;
+                            }
+                        } else {
+                            x++;
+                        }
+                        curTile = map.aMap.get(x).get(y);
+                        curRect = curTile.getMapTileGui();
+                        curRect.setFill(Color.HOTPINK);
+                    }));
+            t.setCycleCount(Animation.INDEFINITE);
         }
-
-        public void handle(long now) {
-            curRect.setFill(curTile.getMapType());
-            if (x == 4) {
-                if (y == 8) {
-                    x = 0;
-                    y = 0;
-                } else {
-                    x = 0;
-                    y++;
-                }
-            } else {
-                x++;
-            }
-            curTile = map.aMap.get(x).get(y);
-            curRect = curTile.getMapTileGui();
-            curRect.setFill(Color.HOTPINK);
-        }
+        
+        public void start() { t.play(); }
+        public void pause() { t.pause(); }
 
     }
+    
+    // Timer that allows players to choose initial plot
+//    class Chooser extends AnimationTimer {
+//
+//        private int x;
+//        private int y;
+//        private MapTiles curTile;
+//        private Rectangle curRect;
+//        private Timeline t;
+//        
+//        public Chooser() {
+//            curTile = map.aMap.get(x).get(y);
+//            curRect = curTile.getMapTileGui();
+//            x = 0;
+//            y = 0;
+//            curRect.setFill(Color.HOTPINK);
+//        }
+//
+//        public void handle(long now) {
+//            curRect.setFill(curTile.getMapType());
+//            if (x == 4) {
+//                if (y == 8) {
+//                    x = 0;
+//                    y = 0;
+//                } else {
+//                    x = 0;
+//                    y++;
+//                }
+//            } else {
+//                x++;
+//            }
+//            curTile = map.aMap.get(x).get(y);
+//            curRect = curTile.getMapTileGui();
+//            curRect.setFill(Color.HOTPINK);
+//        }
+//
+//    }
 
     class LoopService extends AbstractLoopService {
 
