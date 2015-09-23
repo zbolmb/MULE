@@ -266,7 +266,7 @@ public class GUI extends Application{
             p.name = nameField.getText();
             if (cur == config.num_Players - 1) {
                 Pane mapGui = map.generateMapGui();
-                gameScreen = new Scene(mapGui, 500, 900);
+                gameScreen = new Scene(mapGui, 900, 500);
                 Chooser chooser = new Chooser();
                 chooser.start();
                 gameScreen.addEventHandler(KeyEvent.KEY_RELEASED, k -> {
@@ -305,7 +305,7 @@ public class GUI extends Application{
         private int curPlayerNum;
 
         public Chooser() {
-            curTile = map.aMap.get(x).get(y);
+            curTile = map.aMap[x][y];
             curRect = curTile.getMapTileGui();
             curPlayer = config.players.get(0);
             curPlayerNum = 0;
@@ -317,8 +317,8 @@ public class GUI extends Application{
                     ae -> {
                         if (curTile.getOwner().equals("None")) {
                             curRect.setFill(curTile.getMapType());
-                            if (x == map.aMap.size() - 1) {
-                                if (y == map.aMap.get(0).size() - 1) {
+                            if (x == map.aMap.length - 1) {
+                                if (y == map.aMap[0].length - 1) {
                                     x = 0;
                                     y = 0;
                                 } else {
@@ -329,8 +329,8 @@ public class GUI extends Application{
                                 x++;
                             }
                         } else {
-                                if (x == map.aMap.size() - 1) {
-                                    if (y == map.aMap.get(0).size() - 1) {
+                                if (x == map.aMap.length - 1) {
+                                    if (y == map.aMap[0].length - 1) {
                                         x = 0;
                                         y = 0;
                                     } else {
@@ -341,7 +341,7 @@ public class GUI extends Application{
                                     x++;
                                 }
                         }
-                        curTile = map.aMap.get(x).get(y);
+                        curTile = map.aMap[x][y];
                         curRect = curTile.getMapTileGui();
                         curRect.setFill(Color.HOTPINK);
                     }));
@@ -353,10 +353,10 @@ public class GUI extends Application{
         public boolean claimLand() { 
             t.pause();
             curTile.setOwner(curPlayer.name);
+            curRect.setFill(curPlayer.color);
             if (curPlayerNum == config.num_Players - 1) return true;
             curPlayerNum++;
             curPlayer = config.players.get(curPlayerNum);
-            curRect.setFill(curPlayer.color);
             t.play();
             return false;
         }
