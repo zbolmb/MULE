@@ -1,3 +1,6 @@
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+
 
 /**
  * An abstract class regarding MapTiles
@@ -12,12 +15,32 @@ public abstract class MapTiles {
 	private int ore;
 	private boolean crystalite;
 	private boolean highlightable;
+	private String owner;
 
-	public MapTiles() {
-		setFood(0);
-		setEnergy(0);
-		setOre(0);
-		setCrystalite(false);
+	//----------Should replace this with an image of tile--------------
+	private Rectangle mapTileGui;
+	private int w = 100;
+	private int h = 100;
+	private Color mapType;
+	//-----------------------------------------------------------------
+
+	/**
+	 * 
+	 * @param food
+	 * @param energy
+	 * @param ore
+	 * @param crystalite
+	 * @param highlightable
+	 * @param mapType ** This is temporary. Should be an image **
+	 */
+	public MapTiles(int food, int energy, int ore, boolean crystalite, boolean highlightable, Color mapType) {
+		this.food = food;
+		this.ore = ore;
+		this.crystalite = crystalite;
+		this.highlightable = highlightable;
+		this.mapTileGui = new Rectangle(w, h, mapType);
+		this.mapType = mapType;
+		this.owner = "None";
 	}
 
 	/**
@@ -35,5 +58,15 @@ public abstract class MapTiles {
 	public void setCrystalite(boolean crystalite) { this.crystalite = crystalite; }
 	public boolean isHighlightable() { return highlightable; }
 	public void setHighlightable(boolean highlightable) { this.highlightable = highlightable; }
+	public Color getMapType() { return mapType; }
+	public void getMapType(Color mapType) { this.mapType = mapType; }
+	//-------------------------------------------------------------------
+	public Rectangle getMapTileGui() { return mapTileGui;}
+	public void setMapTileGui(Rectangle mapTileGui) { this.mapTileGui = mapTileGui; };
+	//-------------------------------------------------------------------
+	
+	public String getOwner() { return owner; }
+	public void setOwner(String owner) { this.owner = owner; }
+	
 }
 

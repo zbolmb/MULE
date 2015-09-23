@@ -1,3 +1,4 @@
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -17,6 +19,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
+import javafx.scene.shape.Rectangle;
+import javafx.animation.Animation;
+import javafx.animation.Timeline;
+
+
+
+
 
 import java.awt.*;
 import java.awt.peer.ButtonPeer;
@@ -44,6 +53,9 @@ public class GUI extends Application{
     private ComboBox<String> player_number, race, color;
 
     private TextField name;
+    //---------------Map Data-----------------------------------------------------
+    GameMap map = new GameMap();
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {	    
@@ -143,6 +155,7 @@ public class GUI extends Application{
         GridPane.setHalignment(comboBox, HPos.CENTER);
 
         //---------------------------------------------------------------------------
+
         //--------------------------------------------------------------------------
         primaryStage.setScene(config1);
         primaryStage.show();
@@ -244,25 +257,29 @@ public class GUI extends Application{
         Button toNext = new Button("Next");
         toNext.setOnAction(ee -> {
             p.name = nameField.getText();
-            if (cur == config.num_Players - 1) {				
+            if (cur == config.num_Players - 1) {
+                Pane mapGui = map.generateMapGui();
+                gameScreen = new Scene(mapGui, 500, 900);
+                Chooser chooser = new Chooser();
+                chooser.start();
                 /** Temp gameScreen **/
-                GridPane tmpPane = new GridPane();
-                gameScreen = new Scene(tmpPane, 500, 500);
-                VBox tmpBox = new VBox();
-                tmpBox.getChildren().addAll(
-                        new Text("Difficulty : " + config.difficulty)
-                        , new Text("Map Type : " + config.map_Type)
-                        , new Text("Number Of Players : " + config.num_Players)
-                        );
-                for (int i = 0; i < config.num_Players; i++) {
-                    tmpBox.getChildren().addAll(
-                            new Text("Player " + (i + 1))
-                            , new Text("Name : " + config.players.get(i).name)
-                            , new Text("Race : " + config.players.get(i).race)
-                            , new Text("Color : " + config.players.get(i).color)
-                            );
-                }
-                tmpPane.add(tmpBox, 1, 1);
+                //                GridPane tmpPane = new GridPane();
+                //                gameScreen = new Scene(tmpPane, 500, 500);
+                //                VBox tmpBox = new VBox();
+                //                tmpBox.getChildren().addAll(
+                //                        new Text("Difficulty : " + config.difficulty)
+                //                        , new Text("Map Type : " + config.map_Type)
+                //                        , new Text("Number Of Players : " + config.num_Players)
+                //                        );
+                //                for (int i = 0; i < config.num_Players; i++) {
+                //                    tmpBox.getChildren().addAll(
+                //                            new Text("Player " + (i + 1))
+                //                            , new Text("Name : " + config.players.get(i).name)
+                //                            , new Text("Race : " + config.players.get(i).race)
+                //                            , new Text("Color : " + config.players.get(i).color)
+                //                            );
+                //                }
+                //                tmpPane.add(tmpBox, 1, 1);
 
                 /** Temp gameScreen **/
                 primaryStage.setScene(gameScreen);
@@ -283,5 +300,58 @@ public class GUI extends Application{
 
     public static void main (String[] args) {
         launch(args);
+    }
+
+//    public Timeline chooser() {
+//        int x;
+//        int y;
+//        MapTiles curTile;
+//        Rectangle curRect;
+//        
+//        Timeline temp = new Timeline(new KeyFrame(Duration.millis((3000)),ae -> ));
+//        temp.setCycleCount(Animation.INDEFINITE);
+//    }
+    // Timer that allows players to choose initial plot
+    class Chooser extends AnimationTimer {
+
+        private int x;
+        private int y;
+        private MapTiles curTile;
+        private Rectangle curRect;
+        
+        public Chooser() {
+            curTile = map.aMap.get(x).get(y);
+            curRect = curTile.getMapTileGui();
+            x = 0;
+            y = 0;
+            curRect.setFill(Color.HOTPINK);
+        }
+
+        public void handle(long now) {
+            curRect.setFill(curTile.getMapType());
+            if (x == 4) {
+                if (y == 8) {
+                    x = 0;
+                    y = 0;
+                } else {
+                    x = 0;
+                    y++;
+                }
+            } else {
+                x++;
+            }
+            curTile = map.aMap.get(x).get(y);
+            curRect = curTile.getMapTileGui();
+            curRect.setFill(Color.HOTPINK);
+        }
+
+    }
+
+    class LoopService extends AbstractLoopService {
+
+        protected void runOnFXThread() {
+        }
+        protected void runInBackground() {
+        }
     }
 }

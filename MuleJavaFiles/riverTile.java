@@ -1,12 +1,9 @@
+import javafx.scene.paint.Color;
 
 public class riverTile extends MapTiles{
 
 	public riverTile() {
-		super.setFood(4);
-		super.setEnergy(2);
-		super.setOre(0);
-		super.setCrystalite(false);
-		super.setHighlightable(true);
+	    super(4, 2, 0, false, true, Color.BLUE);
 	}
 
 }
