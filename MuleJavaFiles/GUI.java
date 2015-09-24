@@ -350,9 +350,13 @@ public class GUI extends Application{
          * Sets up temporary buttons for the town in the center of the map
          */
         Button store = new Button("Store");
+        store.setOnAction(e -> {});
         Button pub = new Button("Pub");
+        pub.setOnAction(e -> {});
         Button assay = new Button("Assay");
+        assay.setOnAction(e -> {});
         Button landOffices = new Button("Land Offices");
+        landOffices.setOnAction(e -> {});
         Button back = new Button("Back");
         back.setOnAction(e -> {
             primaryStage.setScene(gameScreen);
@@ -607,6 +611,10 @@ public class GUI extends Application{
                         primaryStage.setScene(town);
                         movePhase = false;
                         inTown = true;
+                        move.l = 0;
+                        move.r = 0;
+                        move.u = 0;
+                        move.d = 0;
                     }
                 }
                 if (!(x + xSpeed < 500 && x + xSpeed > 400 && y + ySpeed < 300 && y + ySpeed > 200)) {
