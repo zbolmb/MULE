@@ -300,6 +300,9 @@ public class GUI extends Application{
         //TEMP
         animate = new LoopService(move, primaryStage, town);
 
+        /**
+         * Handlers check for keypresses left, right, up, down arrow keys
+         */
         gameScreen.addEventHandler(KeyEvent.KEY_PRESSED, k -> {
             if (k.getCode() == KeyCode.LEFT) move.l = -5;
             if (k.getCode() == KeyCode.RIGHT) move.r = 5;
@@ -313,6 +316,10 @@ public class GUI extends Application{
             if (k.getCode() == KeyCode.DOWN) move.d = 0;
         });
 
+        /**
+         * Temporary game text that displays on the top of the game screen
+         * Tells whos turn it is to claim plot and displays money of the player
+         */
         Text gameText = new Text(chooser.curPlayer.name + " Choose Initial Plot. Money: " + chooser.curPlayer.money);
         gameScreen.addEventHandler(KeyEvent.KEY_PRESSED, k -> {
             if (k.getCode() == KeyCode.SPACE && !movePhase) {
@@ -325,6 +332,10 @@ public class GUI extends Application{
             };
         });
 
+        /**
+         * handler that checks for keypress "p"
+         * when p is pressed, current player passes his / her turn
+         */
         gameScreen.addEventHandler(KeyEvent.KEY_PRESSED, k -> {
             if (k.getCode() == KeyCode.P && !movePhase) {
                 chooser.pass();
@@ -335,6 +346,9 @@ public class GUI extends Application{
         });
 
         //-------------TOWN-------------------------------------------
+        /**
+         * Sets up temporary buttons for the town in the center of the map
+         */
         Button store = new Button("Store");
         Button pub = new Button("Pub");
         Button assay = new Button("Assay");
@@ -363,6 +377,16 @@ public class GUI extends Application{
         launch(args);
     }
 
+    /**
+     * Class that creates the timeline to move a chooser that allows current player to:
+     * press space to choose current plot and claim:
+     * press p to skip turn:
+     * if not enough money, skips player turn
+     * if all players out of money / passed, ends chooser and starts the animation 
+     * allows players to then move pieces
+     * @author Zhijian
+     *
+     */
     class Chooser{
 
         private int x;
@@ -376,6 +400,10 @@ public class GUI extends Application{
         protected boolean buyPhase = false;
         protected boolean[] passed;
 
+        /**
+         * constructor
+         * creates all necessary variables and timeline
+         */
         public Chooser() {
             passed = new boolean[config.num_Players];
             curTile = map.aMap[x][y];
@@ -402,6 +430,9 @@ public class GUI extends Application{
             t.setCycleCount(Animation.INDEFINITE);
         }
 
+        /**
+         * increments, or moves, to the next available plot of land
+         */
         public void incre() {
             if (x == map.aMap.length - 1) {
                 if (y == map.aMap[0].length - 1) {
@@ -421,6 +452,10 @@ public class GUI extends Application{
         public void start() { t.play(); }
         public void pause() { t.pause(); }
 
+        /**
+         * attempts to buy land claim
+         * if player doesn't have enough money, they auto pass and goes to next player
+         */
         public void attemptLandClaim() {
             if (!buyPhase) {
                 buyLand();
@@ -434,6 +469,10 @@ public class GUI extends Application{
             }
         }
 
+        /**
+         * makes the player buy the current plot of land.
+         * it then passes the turn.
+         */
         public void buyLand() {
             t.pause();
             if (buyPhase) curPlayer.money -= 300;
@@ -452,6 +491,10 @@ public class GUI extends Application{
             t.play();
         }
 
+        /**
+         * resets current land so it points to the beginning again
+         * this happens after every land claim
+         */
         public void resetLand() {
             if (!allPassed()) {
                 x = 0;
@@ -465,6 +508,10 @@ public class GUI extends Application{
             }
         }
 
+        /** checks if everyone has passed
+         * 
+         * @return
+         */
         public boolean allPassed() {
             for (int i = 0; i < passed.length; i++) {
                 if (!passed[i]) return false;
@@ -472,11 +519,18 @@ public class GUI extends Application{
             return true;
         }
 
+        /** 
+         * used in the eventhandler that handles the p keypress
+         * passes the turn of current player
+         */
         public void pass() {
             passed[curPlayerNum] = true;
             increPlayer();
         }
 
+        /**
+         * increments players so the current player is the next player
+         */
         public void increPlayer() {
             if (curPlayerNum == config.num_Players - 1) {
                 if (loop == 1) {
@@ -504,6 +558,11 @@ public class GUI extends Application{
 
     }
 
+    /**
+     * Class that contains data for animation movement
+     * @author Zhijian
+     *
+     */
     class PlayerMove {
         protected int l = 0;
         protected int r = 0;
@@ -513,6 +572,12 @@ public class GUI extends Application{
         protected Player curPlayer = config.players.get(0);
     }
 
+    /**
+     * Animation Renderer that runs functions every certain frames
+     * has a method to run on thread and to run off thread
+     * @author Zhijian
+     *
+     */
     class LoopService extends AbstractLoopService {
 
         PlayerMove move;
