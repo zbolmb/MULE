@@ -56,6 +56,7 @@ public class GUI extends Application{
     private TextField name;
 
     private boolean movePhase = false;
+    private boolean inTown = false;
     //---------------Map Data-----------------------------------------------------
     GameMap map = new GameMap();
 
@@ -292,7 +293,12 @@ public class GUI extends Application{
         chooser.start();
         //------------------Setting Up Arrow Key Movement-------------------------------
         move = new PlayerMove();
-        animate = new LoopService(move, primaryStage);
+
+        // TEMP
+        GridPane townWindow = new GridPane();
+        Scene town = new Scene(townWindow, 500, 500);
+        //TEMP
+        animate = new LoopService(move, primaryStage, town);
 
         gameScreen.addEventHandler(KeyEvent.KEY_PRESSED, k -> {
             if (k.getCode() == KeyCode.LEFT) move.l = -5;
@@ -329,8 +335,21 @@ public class GUI extends Application{
         });
 
         //-------------TOWN-------------------------------------------
-        Scene town = new Scene();
-        
+        Button store = new Button("Store");
+        Button pub = new Button("Pub");
+        Button assay = new Button("Assay");
+        Button landOffices = new Button("Land Offices");
+        Button back = new Button("Back");
+        back.setOnAction(e -> {
+            primaryStage.setScene(gameScreen);
+            movePhase = true;
+        });
+        townWindow.add(store, 1, 1);
+        townWindow.add(pub, 1, 2);
+        townWindow.add(assay, 2, 1);
+        townWindow.add(landOffices, 2, 2);
+        townWindow.add(back, 2, 3);
+
         gameScreen_Layout.add(gameText, 1, 0);
         primaryStage.setScene(gameScreen);
         primaryStage.setTitle("MULE");
@@ -497,14 +516,18 @@ public class GUI extends Application{
     class LoopService extends AbstractLoopService {
 
         PlayerMove move;
+        Stage primaryStage;
+        Scene town;
         Circle playerIcon;
         double x;
         double y;
         int xSpeed;
         int ySpeed;
 
-        public LoopService(PlayerMove move, Stage primaryStage) {
+        public LoopService(PlayerMove move, Stage primaryStage, Scene town) {
             this.move = move;
+            this.primaryStage = primaryStage;
+            this.town = town;
         }
 
         protected void runOnFXThread() {
@@ -515,7 +538,14 @@ public class GUI extends Application{
                 playerIcon.setCenterX(x + xSpeed);
                 playerIcon.setCenterY(y + ySpeed);
                 if (x + xSpeed < 500 && x + xSpeed > 400 && y + ySpeed < 300 && y + ySpeed > 200) {
-                    
+                    if (!inTown) {
+                        primaryStage.setScene(town);
+                        movePhase = false;
+                        inTown = true;
+                    }
+                }
+                if (!(x + xSpeed < 500 && x + xSpeed > 400 && y + ySpeed < 300 && y + ySpeed > 200)) {
+                    inTown = false;
                 }
             }
         }
