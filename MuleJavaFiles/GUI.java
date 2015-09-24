@@ -307,7 +307,7 @@ public class GUI extends Application{
 
         Text gameText = new Text(chooser.curPlayer.name + " Choose Initial Plot");
         gameScreen.addEventHandler(KeyEvent.KEY_PRESSED, k -> {
-            if (k.getCode() == KeyCode.SPACE) {
+            if (k.getCode() == KeyCode.SPACE && !animate.movePhase) {
                 if(chooser.claimLand()) {
                     gameText.setText(chooser.curPlayer.name + " Choose Initial Plot");
                 } else {
@@ -338,6 +338,7 @@ public class GUI extends Application{
         private Timeline t;
         protected Player curPlayer;
         protected int curPlayerNum;
+        protected int loop = 0;
 
         public Chooser() {
             curTile = map.aMap[x][y];
@@ -350,37 +351,30 @@ public class GUI extends Application{
             t = new Timeline(new KeyFrame(
                     Duration.millis(1000),
                     ae -> {
-                        if (curTile.getOwner().equals("None")) {
-                            curRect.setFill(curTile.getMapType());
-                            if (x == map.aMap.length - 1) {
-                                if (y == map.aMap[0].length - 1) {
-                                    x = 0;
-                                    y = 0;
-                                } else {
-                                    x = 0;
-                                    y++;
-                                }
-                            } else {
-                                x++;
-                            }
-                        } else {
-                            if (x == map.aMap.length - 1) {
-                                if (y == map.aMap[0].length - 1) {
-                                    x = 0;
-                                    y = 0;
-                                } else {
-                                    x = 0;
-                                    y++;
-                                }
-                            } else {
-                                x++;
-                            }
+                        if (curTile.getOwner().equals("None")) curRect.setFill(curTile.getMapType());
+                        incre();
+                        if (!curTile.getOwner().equals("None") || curTile.getName().equals("Town")) {
+                            incre();
                         }
-                        curTile = map.aMap[x][y];
-                        curRect = curTile.getMapTileGui();
                         curRect.setFill(Color.HOTPINK);
                     }));
             t.setCycleCount(Animation.INDEFINITE);
+        }
+
+        public void incre() {
+            if (x == map.aMap.length - 1) {
+                if (y == map.aMap[0].length - 1) {
+                    x = 0;
+                    y = 0;
+                } else {
+                    x = 0;
+                    y++;
+                }
+            } else {
+                x++;
+            }
+            curTile = map.aMap[x][y];
+            curRect = curTile.getMapTileGui();
         }
 
         public void start() { t.play(); }
@@ -389,12 +383,30 @@ public class GUI extends Application{
             t.pause();
             curTile.setOwner(curPlayer.name);
             curRect.setFill(curPlayer.color);
-            curPlayer.playerIcon = new Circle(x * MapTiles.getW() + 0.5 * MapTiles.getW()
-                    , y * MapTiles.getH() + 0.5 * MapTiles.getH()
-                    , 10);
-            mapGui.getChildren().add(curPlayer.playerIcon);
+            if (curPlayer.owned.size() <= 0) {
+                curPlayer.playerIcon = new Circle(x * MapTiles.getW() + 0.5 * MapTiles.getW()
+                        , y * MapTiles.getH() + 0.5 * MapTiles.getH()
+                        , 10);
+                curPlayer.owned.add(curTile);
+                mapGui.getChildren().add(curPlayer.playerIcon);
+            }
 
-            if (curPlayerNum == config.num_Players - 1) return false;
+            if (curPlayerNum == config.num_Players - 1) {
+                if (loop == 1) {
+                    return false;
+                } else {
+                    loop++;
+                    curPlayerNum = 0;
+                    curPlayer = config.players.get(0);
+                    x = 0;
+                    y = 0;
+                    curTile = map.aMap[x][y];
+                    curRect = curTile.getMapTileGui();
+                    curRect.setFill(Color.HOTPINK);
+                    t.play();
+                    return true;
+                }
+            }
             curPlayerNum++;
             curPlayer = config.players.get(curPlayerNum);
             t.play();

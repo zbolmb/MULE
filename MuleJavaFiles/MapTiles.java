@@ -16,6 +16,7 @@ public abstract class MapTiles {
 	private boolean crystalite;
 	private boolean highlightable;
 	private String owner;
+	private String name;
 
 	//----------Should replace this with an image of tile--------------
 	private Rectangle mapTileGui;
@@ -33,7 +34,7 @@ public abstract class MapTiles {
 	 * @param highlightable
 	 * @param mapType ** This is temporary. Should be an image **
 	 */
-	public MapTiles(int food, int energy, int ore, boolean crystalite, boolean highlightable, Color mapType) {
+	public MapTiles(int food, int energy, int ore, boolean crystalite, boolean highlightable, String name, Color mapType) {
 		this.food = food;
 		this.ore = ore;
 		this.crystalite = crystalite;
@@ -41,6 +42,7 @@ public abstract class MapTiles {
 		this.mapTileGui = new Rectangle(w, h, mapType);
 		this.mapType = mapType;
 		this.owner = "None";
+		this.name = name;
 	}
 
 	/**
@@ -60,6 +62,7 @@ public abstract class MapTiles {
 	public void setHighlightable(boolean highlightable) { this.highlightable = highlightable; }
 	public Color getMapType() { return mapType; }
 	public void getMapType(Color mapType) { this.mapType = mapType; }
+	public String getName() { return name; }
 	public static int getW() { return w; };
 	public static int getH() { return h; };
 	//-------------------------------------------------------------------

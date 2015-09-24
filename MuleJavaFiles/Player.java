@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
@@ -11,11 +13,13 @@ public class Player {
 	protected Color color;
 	protected int money;
 	protected Circle playerIcon;
+	protected ArrayList<MapTiles> owned;
 
 	public Player() {
 	    name = "noName";
 	    race = "Exile";
 	    color = Color.AZURE;
 	    money = 0;
+	    owned = new ArrayList<>();
 	}
 }

@@ -13,7 +13,7 @@ import javafx.scene.shape.Rectangle;
  */
 
 public class GameMap {
-
+    
 	protected MapTiles[][] aMap;
 
 	public GameMap() {
@@ -198,5 +198,4 @@ public class GameMap {
 
 	public MapTiles[][] getAMap() { return aMap; }
 	public void setAMap(MapTiles[][] aMap) { this.aMap = aMap; }
-
 }
