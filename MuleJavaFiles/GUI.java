@@ -54,6 +54,8 @@ public class GUI extends Application{
     private ComboBox<String> player_number, race, color;
 
     private TextField name;
+
+    private boolean movePhase = false;
     //---------------Map Data-----------------------------------------------------
     GameMap map = new GameMap();
 
@@ -290,7 +292,7 @@ public class GUI extends Application{
         chooser.start();
         //------------------Setting Up Arrow Key Movement-------------------------------
         move = new PlayerMove();
-        animate = new LoopService(move);
+        animate = new LoopService(move, primaryStage);
 
         gameScreen.addEventHandler(KeyEvent.KEY_PRESSED, k -> {
             if (k.getCode() == KeyCode.LEFT) move.l = -5;
@@ -305,17 +307,30 @@ public class GUI extends Application{
             if (k.getCode() == KeyCode.DOWN) move.d = 0;
         });
 
-        Text gameText = new Text(chooser.curPlayer.name + " Choose Initial Plot");
+        Text gameText = new Text(chooser.curPlayer.name + " Choose Initial Plot. Money: " + chooser.curPlayer.money);
         gameScreen.addEventHandler(KeyEvent.KEY_PRESSED, k -> {
-            if (k.getCode() == KeyCode.SPACE && !animate.movePhase) {
-                if(chooser.claimLand()) {
-                    gameText.setText(chooser.curPlayer.name + " Choose Initial Plot");
-                } else {
+            if (k.getCode() == KeyCode.SPACE && !movePhase) {
+                chooser.attemptLandClaim();
+                gameText.setText(chooser.curPlayer.name + " Choose Initial Plot. Money: " + chooser.curPlayer.money);
+                if (chooser.allPassed()) {
                     gameText.setText(config.players.get(0).name + "'s Turn");
-                    animate.movePhase = true;
+                    movePhase = true;
                 }
             };
         });
+
+        gameScreen.addEventHandler(KeyEvent.KEY_PRESSED, k -> {
+            if (k.getCode() == KeyCode.P && !movePhase) {
+                chooser.pass();
+                if (chooser.allPassed()) {
+                    movePhase = true;
+                }
+            };
+        });
+
+        //-------------TOWN-------------------------------------------
+        Scene town = new Scene();
+        
         gameScreen_Layout.add(gameText, 1, 0);
         primaryStage.setScene(gameScreen);
         primaryStage.setTitle("MULE");
@@ -339,8 +354,11 @@ public class GUI extends Application{
         protected Player curPlayer;
         protected int curPlayerNum;
         protected int loop = 0;
+        protected boolean buyPhase = false;
+        protected boolean[] passed;
 
         public Chooser() {
+            passed = new boolean[config.num_Players];
             curTile = map.aMap[x][y];
             curRect = curTile.getMapTileGui();
             curPlayer = config.players.get(0);
@@ -351,12 +369,16 @@ public class GUI extends Application{
             t = new Timeline(new KeyFrame(
                     Duration.millis(1000),
                     ae -> {
-                        if (curTile.getOwner().equals("None")) curRect.setFill(curTile.getMapType());
-                        incre();
-                        if (!curTile.getOwner().equals("None") || curTile.getName().equals("Town")) {
+                        if (!allPassed()) {
+                            if (curTile.getOwner().equals("None")) curRect.setFill(curTile.getMapType());
                             incre();
+                            while (!curTile.getOwner().equals("None") || curTile.getName().equals("Town")) {
+                                incre();
+                            }
+                            curRect.setFill(Color.HOTPINK);
+                        } else {
+                            movePhase = true;
                         }
-                        curRect.setFill(Color.HOTPINK);
                     }));
             t.setCycleCount(Animation.INDEFINITE);
         }
@@ -379,38 +401,86 @@ public class GUI extends Application{
 
         public void start() { t.play(); }
         public void pause() { t.pause(); }
-        public boolean claimLand() { 
+
+        public void attemptLandClaim() {
+            if (!buyPhase) {
+                buyLand();
+            } else {
+                if (curPlayer.money > 300) {
+                    buyLand();
+                } else {
+                    passed[curPlayerNum] = true;
+                    increPlayer();
+                }
+            }
+        }
+
+        public void buyLand() {
             t.pause();
-            curTile.setOwner(curPlayer.name);
-            curRect.setFill(curPlayer.color);
+            if (buyPhase) curPlayer.money -= 300;
             if (curPlayer.owned.size() <= 0) {
                 curPlayer.playerIcon = new Circle(x * MapTiles.getW() + 0.5 * MapTiles.getW()
                         , y * MapTiles.getH() + 0.5 * MapTiles.getH()
                         , 10);
-                curPlayer.owned.add(curTile);
                 mapGui.getChildren().add(curPlayer.playerIcon);
             }
+            curRect.setFill(curPlayer.color);
+            curTile.setOwner(curPlayer.name);
+            curPlayer.owned.add(curTile);
+            if (curPlayer.money < 300) passed[curPlayerNum] = true;
+            increPlayer();
+            resetLand();
+            t.play();
+        }
 
+        public void resetLand() {
+            if (!allPassed()) {
+                x = 0;
+                y = 0;
+                curTile = map.aMap[x][y];
+                curRect = curTile.getMapTileGui();
+                while (!curTile.getOwner().equals("None") || curTile.getName().equals("Town")) {
+                    incre();
+                }
+                curRect.setFill(Color.HOTPINK);
+            }
+        }
+
+        public boolean allPassed() {
+            for (int i = 0; i < passed.length; i++) {
+                if (!passed[i]) return false;
+            }
+            return true;
+        }
+
+        public void pass() {
+            passed[curPlayerNum] = true;
+            increPlayer();
+        }
+
+        public void increPlayer() {
             if (curPlayerNum == config.num_Players - 1) {
                 if (loop == 1) {
-                    return false;
+                    buyPhase = true;
                 } else {
                     loop++;
-                    curPlayerNum = 0;
-                    curPlayer = config.players.get(0);
-                    x = 0;
-                    y = 0;
-                    curTile = map.aMap[x][y];
-                    curRect = curTile.getMapTileGui();
-                    curRect.setFill(Color.HOTPINK);
-                    t.play();
-                    return true;
                 }
+                curPlayerNum = 0;
+                curPlayer = config.players.get(0);
+                resetLand();
+            } else {
+                curPlayerNum++;
+                curPlayer = config.players.get(curPlayerNum);
             }
-            curPlayerNum++;
-            curPlayer = config.players.get(curPlayerNum);
-            t.play();
-            return true;
+            if (passed[curPlayerNum]) {
+                if (allPassed()) {
+                    movePhase = true;
+                    if (curTile.getOwner().equals("None")) curRect.setFill(curTile.getMapType());
+                    t.stop();
+                    return;
+                }
+                increPlayer();
+            }
         }
 
     }
@@ -432,9 +502,8 @@ public class GUI extends Application{
         double y;
         int xSpeed;
         int ySpeed;
-        boolean movePhase = false;
 
-        public LoopService(PlayerMove move) {
+        public LoopService(PlayerMove move, Stage primaryStage) {
             this.move = move;
         }
 
@@ -445,6 +514,9 @@ public class GUI extends Application{
                 y = playerIcon.getCenterY();
                 playerIcon.setCenterX(x + xSpeed);
                 playerIcon.setCenterY(y + ySpeed);
+                if (x + xSpeed < 500 && x + xSpeed > 400 && y + ySpeed < 300 && y + ySpeed > 200) {
+                    
+                }
             }
         }
         protected void runInBackground() {

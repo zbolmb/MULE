@@ -19,7 +19,7 @@ public class Player {
 	    name = "noName";
 	    race = "Exile";
 	    color = Color.AZURE;
-	    money = 0;
+	    money = 1000;
 	    owned = new ArrayList<>();
 	}
 }
