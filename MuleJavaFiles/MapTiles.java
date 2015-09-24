@@ -19,8 +19,8 @@ public abstract class MapTiles {
 
 	//----------Should replace this with an image of tile--------------
 	private Rectangle mapTileGui;
-	private int w = 100;
-	private int h = 100;
+	private static int w = 100;
+	private static int h = 100;
 	private Color mapType;
 	//-----------------------------------------------------------------
 
@@ -60,6 +60,8 @@ public abstract class MapTiles {
 	public void setHighlightable(boolean highlightable) { this.highlightable = highlightable; }
 	public Color getMapType() { return mapType; }
 	public void getMapType(Color mapType) { this.mapType = mapType; }
+	public static int getW() { return w; };
+	public static int getH() { return h; };
 	//-------------------------------------------------------------------
 	public Rectangle getMapTileGui() { return mapTileGui;}
 	public void setMapTileGui(Rectangle mapTileGui) { this.mapTileGui = mapTileGui; };

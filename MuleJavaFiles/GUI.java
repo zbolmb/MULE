@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -21,21 +22,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-
-
-
-
-
-
-
-
-import java.awt.*;
-import java.awt.peer.ButtonPeer;
 
 /**
  * Created by William on 9/10/2015.
@@ -48,6 +40,8 @@ public class GUI extends Application{
     private Scene[] players = new Scene[4];
 
     private GridPane config1_Grid, config2_Grid, config3_Grid;
+
+    private Pane mapGui;
 
     private VBox config1_ButtonPanel;
     //, config2_ButtonPanel;
@@ -263,23 +257,15 @@ public class GUI extends Application{
         grid.add(colorBox, 1, 3);
         Button toNext = new Button("Next");
         toNext.setOnAction(e -> {
+            //------------ Creates Map / Game Screen -------------------------
             p.name = nameField.getText();
             if (cur == config.num_Players - 1) {
-                Pane mapGui = map.generateMapGui();
-                gameScreen = new Scene(mapGui, 900, 500);
-                Chooser chooser = new Chooser();
-                chooser.start();
-                gameScreen.addEventHandler(KeyEvent.KEY_RELEASED, k -> {
-                    if (k.getCode() == KeyCode.SPACE) {
-                        chooser.claimLand();
-                    };
-                });
-                primaryStage.setScene(gameScreen);
-                primaryStage.setTitle("MULE");
+                createGameScreen(primaryStage);
             } else {
                 primaryStage.setScene(players[cur + 1]);
                 primaryStage.setTitle("Player " + (cur + 2));
             }
+            //----------------------------------------------------------------
         });
         text.getChildren().addAll(name_Text, race_Text, color_Text);
         grid.add(text, 2, 2);
@@ -288,6 +274,55 @@ public class GUI extends Application{
         grid.setVgap(10);
 
         //grid.setGridLinesVisible(true);
+    }
+
+    public void createGameScreen(Stage primaryStage) {
+        GridPane gameScreen_Layout = new GridPane();
+        gameScreen_Layout.setHgap(20);
+        gameScreen_Layout.setVgap(20);
+
+        mapGui = map.generateMapGui();
+        gameScreen = new Scene(gameScreen_Layout, 940, 540);
+        gameScreen_Layout.add(mapGui, 1, 1);
+        Chooser chooser = new Chooser();
+        PlayerMove move;
+        LoopService animate;
+        chooser.start();
+        //------------------Setting Up Arrow Key Movement-------------------------------
+        move = new PlayerMove();
+        animate = new LoopService(move);
+
+        gameScreen.addEventHandler(KeyEvent.KEY_PRESSED, k -> {
+            if (k.getCode() == KeyCode.LEFT) move.l = -5;
+            if (k.getCode() == KeyCode.RIGHT) move.r = 5;
+            if (k.getCode() == KeyCode.UP) move.u = -5;
+            if (k.getCode() == KeyCode.DOWN) move.d = 5;
+        });
+        gameScreen.addEventHandler(KeyEvent.KEY_RELEASED, k -> {
+            if (k.getCode() == KeyCode.LEFT) move.l = 0;
+            if (k.getCode() == KeyCode.RIGHT) move.r = 0;
+            if (k.getCode() == KeyCode.UP) move.u = 0;
+            if (k.getCode() == KeyCode.DOWN) move.d = 0;
+        });
+
+        Text gameText = new Text(chooser.curPlayer.name + " Choose Initial Plot");
+        gameScreen.addEventHandler(KeyEvent.KEY_PRESSED, k -> {
+            if (k.getCode() == KeyCode.SPACE) {
+                if(chooser.claimLand()) {
+                    gameText.setText(chooser.curPlayer.name + " Choose Initial Plot");
+                } else {
+                    gameText.setText(config.players.get(0).name + "'s Turn");
+                    animate.movePhase = true;
+                }
+            };
+        });
+        gameScreen_Layout.add(gameText, 1, 0);
+        primaryStage.setScene(gameScreen);
+        primaryStage.setTitle("MULE");
+
+        animate.start();
+
+        //gameScreen_Layout.setGridLinesVisible(true);
     }
 
     public static void main (String[] args) {
@@ -301,8 +336,8 @@ public class GUI extends Application{
         private MapTiles curTile;
         private Rectangle curRect;
         private Timeline t;
-        private Player curPlayer;
-        private int curPlayerNum;
+        protected Player curPlayer;
+        protected int curPlayerNum;
 
         public Chooser() {
             curTile = map.aMap[x][y];
@@ -329,17 +364,17 @@ public class GUI extends Application{
                                 x++;
                             }
                         } else {
-                                if (x == map.aMap.length - 1) {
-                                    if (y == map.aMap[0].length - 1) {
-                                        x = 0;
-                                        y = 0;
-                                    } else {
-                                        x = 0;
-                                        y++;
-                                    }
+                            if (x == map.aMap.length - 1) {
+                                if (y == map.aMap[0].length - 1) {
+                                    x = 0;
+                                    y = 0;
                                 } else {
-                                    x++;
+                                    x = 0;
+                                    y++;
                                 }
+                            } else {
+                                x++;
+                            }
                         }
                         curTile = map.aMap[x][y];
                         curRect = curTile.getMapTileGui();
@@ -354,57 +389,61 @@ public class GUI extends Application{
             t.pause();
             curTile.setOwner(curPlayer.name);
             curRect.setFill(curPlayer.color);
-            if (curPlayerNum == config.num_Players - 1) return true;
+            curPlayer.playerIcon = new Circle(x * MapTiles.getW() + 0.5 * MapTiles.getW()
+                    , y * MapTiles.getH() + 0.5 * MapTiles.getH()
+                    , 10);
+            mapGui.getChildren().add(curPlayer.playerIcon);
+
+            if (curPlayerNum == config.num_Players - 1) return false;
             curPlayerNum++;
             curPlayer = config.players.get(curPlayerNum);
             t.play();
-            return false;
+            return true;
         }
 
     }
 
-    // Timer that allows players to choose initial plot
-    //    class Chooser extends AnimationTimer {
-    //
-    //        private int x;
-    //        private int y;
-    //        private MapTiles curTile;
-    //        private Rectangle curRect;
-    //        private Timeline t;
-    //        
-    //        public Chooser() {
-    //            curTile = map.aMap.get(x).get(y);
-    //            curRect = curTile.getMapTileGui();
-    //            x = 0;
-    //            y = 0;
-    //            curRect.setFill(Color.HOTPINK);
-    //        }
-    //
-    //        public void handle(long now) {
-    //            curRect.setFill(curTile.getMapType());
-    //            if (x == 4) {
-    //                if (y == 8) {
-    //                    x = 0;
-    //                    y = 0;
-    //                } else {
-    //                    x = 0;
-    //                    y++;
-    //                }
-    //            } else {
-    //                x++;
-    //            }
-    //            curTile = map.aMap.get(x).get(y);
-    //            curRect = curTile.getMapTileGui();
-    //            curRect.setFill(Color.HOTPINK);
-    //        }
-    //
-    //    }
+    class PlayerMove {
+        protected int l = 0;
+        protected int r = 0;
+        protected int u = 0;
+        protected int d = 0;
+        protected char dir;
+        protected Player curPlayer = config.players.get(0);
+    }
 
     class LoopService extends AbstractLoopService {
 
+        PlayerMove move;
+        Circle playerIcon;
+        double x;
+        double y;
+        int xSpeed;
+        int ySpeed;
+        boolean movePhase = false;
+
+        public LoopService(PlayerMove move) {
+            this.move = move;
+        }
+
         protected void runOnFXThread() {
+            if (movePhase) {
+                playerIcon = move.curPlayer.playerIcon;
+                x = playerIcon.getCenterX();
+                y = playerIcon.getCenterY();
+                playerIcon.setCenterX(x + xSpeed);
+                playerIcon.setCenterY(y + ySpeed);
+            }
         }
         protected void runInBackground() {
+            if (movePhase) {
+                xSpeed = move.l + move.r;
+                ySpeed = move.u + move.d;
+                if (xSpeed == 5) move.dir = 'r';
+                if (xSpeed == -5) move.dir = 'l';
+                if (ySpeed == 5) move.dir = 'd';
+                if (ySpeed == -5) move.dir = 'u';
+            }
         }
     }
 }
