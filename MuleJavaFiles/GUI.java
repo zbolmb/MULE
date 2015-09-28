@@ -27,7 +27,7 @@ import javafx.scene.shape.Rectangle;
  * also has some behind the scene work (coded not so well)
  */
 public class GUI extends Application{
-   
+
 	private Scene config1, config2, gameScreen;
 
 	private Configurations config;
@@ -300,7 +300,7 @@ public class GUI extends Application{
 		// TEMP TOWN
 		TownMap townMap = new TownMap();
 		Pane townMapPane = townMap.generateMapGui();
-		Scene town = new Scene(townMapPane, 500, 500);
+		Scene town = new Scene(townMapPane, 900, 500);
 
 		/**
 		 * LoopService has data called curplayer
