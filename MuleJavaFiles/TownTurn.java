@@ -26,5 +26,5 @@ public class TownTurn extends TurnTracker {
         return moneyMan;
     }
 
-    
+
 }
