@@ -8,7 +8,7 @@ public class TownMap {
     protected TownTiles[][] aMap;
 
     public TownMap() {
-        this.aMap = new TownTiles[3][5];
+        this.aMap = new TownTiles[5][3];
     }
 
     /**
