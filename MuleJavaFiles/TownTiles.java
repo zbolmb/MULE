@@ -11,8 +11,8 @@ public abstract class TownTiles {
 
     //----------Should replace this with an image of tile--------------
     private Rectangle mapTileGui;
-    private static int w = 25;
-    private static int h = 25;
+    private static int w = 160;
+    private static int h = 166;
     private Color mapType;
     //-----------------------------------------------------------------
 
