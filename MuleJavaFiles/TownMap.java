@@ -7,8 +7,8 @@ import javafx.scene.shape.Rectangle;
 public class TownMap {
     protected TownTiles[][] aMap;
 
-    public GameMap() {
-        this.aMap = new MapTiles[5][3];
+    public TownMap() {
+        this.aMap = new TownTiles[5][3];
     }
 
     /**
@@ -50,6 +50,6 @@ public class TownMap {
         return pane;
     }
 
-    public MapTiles[][] getAMap() { return aMap; }
-    public void setAMap(MapTiles[][] aMap) { this.aMap = aMap; }
+    public TownTiles[][] getAMap() { return aMap; }
+    public void setAMap(TownTiles[][] aMap) { this.aMap = aMap; }
 }
