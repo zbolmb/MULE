@@ -298,7 +298,7 @@ public class GUI extends Application{
 
         // TEMP TOWN
         GridPane townWindow = new GridPane();
-        Scene town = new Scene(townWindow, 500, 500);
+        Scene town = new Scene(townWindow, 900, 500);
         
         /**
          * LoopService has data called curplayer
