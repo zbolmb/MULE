@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ProjectModuleManager">
-    <modules />
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/MULE.iml" filepath="$PROJECT_DIR$/MULE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mule/Mule.iml" filepath="$PROJECT_DIR$/Mule/Mule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/M2/src/main/main.iml" filepath="$PROJECT_DIR$/M2/src/main/main.iml" />
+    </modules>
   </component>
 </project>
