@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -287,10 +288,8 @@ public class GUI extends Application{
         mapGui = map.generateMapGui();
         gameScreen = new Scene(gameScreen_Layout, 940, 540);
         gameScreen_Layout.add(mapGui, 1, 1);
-        Chooser chooser = new Chooser();
         PlayerMove move;
         LoopService animate;
-        chooser.start();
         //------------------Setting Up Arrow Key Movement-------------------------------
         move = new PlayerMove();
 
@@ -320,16 +319,30 @@ public class GUI extends Application{
          * Temporary game text that displays on the top of the game screen
          * Tells whos turn it is to claim plot and displays money of the player
          */
-        Text gameText = new Text(chooser.curPlayer.name + " Choose Initial Plot. Money: " + chooser.curPlayer.money);
-        gameScreen.addEventHandler(KeyEvent.KEY_PRESSED, k -> {
-            if (k.getCode() == KeyCode.SPACE && !movePhase) {
-                chooser.attemptLandClaim();
-                gameText.setText(chooser.curPlayer.name + " Choose Initial Plot. Money: " + chooser.curPlayer.money);
-                if (chooser.allPassed()) {
-                    gameText.setText(config.players.get(0).name + "'s Turn");
+        TurnTracker turns = new TurnTracker(config.players);
+        SelectionSquare sq = new SelectionSquare();
+        for (Rectangle r : sq.sq) mapGui.getChildren().add(r);
+        Text gameText = new Text(turns.getCurPlayer().name + " Choose Initial Plot. Money: " + turns.getCurPlayer().money);
+
+        gameScreen.addEventHandler(MouseEvent.MOUSE_MOVED, e -> {
+            if (!movePhase) {
+                double x = e.getX() - 20;
+                double y = e.getY() - 37;
+                sq.moveSelection(x, y);
+            }
+        });
+
+        gameScreen.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+            if (!movePhase) {
+                double x = e.getX() - 20;
+                double y = e.getY() - 37;
+                boolean done = claimTile(x, y, sq.getTile(x, y, map), turns, gameText);
+                if (done) {
+                    sq.remove();
                     movePhase = true;
                 }
-            };
+                //System.out.println(turns.getCurPlayer().money + " " + turns.round + " " + turns.buyPhase);
+            }
         });
 
         /**
@@ -338,8 +351,9 @@ public class GUI extends Application{
          */
         gameScreen.addEventHandler(KeyEvent.KEY_PRESSED, k -> {
             if (k.getCode() == KeyCode.P && !movePhase) {
-                chooser.pass();
-                if (chooser.allPassed()) {
+                boolean done = turns.pass();
+                if (done) {
+                    sq.remove();
                     movePhase = true;
                 }
             };
@@ -367,6 +381,7 @@ public class GUI extends Application{
         townWindow.add(assay, 2, 1);
         townWindow.add(landOffices, 2, 2);
         townWindow.add(back, 2, 3);
+        //---------------------------------------------------------------
 
         gameScreen_Layout.add(gameText, 1, 0);
         primaryStage.setScene(gameScreen);
@@ -381,186 +396,210 @@ public class GUI extends Application{
         launch(args);
     }
 
-    /**
-     * Class that creates the timeline to move a chooser that allows current player to:
-     * press space to choose current plot and claim:
-     * press p to skip turn:
-     * if not enough money, skips player turn
-     * if all players out of money / passed, ends chooser and starts the animation 
-     * allows players to then move pieces
-     * @author Zhijian
-     *
-     */
-    class Chooser{
-
-        private int x;
-        private int y;
-        private MapTiles curTile;
-        private Rectangle curRect;
-        private Timeline t;
-        protected Player curPlayer;
-        protected int curPlayerNum;
-        protected int loop = 0;
-        protected boolean buyPhase = false;
-        protected boolean[] passed;
-
-        /**
-         * constructor
-         * creates all necessary variables and timeline
-         */
-        public Chooser() {
-            passed = new boolean[config.num_Players];
-            curTile = map.aMap[x][y];
-            curRect = curTile.getMapTileGui();
-            curPlayer = config.players.get(0);
-            curPlayerNum = 0;
-            x = 0;
-            y = 0;
-            curRect.setFill(Color.HOTPINK);
-            t = new Timeline(new KeyFrame(
-                    Duration.millis(1000),
-                    ae -> {
-                        if (!allPassed()) {
-                            if (curTile.getOwner().equals("None")) curRect.setFill(curTile.getMapType());
-                            incre();
-                            while (!curTile.getOwner().equals("None") || curTile.getName().equals("Town")) {
-                                incre();
-                            }
-                            curRect.setFill(Color.HOTPINK);
-                        } else {
-                            movePhase = true;
-                        }
-                    }));
-            t.setCycleCount(Animation.INDEFINITE);
+    public boolean claimTile(double x, double y, MapTiles tile, TurnTracker turns, Text gameText) {
+        Player curPlayer = turns.getCurPlayer();
+        if (curPlayer.owned.size() <= 0) {
+            int rx = (int)(x / 100) * 100;
+            int ry = (int)(y / 100) * 100;
+            curPlayer.playerIcon = new Circle(rx + 0.5 * MapTiles.getW()
+                    , ry + 0.5 * MapTiles.getH()
+                    , 10);
+            mapGui.getChildren().add(curPlayer.playerIcon);
         }
+        curPlayer.owned.add(tile);
+        if (turns.buyPhase) curPlayer.money -= 300;
+        Rectangle[] sq = util.drawSelectionSq(x, y, curPlayer.color);
 
-        /**
-         * increments, or moves, to the next available plot of land
-         */
-        public void incre() {
-            if (x == map.aMap.length - 1) {
-                if (y == map.aMap[0].length - 1) {
-                    x = 0;
-                    y = 0;
-                } else {
-                    x = 0;
-                    y++;
-                }
-            } else {
-                x++;
-            }
-            curTile = map.aMap[x][y];
-            curRect = curTile.getMapTileGui();
+        for (Rectangle r : sq) mapGui.getChildren().add(r);
+        boolean done = turns.nextTurn();
+        if (done) {
+            gameText.setText("Move Phase");
+        } else {
+            gameText.setText(turns.getCurPlayer().name + " Choose Initial Plot. Money: " + turns.getCurPlayer().money);
         }
-
-        public void start() { t.play(); }
-        public void pause() { t.pause(); }
-
-        /**
-         * attempts to buy land claim
-         * if player doesn't have enough money, they auto pass and goes to next player
-         */
-        public void attemptLandClaim() {
-            if (!buyPhase) {
-                buyLand();
-            } else {
-                if (curPlayer.money > 300) {
-                    buyLand();
-                } else {
-                    passed[curPlayerNum] = true;
-                    increPlayer();
-                }
-            }
-        }
-
-        /**
-         * makes the player buy the current plot of land.
-         * it then passes the turn.
-         */
-        public void buyLand() {
-            t.pause();
-            if (buyPhase) curPlayer.money -= 300;
-            if (curPlayer.owned.size() <= 0) {
-                curPlayer.playerIcon = new Circle(x * MapTiles.getW() + 0.5 * MapTiles.getW()
-                        , y * MapTiles.getH() + 0.5 * MapTiles.getH()
-                        , 10);
-                mapGui.getChildren().add(curPlayer.playerIcon);
-            }
-            curRect.setFill(curPlayer.color);
-            curTile.setOwner(curPlayer.name);
-            curPlayer.owned.add(curTile);
-            if (curPlayer.money < 300) passed[curPlayerNum] = true;
-            increPlayer();
-            resetLand();
-            t.play();
-        }
-
-        /**
-         * resets current land so it points to the beginning again
-         * this happens after every land claim
-         */
-        public void resetLand() {
-            if (!allPassed()) {
-                x = 0;
-                y = 0;
-                curTile = map.aMap[x][y];
-                curRect = curTile.getMapTileGui();
-                while (!curTile.getOwner().equals("None") || curTile.getName().equals("Town")) {
-                    incre();
-                }
-                curRect.setFill(Color.HOTPINK);
-            }
-        }
-
-        /** checks if everyone has passed
-         * 
-         * @return
-         */
-        public boolean allPassed() {
-            for (int i = 0; i < passed.length; i++) {
-                if (!passed[i]) return false;
-            }
-            return true;
-        }
-
-        /** 
-         * used in the eventhandler that handles the p keypress
-         * passes the turn of current player
-         */
-        public void pass() {
-            passed[curPlayerNum] = true;
-            increPlayer();
-        }
-
-        /**
-         * increments players so the current player is the next player
-         */
-        public void increPlayer() {
-            if (curPlayerNum == config.num_Players - 1) {
-                if (loop == 1) {
-                    buyPhase = true;
-                } else {
-                    loop++;
-                }
-                curPlayerNum = 0;
-                curPlayer = config.players.get(0);
-                resetLand();
-            } else {
-                curPlayerNum++;
-                curPlayer = config.players.get(curPlayerNum);
-            }
-            if (passed[curPlayerNum]) {
-                if (allPassed()) {
-                    movePhase = true;
-                    if (curTile.getOwner().equals("None")) curRect.setFill(curTile.getMapType());
-                    t.stop();
-                    return;
-                }
-                increPlayer();
-            }
-        }
-
+        return done;
     }
+
+    //    /**
+    //     * Class that creates the timeline to move a chooser that allows current player to:
+    //     * press space to choose current plot and claim:
+    //     * press p to skip turn:
+    //     * if not enough money, skips player turn
+    //     * if all players out of money / passed, ends chooser and starts the animation 
+    //     * allows players to then move pieces
+    //     * @author Zhijian
+    //     *
+    //     */
+    //    class Chooser{
+    //
+    //        private int x;
+    //        private int y;
+    //        private MapTiles curTile;
+    //        private Rectangle curRect;
+    //        private Timeline t;
+    //        protected Player curPlayer;
+    //        protected int curPlayerNum;
+    //        protected int loop = 0;
+    //        protected boolean buyPhase = false;
+    //        protected boolean[] passed;
+
+    //        /**
+    //         * constructor
+    //         * creates all necessary variables and timeline
+    //         */
+    //        public Chooser() {
+    //            passed = new boolean[config.num_Players];
+    //            curTile = map.aMap[x][y];
+    //            curRect = curTile.getMapTileGui();
+    //            curPlayer = config.players.get(0);
+    //            curPlayerNum = 0;
+    //            x = 0;
+    //            y = 0;
+    //            curRect.setFill(Color.HOTPINK);
+    //            t = new Timeline(new KeyFrame(
+    //                    Duration.millis(1000),
+    //                    ae -> {
+    //                        if (!allPassed()) {
+    //                            if (curTile.getOwner().equals("None")) curRect.setFill(curTile.getMapType());
+    //                            incre();
+    //                            while (!curTile.getOwner().equals("None") || curTile.getName().equals("Town")) {
+    //                                incre();
+    //                            }
+    //                            curRect.setFill(Color.HOTPINK);
+    //                        } else {
+    //                            movePhase = true;
+    //                        }
+    //                    }));
+    //            t.setCycleCount(Animation.INDEFINITE);
+    //        }
+    //
+    //        /**
+    //         * increments, or moves, to the next available plot of land
+    //         */
+    //        public void incre() {
+    //            if (x == map.aMap.length - 1) {
+    //                if (y == map.aMap[0].length - 1) {
+    //                    x = 0;
+    //                    y = 0;
+    //                } else {
+    //                    x = 0;
+    //                    y++;
+    //                }
+    //            } else {
+    //                x++;
+    //            }
+    //            curTile = map.aMap[x][y];
+    //            curRect = curTile.getMapTileGui();
+    //        }
+    //
+    //        public void start() { t.play(); }
+    //        public void pause() { t.pause(); }
+    //
+    //        /**
+    //         * attempts to buy land claim
+    //         * if player doesn't have enough money, they auto pass and goes to next player
+    //         */
+    //        public void attemptLandClaim() {
+    //            if (!buyPhase) {
+    //                buyLand();
+    //            } else {
+    //                if (curPlayer.money > 300) {
+    //                    buyLand();
+    //                } else {
+    //                    passed[curPlayerNum] = true;
+    //                    increPlayer();
+    //                }
+    //            }
+    //        }
+    //
+    //        /**
+    //         * makes the player buy the current plot of land.
+    //         * it then passes the turn.
+    //         */
+    //        public void buyLand() {
+    //            t.pause();
+    //            if (buyPhase) curPlayer.money -= 300;
+    //            if (curPlayer.owned.size() <= 0) {
+    //                curPlayer.playerIcon = new Circle(x * MapTiles.getW() + 0.5 * MapTiles.getW()
+    //                        , y * MapTiles.getH() + 0.5 * MapTiles.getH()
+    //                        , 10);
+    //                mapGui.getChildren().add(curPlayer.playerIcon);
+    //            }
+    //            curRect.setFill(curPlayer.color);
+    //            curTile.setOwner(curPlayer.name);
+    //            curPlayer.owned.add(curTile);
+    //            if (curPlayer.money < 300) passed[curPlayerNum] = true;
+    //            increPlayer();
+    //            resetLand();
+    //            t.play();
+    //        }
+    //
+    //        /**
+    //         * resets current land so it points to the beginning again
+    //         * this happens after every land claim
+    //         */
+    //        public void resetLand() {
+    //            if (!allPassed()) {
+    //                x = 0;
+    //                y = 0;
+    //                curTile = map.aMap[x][y];
+    //                curRect = curTile.getMapTileGui();
+    //                while (!curTile.getOwner().equals("None") || curTile.getName().equals("Town")) {
+    //                    incre();
+    //                }
+    //                curRect.setFill(Color.HOTPINK);
+    //            }
+    //        }
+    //
+    //        /** checks if everyone has passed
+    //         * 
+    //         * @return
+    //         */
+    //        public boolean allPassed() {
+    //            for (int i = 0; i < passed.length; i++) {
+    //                if (!passed[i]) return false;
+    //            }
+    //            return true;
+    //        }
+    //
+    //        /** 
+    //         * used in the eventhandler that handles the p keypress
+    //         * passes the turn of current player
+    //         */
+    //        public void pass() {
+    //            passed[curPlayerNum] = true;
+    //            increPlayer();
+    //        }
+    //
+    //        /**
+    //         * increments players so the current player is the next player
+    //         */
+    //        public void increPlayer() {
+    //            if (curPlayerNum == config.num_Players - 1) {
+    //                if (loop == 1) {
+    //                    buyPhase = true;
+    //                } else {
+    //                    loop++;
+    //                }
+    //                curPlayerNum = 0;
+    //                curPlayer = config.players.get(0);
+    //                resetLand();
+    //            } else {
+    //                curPlayerNum++;
+    //                curPlayer = config.players.get(curPlayerNum);
+    //            }
+    //            if (passed[curPlayerNum]) {
+    //                if (allPassed()) {
+    //                    movePhase = true;
+    //                    if (curTile.getOwner().equals("None")) curRect.setFill(curTile.getMapType());
+    //                    t.stop();
+    //                    return;
+    //                }
+    //                increPlayer();
+    //            }
+    //        }
+    //
+    //    }
 
     /**
      * Class that contains data for animation movement
