@@ -163,9 +163,9 @@ public class GUI extends Application{
     private void makeScene(Stage primaryStage, int cur) {
         Player p = new Player();
         VBox text = new VBox();
-        Text name_Text = new Text("Name :");
-        Text race_Text = new Text("Race :");
-        Text color_Text = new Text("Color : ");
+        Text name_Text = new Text("Name : " + p.name);
+        Text race_Text = new Text("Race : " + p.race);
+        Text color_Text = new Text("Color : Azure");
         text.setMinWidth(100);
         text.setSpacing(10);
         config.players.add(p);
@@ -173,7 +173,7 @@ public class GUI extends Application{
         players[cur] = new Scene(grid, 325, 200);
         TextField nameField = new TextField("Enter your name: ");
         nameField.setOnAction(event -> {
-            p.name = nameField.getText();;
+            p.name = nameField.getText();
             name_Text.setText("Name : " + p.name);
         });
         grid.add(nameField, 1, 1);
@@ -251,7 +251,6 @@ public class GUI extends Application{
         Button toNext = new Button("Next");
         toNext.setOnAction(e -> {
             //------------ Creates Map / Game Screen -------------------------
-            p.name = nameField.getText();
             if (cur == config.num_Players - 1) {
                 createGameScreen(primaryStage);
             } else {
@@ -299,7 +298,10 @@ public class GUI extends Application{
         GridPane townWindow = new GridPane();
         Scene town = new Scene(townWindow, 500, 500);
         
-        //IGNORE, just a way to animate movement
+        /**
+         * LoopService has data called curplayer
+         * When implementing turn based, make sure to change curPlayer for different player. 
+         */
         animate = new LoopService(move, primaryStage, town);
 
         /**
@@ -427,7 +429,8 @@ public class GUI extends Application{
                 int ry = (int)(y / 100) * 100;
                 curPlayer.playerIcon = new Circle(rx + 0.5 * MapTiles.getW()
                         , ry + 0.5 * MapTiles.getH()
-                        , 10);
+                        , 10
+                        , curPlayer.color);
                 mapGui.getChildren().add(curPlayer.playerIcon);
             }
             curPlayer.owned.add(tile);
