@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * TurnTracker is a class that keeps track of players and the current player
+ * BuyPhaseTurnTracker is a class that keeps track of players and the current player
  * Only used for buy phase of MULE
  * @author Zhijian
  *

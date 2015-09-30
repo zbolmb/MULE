@@ -22,7 +22,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 /**
- * Created by William on 9/10/2015.
+ * @author Zhijian Li, William Hsu
+ * The main class that has all the graphics
+ * also has some behind the scene work (coded not so well)
  */
 public class GUI extends Application{
     private Scene config1, config2, gameScreen;
