@@ -1,34 +1,25 @@
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import javafx.event.ActionEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 
 /**
  * Created by William on 9/10/2015.
@@ -85,8 +76,6 @@ public class GUI extends Application{
             config.difficulty = "Hard";
             difficulty_txt.setText("Difficulty : " + config.difficulty);
         });
-        //difficultyBox.getChildren().addAll(difficulty_Easy, difficulty_Medium, difficulty_Hard);
-        //difficultyBox.setSpacing(10);
         config1_Grid.add(difficulty_Easy, 1, 1);
         config1_Grid.add(difficulty_Medium, 2, 1);
         config1_Grid.add(difficulty_Hard, 3, 1);
@@ -130,12 +119,12 @@ public class GUI extends Application{
                 playerNum_txt.setText("Players : " + t1);
             }
         });
-        //----------------------------------------------------------------------------
+        //------------------------Sets Up Configuration screen for each player--------
         toConfig2 = new Button("Next");
         toConfig2.setOnAction(e -> {
             Player p;
             for (int i = 0; i < config.num_Players; i++) {
-                makeScene(primaryStage, i);
+                makeScene(primaryStage, i); // makes the separate configuration screens for each player
             }
             primaryStage.setScene(players[0]);
             primaryStage.setTitle("Player 1");
@@ -148,8 +137,6 @@ public class GUI extends Application{
         playerNum_txt = new Text("Players : 1 ");
         text.getChildren().addAll(difficulty_txt, mapType_txt, playerNum_txt);
         //-------------------------------------------------------------------------------
-        //config1_Grid.add(difficultyBox, 1, 1);
-        //config1_Grid.add(mapBox, 1, 2);
         config1_Grid.add(comboBox, 1, 3, 2, 1);
         config1_Grid.add(text, 4, 2);
         config1_Grid.add(toConfig2, 4, 5);
@@ -159,9 +146,6 @@ public class GUI extends Application{
         GridPane.setHalignment(mapBox, HPos.CENTER);
         GridPane.setHalignment(comboBox, HPos.CENTER);
 
-        //---------------------------------------------------------------------------
-
-        //--------------------------------------------------------------------------
         primaryStage.setScene(config1);
         primaryStage.show();
         primaryStage.setTitle("MULE");
@@ -170,6 +154,12 @@ public class GUI extends Application{
 
     }
 
+    /**
+     * makes the player configuration screen for each player
+     * you can minimize this and ignore
+     * @param primaryStage
+     * @param cur
+     */
     private void makeScene(Stage primaryStage, int cur) {
         Player p = new Player();
         VBox text = new VBox();
@@ -178,7 +168,6 @@ public class GUI extends Application{
         Text color_Text = new Text("Color : ");
         text.setMinWidth(100);
         text.setSpacing(10);
-        //text.setPadding(new Insets(20, 0, 0, 0));
         config.players.add(p);
         GridPane grid = new GridPane();
         players[cur] = new Scene(grid, 325, 200);
@@ -279,7 +268,19 @@ public class GUI extends Application{
 
         //grid.setGridLinesVisible(true);
     }
+    //----------------------------------------------------------------------------------------
 
+    /**
+     * This method creates the game screen (The actual game)
+     * REQUIRES EDITING
+     * RELEVANT FILES: 
+     *      SelectionSquare: drawing tool for the selection icon with mouse
+     *      TurnTracker: keeps track of players turn during buyPhase ONLY
+     *      util: has some utility functions: CURRENTLY ONLY HAS TOOL FOR 
+     *          DRAWING RECTANGLE TO MARK THAT TILE IS OWNED BY CURRENT PLAYER
+     * Need to add turn based clock
+     * @param primaryStage the stage that is being used (the window)
+     */
     public void createGameScreen(Stage primaryStage) {
         GridPane gameScreen_Layout = new GridPane();
         gameScreen_Layout.setHgap(20);
@@ -291,16 +292,22 @@ public class GUI extends Application{
         PlayerMove move;
         LoopService animate;
         //------------------Setting Up Arrow Key Movement-------------------------------
+        //IGNORE, helper class for animation
         move = new PlayerMove();
 
-        // TEMP
+        // TEMP TOWN
         GridPane townWindow = new GridPane();
         Scene town = new Scene(townWindow, 500, 500);
-        //TEMP
+        
+        //IGNORE, just a way to animate movement
         animate = new LoopService(move, primaryStage, town);
 
         /**
          * Handlers check for keypresses left, right, up, down arrow keys
+         * If left is pressed, add value of-5 to left move (decrease X to move left)
+         *    right is pressed, add 5 to right move (increase X to move up)
+         *    up is pressed, add -5 to up (decrease Y to move up)
+         *    down is pressed, add 5 to down (increase Y to move down)
          */
         gameScreen.addEventHandler(KeyEvent.KEY_PRESSED, k -> {
             if (k.getCode() == KeyCode.LEFT) move.l = -5;
@@ -315,23 +322,30 @@ public class GUI extends Application{
             if (k.getCode() == KeyCode.DOWN) move.d = 0;
         });
 
+        //Add a turntracker class. Keeps track of the current player
+        TurnTracker turns = new TurnTracker(config.players);
+        // add a white square around the plot that mouse is currently hovering over
+        SelectionSquare sq = new SelectionSquare();
+        for (Rectangle r : sq.sq) mapGui.getChildren().add(r);
+        
         /**
          * Temporary game text that displays on the top of the game screen
          * Tells whos turn it is to claim plot and displays money of the player
          */
-        TurnTracker turns = new TurnTracker(config.players);
-        SelectionSquare sq = new SelectionSquare();
-        for (Rectangle r : sq.sq) mapGui.getChildren().add(r);
         Text gameText = new Text(turns.getCurPlayer().name + " Choose Initial Plot. Money: " + turns.getCurPlayer().money);
 
+        
+        //MOUSE_MOVED event handler. When mouse moves, moves the selection square to tile that mouse is hovering over
         gameScreen.addEventHandler(MouseEvent.MOUSE_MOVED, e -> {
             if (!movePhase) {
-                double x = e.getX() - 20;
-                double y = e.getY() - 37;
+                double x = e.getX() - 20; //there is an offset of 20 for x
+                double y = e.getY() - 37; //there is an offset of 37 for y
                 sq.moveSelection(x, y);
             }
         });
 
+        //MOUSE_PRESSED event handler. When mouse is pressed, the tile at that spot is claimed for the current player, if valid.
+        //Does nothing if tile invalid
         gameScreen.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
             if (!movePhase) {
                 double x = e.getX() - 20;
@@ -341,7 +355,6 @@ public class GUI extends Application{
                     sq.remove();
                     movePhase = true;
                 }
-                //System.out.println(turns.getCurPlayer().money + " " + turns.round + " " + turns.buyPhase);
             }
         });
 
@@ -396,210 +409,43 @@ public class GUI extends Application{
         launch(args);
     }
 
+    /**
+     * This method takes in the x, y (of mouse) and allows the current player to claim that land, if valid.
+     * @param x coord of mouse
+     * @param y coord of mouse
+     * @param tile the tile in that location
+     * @param turns the turntracker for buying phase
+     * @param gameText the game text on top of screen
+     * @return returns method nextTurn. Next turn returns
+     *      false if players can still buy, true if everyone passed
+     */
     public boolean claimTile(double x, double y, MapTiles tile, TurnTracker turns, Text gameText) {
-        Player curPlayer = turns.getCurPlayer();
-        if (curPlayer.owned.size() <= 0) {
-            int rx = (int)(x / 100) * 100;
-            int ry = (int)(y / 100) * 100;
-            curPlayer.playerIcon = new Circle(rx + 0.5 * MapTiles.getW()
-                    , ry + 0.5 * MapTiles.getH()
-                    , 10);
-            mapGui.getChildren().add(curPlayer.playerIcon);
-        }
-        curPlayer.owned.add(tile);
-        if (turns.buyPhase) curPlayer.money -= 300;
-        Rectangle[] sq = util.drawSelectionSq(x, y, curPlayer.color);
+        if (!(tile instanceof townTile) && tile.getOwner().equals("None")) {
+            Player curPlayer = turns.getCurPlayer();
+            if (curPlayer.owned.size() <= 0) {
+                int rx = (int)(x / 100) * 100;
+                int ry = (int)(y / 100) * 100;
+                curPlayer.playerIcon = new Circle(rx + 0.5 * MapTiles.getW()
+                        , ry + 0.5 * MapTiles.getH()
+                        , 10);
+                mapGui.getChildren().add(curPlayer.playerIcon);
+            }
+            curPlayer.owned.add(tile);
+            tile.setOwner(curPlayer.name);
+            if (turns.buyPhase) curPlayer.money -= 300;
+            Rectangle[] sq = util.drawSelectionSq(x, y, curPlayer.color);
 
-        for (Rectangle r : sq) mapGui.getChildren().add(r);
-        boolean done = turns.nextTurn();
-        if (done) {
-            gameText.setText("Move Phase");
-        } else {
-            gameText.setText(turns.getCurPlayer().name + " Choose Initial Plot. Money: " + turns.getCurPlayer().money);
+            for (Rectangle r : sq) mapGui.getChildren().add(r);
+            boolean done = turns.nextTurn();
+            if (done) {
+                gameText.setText("Move Phase");
+            } else {
+                gameText.setText(turns.getCurPlayer().name + " Choose Initial Plot. Money: " + turns.getCurPlayer().money);
+            }
+            return done;
         }
-        return done;
+        return false;
     }
-
-    //    /**
-    //     * Class that creates the timeline to move a chooser that allows current player to:
-    //     * press space to choose current plot and claim:
-    //     * press p to skip turn:
-    //     * if not enough money, skips player turn
-    //     * if all players out of money / passed, ends chooser and starts the animation 
-    //     * allows players to then move pieces
-    //     * @author Zhijian
-    //     *
-    //     */
-    //    class Chooser{
-    //
-    //        private int x;
-    //        private int y;
-    //        private MapTiles curTile;
-    //        private Rectangle curRect;
-    //        private Timeline t;
-    //        protected Player curPlayer;
-    //        protected int curPlayerNum;
-    //        protected int loop = 0;
-    //        protected boolean buyPhase = false;
-    //        protected boolean[] passed;
-
-    //        /**
-    //         * constructor
-    //         * creates all necessary variables and timeline
-    //         */
-    //        public Chooser() {
-    //            passed = new boolean[config.num_Players];
-    //            curTile = map.aMap[x][y];
-    //            curRect = curTile.getMapTileGui();
-    //            curPlayer = config.players.get(0);
-    //            curPlayerNum = 0;
-    //            x = 0;
-    //            y = 0;
-    //            curRect.setFill(Color.HOTPINK);
-    //            t = new Timeline(new KeyFrame(
-    //                    Duration.millis(1000),
-    //                    ae -> {
-    //                        if (!allPassed()) {
-    //                            if (curTile.getOwner().equals("None")) curRect.setFill(curTile.getMapType());
-    //                            incre();
-    //                            while (!curTile.getOwner().equals("None") || curTile.getName().equals("Town")) {
-    //                                incre();
-    //                            }
-    //                            curRect.setFill(Color.HOTPINK);
-    //                        } else {
-    //                            movePhase = true;
-    //                        }
-    //                    }));
-    //            t.setCycleCount(Animation.INDEFINITE);
-    //        }
-    //
-    //        /**
-    //         * increments, or moves, to the next available plot of land
-    //         */
-    //        public void incre() {
-    //            if (x == map.aMap.length - 1) {
-    //                if (y == map.aMap[0].length - 1) {
-    //                    x = 0;
-    //                    y = 0;
-    //                } else {
-    //                    x = 0;
-    //                    y++;
-    //                }
-    //            } else {
-    //                x++;
-    //            }
-    //            curTile = map.aMap[x][y];
-    //            curRect = curTile.getMapTileGui();
-    //        }
-    //
-    //        public void start() { t.play(); }
-    //        public void pause() { t.pause(); }
-    //
-    //        /**
-    //         * attempts to buy land claim
-    //         * if player doesn't have enough money, they auto pass and goes to next player
-    //         */
-    //        public void attemptLandClaim() {
-    //            if (!buyPhase) {
-    //                buyLand();
-    //            } else {
-    //                if (curPlayer.money > 300) {
-    //                    buyLand();
-    //                } else {
-    //                    passed[curPlayerNum] = true;
-    //                    increPlayer();
-    //                }
-    //            }
-    //        }
-    //
-    //        /**
-    //         * makes the player buy the current plot of land.
-    //         * it then passes the turn.
-    //         */
-    //        public void buyLand() {
-    //            t.pause();
-    //            if (buyPhase) curPlayer.money -= 300;
-    //            if (curPlayer.owned.size() <= 0) {
-    //                curPlayer.playerIcon = new Circle(x * MapTiles.getW() + 0.5 * MapTiles.getW()
-    //                        , y * MapTiles.getH() + 0.5 * MapTiles.getH()
-    //                        , 10);
-    //                mapGui.getChildren().add(curPlayer.playerIcon);
-    //            }
-    //            curRect.setFill(curPlayer.color);
-    //            curTile.setOwner(curPlayer.name);
-    //            curPlayer.owned.add(curTile);
-    //            if (curPlayer.money < 300) passed[curPlayerNum] = true;
-    //            increPlayer();
-    //            resetLand();
-    //            t.play();
-    //        }
-    //
-    //        /**
-    //         * resets current land so it points to the beginning again
-    //         * this happens after every land claim
-    //         */
-    //        public void resetLand() {
-    //            if (!allPassed()) {
-    //                x = 0;
-    //                y = 0;
-    //                curTile = map.aMap[x][y];
-    //                curRect = curTile.getMapTileGui();
-    //                while (!curTile.getOwner().equals("None") || curTile.getName().equals("Town")) {
-    //                    incre();
-    //                }
-    //                curRect.setFill(Color.HOTPINK);
-    //            }
-    //        }
-    //
-    //        /** checks if everyone has passed
-    //         * 
-    //         * @return
-    //         */
-    //        public boolean allPassed() {
-    //            for (int i = 0; i < passed.length; i++) {
-    //                if (!passed[i]) return false;
-    //            }
-    //            return true;
-    //        }
-    //
-    //        /** 
-    //         * used in the eventhandler that handles the p keypress
-    //         * passes the turn of current player
-    //         */
-    //        public void pass() {
-    //            passed[curPlayerNum] = true;
-    //            increPlayer();
-    //        }
-    //
-    //        /**
-    //         * increments players so the current player is the next player
-    //         */
-    //        public void increPlayer() {
-    //            if (curPlayerNum == config.num_Players - 1) {
-    //                if (loop == 1) {
-    //                    buyPhase = true;
-    //                } else {
-    //                    loop++;
-    //                }
-    //                curPlayerNum = 0;
-    //                curPlayer = config.players.get(0);
-    //                resetLand();
-    //            } else {
-    //                curPlayerNum++;
-    //                curPlayer = config.players.get(curPlayerNum);
-    //            }
-    //            if (passed[curPlayerNum]) {
-    //                if (allPassed()) {
-    //                    movePhase = true;
-    //                    if (curTile.getOwner().equals("None")) curRect.setFill(curTile.getMapType());
-    //                    t.stop();
-    //                    return;
-    //                }
-    //                increPlayer();
-    //            }
-    //        }
-    //
-    //    }
 
     /**
      * Class that contains data for animation movement
