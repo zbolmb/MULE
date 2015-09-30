@@ -325,7 +325,7 @@ public class GUI extends Application{
         });
 
         //Add a turntracker class. Keeps track of the current player
-        TurnTracker turns = new TurnTracker(config.players);
+        BuyPhaseTurnTracker turns = new BuyPhaseTurnTracker(config.players);
         // add a white square around the plot that mouse is currently hovering over
         SelectionSquare sq = new SelectionSquare();
         for (Rectangle r : sq.sq) mapGui.getChildren().add(r);
@@ -422,7 +422,7 @@ public class GUI extends Application{
      * @return returns method nextTurn. Next turn returns
      *      false if players can still buy, true if everyone passed
      */
-    public boolean claimTile(double x, double y, MapTiles tile, TurnTracker turns, Text gameText) {
+    public boolean claimTile(double x, double y, MapTiles tile, BuyPhaseTurnTracker turns, Text gameText) {
         if (!(tile instanceof townTile) && tile.getOwner().equals("None")) {
             Player curPlayer = turns.getCurPlayer();
             if (curPlayer.owned.size() <= 0) {
