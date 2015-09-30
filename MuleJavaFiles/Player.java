@@ -12,14 +12,16 @@ public class Player {
 	protected String race;
 	protected Color color;
 	protected int money;
+	protected int score;
 	protected Circle playerIcon;
 	protected ArrayList<MapTiles> owned;
 
 	public Player() {
-	    name = "noName";
+	    name = "No Name";
 	    race = "Exile";
 	    color = Color.AZURE;
 	    money = 1000;
 	    owned = new ArrayList<>();
+	    score = 0;
 	}
 }

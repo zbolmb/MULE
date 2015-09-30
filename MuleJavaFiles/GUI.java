@@ -370,6 +370,7 @@ public class GUI extends Application{
                 if (done) {
                     sq.remove();
                     movePhase = true;
+                    gameText.setText("Move Phase");
                 }
             };
         });

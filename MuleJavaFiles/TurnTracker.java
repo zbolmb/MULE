@@ -11,7 +11,7 @@ public class TurnTracker {
     protected int round;
     protected int curPlayer;
     protected boolean buyPhase;
-    
+
     public TurnTracker(ArrayList<Player> players) {
         this.players = new ArrayList<>();
         for (Player p : players) {
@@ -21,7 +21,7 @@ public class TurnTracker {
         curPlayer = 0;
         buyPhase = false;
     }
-    
+
     public boolean nextTurn() {
         if (players.size() == 0) return false;
         curPlayer++;
@@ -39,17 +39,19 @@ public class TurnTracker {
         if (players.size() == 0) return true;
         return false;
     }
-    
+
     public boolean pass() {
-        players.remove(curPlayer);
+        if (players.size() == 0) return true;
+        if (players.get(curPlayer).owned.size() != 0) players.remove(curPlayer);
+        if (players.size() == 0) return true;
         return nextTurn();
     }
-    
+
     public Player getCurPlayer() {
         if (players.size() == 0) return null;
         return players.get(curPlayer);
     }
-    
+
     public void increRound() {
         if (round == 1) {
             buyPhase = true;
