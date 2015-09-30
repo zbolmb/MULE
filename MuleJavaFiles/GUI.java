@@ -491,6 +491,11 @@ public class GUI extends Application{
                 y = playerIcon.getCenterY();
                 playerIcon.setCenterX(x + xSpeed);
                 playerIcon.setCenterY(y + ySpeed);
+                if (playerIcon.getCenterX() < 5) playerIcon.setCenterX(5);
+                if (playerIcon.getCenterX() > 895) playerIcon.setCenterX(895);
+                if (playerIcon.getCenterY() < 5) playerIcon.setCenterY(5);
+                if (playerIcon.getCenterY() > 495) playerIcon.setCenterY(495);
+                
                 if (x + xSpeed < 500 && x + xSpeed > 400 && y + ySpeed < 300 && y + ySpeed > 200) {
                     if (!inTown) {
                         primaryStage.setScene(town);
