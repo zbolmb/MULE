@@ -1,3 +1,4 @@
+package townTiles;
 import javafx.scene.paint.Color;
 
 /**
@@ -5,7 +6,7 @@ import javafx.scene.paint.Color;
  */
 public class floorTile extends TownTiles {
     public floorTile() {
-        super("Floor", Color.WHITE);
+        super("Floor", Color.BROWN);
     }
 
 }

@@ -1,5 +1,6 @@
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import mapTiles.MapTiles;
 
 
 public class SelectionSquare {

@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import mapTiles.MapTiles;
 
 /**
  * Created by William on 9/10/2015.

@@ -1,5 +1,15 @@
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import townTiles.TownTiles;
+import townTiles.assayTownTile;
+import townTiles.crystiteTownTile;
+import townTiles.energyTownTile;
+import townTiles.floorTile;
+import townTiles.foodTownTile;
+import townTiles.landTownTile;
+import townTiles.muleTile;
+import townTiles.pubTile;
+import townTiles.smithoreTownTile;
 
 /**
  * Created by willi on 9/28/2015.

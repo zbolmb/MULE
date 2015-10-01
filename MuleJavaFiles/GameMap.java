@@ -4,6 +4,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import mapTiles.MapTiles;
+import mapTiles.m1Tile;
+import mapTiles.m2Tile;
+import mapTiles.m3Tile;
+import mapTiles.plainsTile;
+import mapTiles.riverTile;
+import mapTiles.townTile;
 
 
 /**

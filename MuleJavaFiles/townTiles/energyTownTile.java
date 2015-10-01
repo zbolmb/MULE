@@ -1,3 +1,4 @@
+package townTiles;
 import javafx.scene.paint.Color;
 
 /**
