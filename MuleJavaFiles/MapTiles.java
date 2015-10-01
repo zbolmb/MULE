@@ -1,3 +1,5 @@
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -17,6 +19,7 @@ public abstract class MapTiles {
 	private boolean highlightable;
 	private String owner;
 	private String name;
+	private Image img;
 
 	//----------Should replace this with an image of tile--------------
 	private Rectangle mapTileGui;
@@ -34,7 +37,7 @@ public abstract class MapTiles {
 	 * @param highlightable
 	 * @param mapType ** This is temporary. Should be an image **
 	 */
-	public MapTiles(int food, int energy, int ore, boolean crystalite, boolean highlightable, String name, Color mapType) {
+	public MapTiles(int food, int energy, int ore, boolean crystalite, boolean highlightable, String name, Color mapType, Image img) {
 		this.food = food;
 		this.ore = ore;
 		this.crystalite = crystalite;
@@ -43,6 +46,7 @@ public abstract class MapTiles {
 		this.mapType = mapType;
 		this.owner = "None";
 		this.name = name;
+		this.img = img;
 	}
 
 	/**
@@ -72,6 +76,9 @@ public abstract class MapTiles {
 	
 	public String getOwner() { return owner; }
 	public void setOwner(String owner) { this.owner = owner; }
+	public Image getImg() { return img; }
+	public void setImg(Image img) { this.img = img; }
+	public ImageView getImgView() { return new ImageView(img); }
 	
 }
 
