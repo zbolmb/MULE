@@ -482,6 +482,7 @@ public class GUI extends Application{
 		Scene town;
 		Pane townMapPane;
 		Circle playerIcon;
+        double time;
 		double x;
 		double y;
 		int xSpeed;
@@ -534,6 +535,7 @@ public class GUI extends Application{
 				if (ySpeed == 5) move.dir = 'd';
 				if (ySpeed == -5) move.dir = 'u';
 			}
+            time = time + 0.02;
 		}
 	}
 }
