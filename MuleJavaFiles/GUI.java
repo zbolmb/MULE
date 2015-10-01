@@ -27,10 +27,7 @@ import javafx.scene.shape.Rectangle;
  * also has some behind the scene work (coded not so well)
  */
 public class GUI extends Application{
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 	private Scene config1, config2, gameScreen;
 
 	private Configurations config;
