@@ -492,11 +492,13 @@ public class GUI extends Application{
                 y = playerIcon.getCenterY();
                 playerIcon.setCenterX(x + xSpeed);
                 playerIcon.setCenterY(y + ySpeed);
+                x = playerIcon.getCenterX();
+                y = playerIcon.getCenterY();
                 if (!inTown) {
-                    if (playerIcon.getCenterX() < 5) playerIcon.setCenterX(5);
-                    if (playerIcon.getCenterX() > 895) playerIcon.setCenterX(895);
-                    if (playerIcon.getCenterY() < 5) playerIcon.setCenterY(5);
-                    if (playerIcon.getCenterY() > 495) playerIcon.setCenterY(495);
+                    if (x < 5) playerIcon.setCenterX(5);
+                    if (x > 895) playerIcon.setCenterX(895);
+                    if (y < 5) playerIcon.setCenterY(5);
+                    if (y > 495) playerIcon.setCenterY(495);
                     if (x + xSpeed < 500 && x + xSpeed > 400 && y + ySpeed < 300 && y + ySpeed > 200) {
                         primaryStage.setScene(town);
                         townMapPane.getChildren().add(playerIcon);
@@ -510,10 +512,7 @@ public class GUI extends Application{
                         move.d = 0;
                     }
                 } else {
-                    if (playerIcon.getCenterX() < 5 
-                            || playerIcon.getCenterX() > 795
-                            || playerIcon.getCenterY() < 5
-                            || playerIcon.getCenterX() > 495) {
+                    if (x < 5 || x > 795 || y < 5 || y > 495) {
                         primaryStage.setScene(gameScreen);
                         townMapPane.getChildren().remove(playerIcon);
                         mapGui.getChildren().add(playerIcon);
@@ -525,6 +524,7 @@ public class GUI extends Application{
                         move.u = 0;
                         move.d = 0;
                     }
+                    
                 }
             }
         }
