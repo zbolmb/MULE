@@ -522,6 +522,7 @@ public class GUI extends Application{
 					if (!inTown && x + xSpeed < 500 && x + xSpeed > 400 && y + ySpeed < 300 && y + ySpeed > 200) {
 						primaryStage.setScene(town);
 						townMapPane.getChildren().add(playerIcon);
+						mapGui.getChildren().remove(playerIcon);
 						playerIcon.setCenterX(400);
 						playerIcon.setCenterY(250);
 						inTown = true;
@@ -537,6 +538,7 @@ public class GUI extends Application{
 							|| playerIcon.getCenterX() > 495) {
 						primaryStage.setScene(gameScreen);
 						townMapPane.getChildren().remove(playerIcon);
+						mapGui.getChildren().add(playerIcon);
 						inTown = false;
 						playerIcon.setCenterX(395);
 						playerIcon.setCenterY(250);
