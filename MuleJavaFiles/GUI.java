@@ -51,6 +51,9 @@ public class GUI extends Application{
 
     private boolean movePhase = false;
     private boolean inTown = false;
+
+    //-----TEMP SCOREBOARD---
+    private Scene score;
     //---------------Map Data-----------------------------------------------------
     GameMap map = new GameMap();
 
@@ -259,6 +262,9 @@ public class GUI extends Application{
                 primaryStage.setScene(players[cur + 1]);
                 primaryStage.setTitle("Player " + (cur + 2));
             }
+            if (!nameField.getText().equals("Enter your name: ")) {
+                p.name = nameField.getText();
+            }
             //----------------------------------------------------------------
         });
         text.getChildren().addAll(name_Text, race_Text, color_Text);
@@ -306,7 +312,7 @@ public class GUI extends Application{
          * LoopService has data called curplayer
          * When implementing turn based, make sure to change curPlayer for different player. 
          */
-        animate = new LoopService(move, primaryStage, town, townMapPane);
+        animate = new LoopService(move, primaryStage, town, townMapPane, townTurn);
 
         /**
          * Handlers check for keypresses left, right, up, down arrow keys
@@ -372,7 +378,7 @@ public class GUI extends Application{
                 if (done) {
                     sq.remove();
                     movePhase = true;
-                    //move.curPlayer = townTurn.getRichGuy();
+                    move.setCurPlayer(townTurn.getRichGuy());
                 }
             }
         });
@@ -388,7 +394,7 @@ public class GUI extends Application{
                     sq.remove();
                     movePhase = true;
                     gameText.setText("Move Phase");
-                    //move.curPlayer = townTurn.getRichGuy();
+                    move.setCurPlayer(townTurn.getRichGuy());
                 }
             };
         });
@@ -456,7 +462,11 @@ public class GUI extends Application{
         protected int u = 0;
         protected int d = 0;
         protected char dir;
-        protected Player curPlayer = config.players.get(0);
+        private Player curPlayer;
+
+        public void setCurPlayer(Player curPlayer) {
+            this.curPlayer = curPlayer;
+        }
     }
 
     /**
@@ -472,59 +482,97 @@ public class GUI extends Application{
         Scene town;
         Circle playerIcon;
         Pane townMapPane;
+        TownTurn townTurn;
         double x;
         double y;
         int xSpeed;
         int ySpeed;
         double time;
+        boolean dummy = true;
 
-        public LoopService(PlayerMove move, Stage primaryStage, Scene town, Pane townMapPane) {
+        public LoopService(PlayerMove move, Stage primaryStage, Scene town, Pane townMapPane, TownTurn townTurn) {
             this.move = move;
             this.primaryStage = primaryStage;
             this.town = town;
             this.townMapPane = townMapPane;
+            this.townTurn = townTurn;
         }
 
         protected void runOnFXThread() {
-            if (movePhase) {
-                playerIcon = move.curPlayer.playerIcon;
-                x = playerIcon.getCenterX();
-                y = playerIcon.getCenterY();
-                playerIcon.setCenterX(x + xSpeed);
-                playerIcon.setCenterY(y + ySpeed);
-                x = playerIcon.getCenterX();
-                y = playerIcon.getCenterY();
-                if (!inTown) {
-                    if (x < 5) playerIcon.setCenterX(5);
-                    if (x > 895) playerIcon.setCenterX(895);
-                    if (y < 5) playerIcon.setCenterY(5);
-                    if (y > 495) playerIcon.setCenterY(495);
-                    if (x + xSpeed < 500 && x + xSpeed > 400 && y + ySpeed < 300 && y + ySpeed > 200) {
-                        primaryStage.setScene(town);
-                        townMapPane.getChildren().add(playerIcon);
-                        mapGui.getChildren().remove(playerIcon);
-                        playerIcon.setCenterX(400);
-                        playerIcon.setCenterY(250);
-                        inTown = true;
-                        move.l = 0;
-                        move.r = 0;
-                        move.u = 0;
-                        move.d = 0;
+            if (dummy) {
+                if (movePhase) {
+                    if (time <= 120) {
+                        playerIcon = move.curPlayer.playerIcon;
+                        x = playerIcon.getCenterX();
+                        y = playerIcon.getCenterY();
+                        playerIcon.setCenterX(x + xSpeed);
+                        playerIcon.setCenterY(y + ySpeed);
+                        x = playerIcon.getCenterX();
+                        y = playerIcon.getCenterY();
+                        if (!inTown) {
+                            if (x < 5) playerIcon.setCenterX(5);
+                            if (x > 895) playerIcon.setCenterX(895);
+                            if (y < 5) playerIcon.setCenterY(5);
+                            if (y > 495) playerIcon.setCenterY(495);
+                            if (x + xSpeed < 500 && x + xSpeed > 400 && y + ySpeed < 300 && y + ySpeed > 200) {
+                                primaryStage.setScene(town);
+                                townMapPane.getChildren().add(playerIcon);
+                                mapGui.getChildren().remove(playerIcon);
+                                playerIcon.setCenterX(400);
+                                playerIcon.setCenterY(250);
+                                inTown = true;
+                                move.l = 0;
+                                move.r = 0;
+                                move.u = 0;
+                                move.d = 0;
+                            }
+                        } else {
+                            if (x < 5 || x > 795 || y < 5 || y > 495) {
+                                primaryStage.setScene(gameScreen);
+                                townMapPane.getChildren().remove(playerIcon);
+                                mapGui.getChildren().add(playerIcon);
+                                inTown = false;
+                                playerIcon.setCenterX(395);
+                                playerIcon.setCenterY(250);
+                                move.l = 0;
+                                move.r = 0;
+                                move.u = 0;
+                                move.d = 0;
+                            }
+                            if (x > 475 && x < 635 && y > 327 && y < 493) {
+                                move.curPlayer.score += 120 - time;
+                                move.setCurPlayer(townTurn.getRichGuy());
+                                if (move.curPlayer != null) {
+                                    primaryStage.setScene(gameScreen);
+                                    time = 0;
+                                    inTown = false;
+                                } else {
+                                    VBox scores = new VBox();
+                                    score = new Scene(scores, 500, 500);
+                                    for (Player p : config.players) {
+                                        scores.getChildren().add(new Text(p.name + "'s Score : " + p.score));
+                                    }
+                                    primaryStage.setScene(score);
+                                    dummy = false;
+                                }
+                            }
+                        }
+                    } else {
+                        move.setCurPlayer(townTurn.getRichGuy());
+                        if (move.curPlayer != null) {
+                            time = 0;
+                            primaryStage.setScene(gameScreen);
+                            inTown = false;
+                        } else {
+                            VBox scores = new VBox();
+                            score = new Scene(scores, 500, 500);
+                            for (Player p : config.players) {
+                                scores.getChildren().add(new Text(p.name + "'s Score : " + p.score));
+                            }
+                            primaryStage.setScene(score);
+                            dummy = false;
+                        }
                     }
-                } else {
-                    if (x < 5 || x > 795 || y < 5 || y > 495) {
-                        primaryStage.setScene(gameScreen);
-                        townMapPane.getChildren().remove(playerIcon);
-                        mapGui.getChildren().add(playerIcon);
-                        inTown = false;
-                        playerIcon.setCenterX(395);
-                        playerIcon.setCenterY(250);
-                        move.l = 0;
-                        move.r = 0;
-                        move.u = 0;
-                        move.d = 0;
-                    }
-                    
                 }
             }
         }
@@ -536,8 +584,8 @@ public class GUI extends Application{
                 if (xSpeed == -5) move.dir = 'l';
                 if (ySpeed == 5) move.dir = 'd';
                 if (ySpeed == -5) move.dir = 'u';
+                time = time + 0.02;
             }
-            time = time + 0.02;
         }
     }
 }

@@ -5,9 +5,11 @@ import java.util.ArrayList;
  */
 public class TownTurn extends TurnTracker {
     protected int round;
+    private ArrayList<Player> playersCopy;
 
     public TownTurn(ArrayList<Player> players) {
         super(players);
+        playersCopy = players;
     }
 
     public Player getRichGuy() {
@@ -17,7 +19,7 @@ public class TownTurn extends TurnTracker {
         Player moneyMan = players.get(0);
         for (int i = 0; i < players.size(); i++) {
             Player currPlayer = players.get(i);
-            if (currPlayer.money > moneyMan.money) {
+            if (currPlayer.score > moneyMan.score) {
                 moneyMan = currPlayer;
             }
         }
