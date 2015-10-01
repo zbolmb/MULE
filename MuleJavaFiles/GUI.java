@@ -297,15 +297,16 @@ public class GUI extends Application{
         move = new PlayerMove();
 
         // TEMP TOWN
-        GridPane townWindow = new GridPane();
-        Scene town = new Scene(townWindow, 500, 500);
+        TownMap townMap = new TownMap();
+        Pane townMapPane = townMap.generateMapGui();
+        Scene town = new Scene(townMapPane, 800, 500);
         TownTurn townTurn = new TownTurn(config.players);
-        
+
         /**
          * LoopService has data called curplayer
          * When implementing turn based, make sure to change curPlayer for different player. 
          */
-        animate = new LoopService(move, primaryStage, town);
+        animate = new LoopService(move, primaryStage, town, townMapPane);
 
         /**
          * Handlers check for keypresses left, right, up, down arrow keys
@@ -326,20 +327,32 @@ public class GUI extends Application{
             if (k.getCode() == KeyCode.UP) move.u = 0;
             if (k.getCode() == KeyCode.DOWN) move.d = 0;
         });
+        town.addEventHandler(KeyEvent.KEY_PRESSED, k -> {
+            if (k.getCode() == KeyCode.LEFT) move.l = -5;
+            if (k.getCode() == KeyCode.RIGHT) move.r = 5;
+            if (k.getCode() == KeyCode.UP) move.u = -5;
+            if (k.getCode() == KeyCode.DOWN) move.d = 5;
+        });
+        town.addEventHandler(KeyEvent.KEY_RELEASED, k -> {
+            if (k.getCode() == KeyCode.LEFT) move.l = 0;
+            if (k.getCode() == KeyCode.RIGHT) move.r = 0;
+            if (k.getCode() == KeyCode.UP) move.u = 0;
+            if (k.getCode() == KeyCode.DOWN) move.d = 0;
+        });
 
         //Add a turntracker class. Keeps track of the current player
         BuyPhaseTurnTracker turns = new BuyPhaseTurnTracker(config.players);
         // add a white square around the plot that mouse is currently hovering over
         SelectionSquare sq = new SelectionSquare();
         for (Rectangle r : sq.sq) mapGui.getChildren().add(r);
-        
+
         /**
          * Temporary game text that displays on the top of the game screen
          * Tells whos turn it is to claim plot and displays money of the player
          */
         Text gameText = new Text(turns.getCurPlayer().name + " Choose Initial Plot. Money: " + turns.getCurPlayer().money);
 
-        
+
         //MOUSE_MOVED event handler. When mouse moves, moves the selection square to tile that mouse is hovering over
         gameScreen.addEventHandler(MouseEvent.MOUSE_MOVED, e -> {
             if (!movePhase) {
@@ -359,7 +372,7 @@ public class GUI extends Application{
                 if (done) {
                     sq.remove();
                     movePhase = true;
-                    move.curPlayer = townTurn.getRichGuy();
+                    //move.curPlayer = townTurn.getRichGuy();
                 }
             }
         });
@@ -375,7 +388,7 @@ public class GUI extends Application{
                     sq.remove();
                     movePhase = true;
                     gameText.setText("Move Phase");
-                    move.curPlayer = townTurn.getRichGuy();
+                    //move.curPlayer = townTurn.getRichGuy();
                 }
             };
         });
@@ -458,16 +471,18 @@ public class GUI extends Application{
         Stage primaryStage;
         Scene town;
         Circle playerIcon;
+        Pane townMapPane;
         double x;
         double y;
         int xSpeed;
         int ySpeed;
         double time;
 
-        public LoopService(PlayerMove move, Stage primaryStage, Scene town) {
+        public LoopService(PlayerMove move, Stage primaryStage, Scene town, Pane townMapPane) {
             this.move = move;
             this.primaryStage = primaryStage;
             this.town = town;
+            this.townMapPane = townMapPane;
         }
 
         protected void runOnFXThread() {
@@ -477,24 +492,39 @@ public class GUI extends Application{
                 y = playerIcon.getCenterY();
                 playerIcon.setCenterX(x + xSpeed);
                 playerIcon.setCenterY(y + ySpeed);
-                if (playerIcon.getCenterX() < 5) playerIcon.setCenterX(5);
-                if (playerIcon.getCenterX() > 895) playerIcon.setCenterX(895);
-                if (playerIcon.getCenterY() < 5) playerIcon.setCenterY(5);
-                if (playerIcon.getCenterY() > 495) playerIcon.setCenterY(495);
-                
-                if (x + xSpeed < 500 && x + xSpeed > 400 && y + ySpeed < 300 && y + ySpeed > 200) {
-                    if (!inTown) {
+                if (!inTown) {
+                    if (playerIcon.getCenterX() < 5) playerIcon.setCenterX(5);
+                    if (playerIcon.getCenterX() > 895) playerIcon.setCenterX(895);
+                    if (playerIcon.getCenterY() < 5) playerIcon.setCenterY(5);
+                    if (playerIcon.getCenterY() > 495) playerIcon.setCenterY(495);
+                    if (x + xSpeed < 500 && x + xSpeed > 400 && y + ySpeed < 300 && y + ySpeed > 200) {
                         primaryStage.setScene(town);
-                        movePhase = false;
+                        townMapPane.getChildren().add(playerIcon);
+                        mapGui.getChildren().remove(playerIcon);
+                        playerIcon.setCenterX(400);
+                        playerIcon.setCenterY(250);
                         inTown = true;
                         move.l = 0;
                         move.r = 0;
                         move.u = 0;
                         move.d = 0;
                     }
-                }
-                if (!(x + xSpeed < 500 && x + xSpeed > 400 && y + ySpeed < 300 && y + ySpeed > 200)) {
-                    inTown = false;
+                } else {
+                    if (playerIcon.getCenterX() < 5 
+                            || playerIcon.getCenterX() > 795
+                            || playerIcon.getCenterY() < 5
+                            || playerIcon.getCenterX() > 495) {
+                        primaryStage.setScene(gameScreen);
+                        townMapPane.getChildren().remove(playerIcon);
+                        mapGui.getChildren().add(playerIcon);
+                        inTown = false;
+                        playerIcon.setCenterX(395);
+                        playerIcon.setCenterY(250);
+                        move.l = 0;
+                        move.r = 0;
+                        move.u = 0;
+                        move.d = 0;
+                    }
                 }
             }
         }

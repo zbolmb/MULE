@@ -4,7 +4,6 @@ import java.util.ArrayList;
  * Created by willi on 9/28/2015.
  */
 public class TownTurn extends TurnTracker {
-    protected ArrayList<Player> players;
     protected int round;
 
     public TownTurn(ArrayList<Player> players) {
