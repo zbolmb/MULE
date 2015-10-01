@@ -27,7 +27,10 @@ import javafx.scene.shape.Rectangle;
  * also has some behind the scene work (coded not so well)
  */
 public class GUI extends Application{
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 	private Scene config1, config2, gameScreen;
 
 	private Configurations config;
@@ -327,6 +330,18 @@ public class GUI extends Application{
 			if (k.getCode() == KeyCode.UP) move.u = 0;
 			if (k.getCode() == KeyCode.DOWN) move.d = 0;
 		});
+		town.addEventHandler(KeyEvent.KEY_PRESSED, k -> {
+			if (k.getCode() == KeyCode.LEFT) move.l = -5;
+			if (k.getCode() == KeyCode.RIGHT) move.r = 5;
+			if (k.getCode() == KeyCode.UP) move.u = -5;
+			if (k.getCode() == KeyCode.DOWN) move.d = 5;
+		});
+		town.addEventHandler(KeyEvent.KEY_RELEASED, k -> {
+			if (k.getCode() == KeyCode.LEFT) move.l = 0;
+			if (k.getCode() == KeyCode.RIGHT) move.r = 0;
+			if (k.getCode() == KeyCode.UP) move.u = 0;
+			if (k.getCode() == KeyCode.DOWN) move.d = 0;
+		});
 
 		//Add a turntracker class. Keeps track of the current player
 		BuyPhaseTurnTracker turns = new BuyPhaseTurnTracker(config.players);
@@ -502,26 +517,36 @@ public class GUI extends Application{
 				y = playerIcon.getCenterY();
 				playerIcon.setCenterX(x + xSpeed);
 				playerIcon.setCenterY(y + ySpeed);
-				if (playerIcon.getCenterX() < 5) playerIcon.setCenterX(5);
-				if (playerIcon.getCenterX() > 895) playerIcon.setCenterX(895);
-				if (playerIcon.getCenterY() < 5) playerIcon.setCenterY(5);
-				if (playerIcon.getCenterY() > 495) playerIcon.setCenterY(495);
-
-				if (x + xSpeed < 500 && x + xSpeed > 400 && y + ySpeed < 300 && y + ySpeed > 200) {
-					if (!inTown) {
+				if (!inTown) {
+					if (playerIcon.getCenterX() < 5) playerIcon.setCenterX(5);
+					if (playerIcon.getCenterX() > 895) playerIcon.setCenterX(895);
+					if (playerIcon.getCenterY() < 5) playerIcon.setCenterY(5);
+					if (playerIcon.getCenterY() > 495) playerIcon.setCenterY(495);
+					if (!inTown && x + xSpeed < 500 && x + xSpeed > 400 && y + ySpeed < 300 && y + ySpeed > 200) {
 						primaryStage.setScene(town);
 						townMapPane.getChildren().add(playerIcon);
+						playerIcon.setCenterX(400);
+						playerIcon.setCenterY(250);
 						inTown = true;
 						move.l = 0;
 						move.r = 0;
 						move.u = 0;
 						move.d = 0;
 					}
-				}
-				if (!(x + xSpeed < 500 && x + xSpeed > 400 && y + ySpeed < 300 && y + ySpeed > 200)) {
-					inTown = false;
-					if (townMapPane.getChildren().contains(playerIcon)) {
+				} else {
+					if (playerIcon.getCenterX() < 5 
+							|| playerIcon.getCenterX() > 795
+							|| playerIcon.getCenterY() < 5
+							|| playerIcon.getCenterX() > 495) {
+						primaryStage.setScene(gameScreen);
 						townMapPane.getChildren().remove(playerIcon);
+						inTown = false;
+						playerIcon.setCenterX(395);
+						playerIcon.setCenterY(250);
+						move.l = 0;
+						move.r = 0;
+						move.u = 0;
+						move.d = 0;
 					}
 				}
 			}
