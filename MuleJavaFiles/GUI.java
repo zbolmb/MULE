@@ -381,24 +381,27 @@ public class GUI extends Application{
         /**
          * Sets up temporary buttons for the town in the center of the map
          */
-        Button store = new Button("Store");
-        store.setOnAction(e -> {});
-        Button pub = new Button("Pub");
-        pub.setOnAction(e -> {});
-        Button assay = new Button("Assay");
-        assay.setOnAction(e -> {});
-        Button landOffices = new Button("Land Offices");
-        landOffices.setOnAction(e -> {});
-        Button back = new Button("Back");
-        back.setOnAction(e -> {
-            primaryStage.setScene(gameScreen);
-            movePhase = true;
-        });
-        townWindow.add(store, 1, 1);
-        townWindow.add(pub, 1, 2);
-        townWindow.add(assay, 2, 1);
-        townWindow.add(landOffices, 2, 2);
-        townWindow.add(back, 2, 3);
+        TownMap townMap = new TownMap();
+        Pane townMapPane = townMap.generateMapGui();
+        townWindow.add(townMapPane, 0, 0);
+//        Button store = new Button("Store");
+//        store.setOnAction(e -> {});
+//        Button pub = new Button("Pub");
+//        pub.setOnAction(e -> {});
+//        Button assay = new Button("Assay");
+//        assay.setOnAction(e -> {});
+//        Button landOffices = new Button("Land Offices");
+//        landOffices.setOnAction(e -> {});
+//        Button back = new Button("Back");
+//        back.setOnAction(e -> {
+//            primaryStage.setScene(gameScreen);
+//            movePhase = true;
+//        });
+//        townWindow.add(store, 1, 1);
+//        townWindow.add(pub, 1, 2);
+//        townWindow.add(assay, 2, 1);
+//        townWindow.add(landOffices, 2, 2);
+//        townWindow.add(back, 2, 3);
         //---------------------------------------------------------------
 
         gameScreen_Layout.add(gameText, 1, 0);

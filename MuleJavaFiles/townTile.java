@@ -3,6 +3,6 @@ import javafx.scene.paint.Color;
 
 public class townTile extends MapTiles{
 	public townTile() {
-	    super(0, 0, 0, false, false, "Town", Color.BLACK, new Image("town_Tile.jpg"));
+	    super(0, 0, 0, false, false, "Town", Color.BLACK, new Image("Tiles/town_Tile.jpg"));
 	}
 }

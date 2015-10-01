@@ -11,8 +11,8 @@ public abstract class TownTiles {
 
     //----------Should replace this with an image of tile--------------
     private Rectangle mapTileGui;
-    private static int w = 400;
-    private static int h = 400;
+    private static int w = 25;
+    private static int h = 25;
     private Color mapType;
     //-----------------------------------------------------------------
 
@@ -20,6 +20,7 @@ public abstract class TownTiles {
     public TownTiles(String name, Color mapType) {
         this.mapType = mapType;
         this.name = name;
+        this.mapTileGui = new Rectangle(w, h, this.mapType);
     }
 
     /**
