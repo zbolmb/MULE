@@ -11,6 +11,8 @@ public class Configurations {
 	protected String difficulty;
 	protected String map_Type;
 	protected int num_Players;
+	protected int w = 100;	//width of tiles
+	protected int h = 100;  //height of tiles
 
 	protected ArrayList<Player> players;
 

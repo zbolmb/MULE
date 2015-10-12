@@ -298,6 +298,7 @@ public class GUI extends Application{
         mapGui = map.generateMapGui();
         gameScreen = new Scene(gameScreen_Layout, 940, 540);
         gameScreen_Layout.add(mapGui, 1, 1);
+        HBox statsScreen = new HBox();
         PlayerMove move;
         LoopService animate;
         //------------------Setting Up Arrow Key Movement-------------------------------
@@ -359,23 +360,23 @@ public class GUI extends Application{
          * Tells whos turn it is to claim plot and displays money of the player
          */
         Text gameText = new Text(turns.getCurPlayer().name + " Choose Initial Plot. Money: " + turns.getCurPlayer().money);
-
+        statsScreen.getChildren().add(gameText);
 
         //MOUSE_MOVED event handler. When mouse moves, moves the selection square to tile that mouse is hovering over
-        gameScreen.addEventHandler(MouseEvent.MOUSE_MOVED, e -> {
+        mapGui.addEventHandler(MouseEvent.MOUSE_MOVED, e -> {
             if (!movePhase) {
-                double x = e.getX() - 20; //there is an offset of 20 for x
-                double y = e.getY() - 37; //there is an offset of 37 for y
+                double x = e.getX(); //there is an offset of 20 for x
+                double y = e.getY(); //there is an offset of 37 for y
                 sq.moveSelection(x, y);
             }
         });
 
         //MOUSE_PRESSED event handler. When mouse is pressed, the tile at that spot is claimed for the current player, if valid.
         //Does nothing if tile invalid
-        gameScreen.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+        mapGui.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
             if (!movePhase) {
-                double x = e.getX() - 20;
-                double y = e.getY() - 37;
+                double x = e.getX();
+                double y = e.getY();
                 boolean done = claimTile(x, y, sq.getTile(x, y, map), turns, gameText);
                 if (done) {
                     sq.remove();
@@ -401,7 +402,7 @@ public class GUI extends Application{
             };
         });
 
-        gameScreen_Layout.add(gameText, 1, 0);
+        gameScreen_Layout.add(statsScreen, 1, 0);
         primaryStage.setScene(gameScreen);
         primaryStage.setTitle("MULE");
 
@@ -428,10 +429,11 @@ public class GUI extends Application{
         if (!(tile instanceof townTile) && tile.getOwner().equals("None")) {
             Player curPlayer = turns.getCurPlayer();
             if (curPlayer.owned.size() <= 0) {
-                int rx = (int)(x / 100) * 100;
-                int ry = (int)(y / 100) * 100;
-                curPlayer.playerIcon = new Circle(rx + 0.5 * MapTiles.getW()
-                        , ry + 0.5 * MapTiles.getH()
+                int rx = (int)(x / config.w) * config.w;
+                int ry = (int)(y / config.h) * config.h;
+                //player icon is a circle right now. Change later to sprite (image)
+                curPlayer.playerIcon = new Circle(rx + config.w / 2
+                        , ry + config.h / 2
                         , 10
                         , curPlayer.color);
                 mapGui.getChildren().add(curPlayer.playerIcon);
@@ -503,7 +505,7 @@ public class GUI extends Application{
         protected void runOnFXThread() {
             if (dummy) {
                 if (movePhase) {
-                    if (time <= 120) {
+                    if (time <= 60) {
                         playerIcon = move.curPlayer.playerIcon;
                         x = playerIcon.getCenterX();
                         y = playerIcon.getCenterY();
