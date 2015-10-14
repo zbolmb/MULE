@@ -22,13 +22,13 @@ public abstract class TurnTracker {
     public boolean nextTurn() {
         if (players.size() == 0) return false;
         curPlayer++;
-        if (curPlayer == players.size()) {
+        if (curPlayer >= players.size()) {
             curPlayer = 0;
             increRound();
         }
         while (players.size() != 0 && players.get(curPlayer).money < 300) {
             players.remove(curPlayer);
-            if (curPlayer == players.size()) {
+            if (curPlayer >= players.size()) {
                 curPlayer = 0;
                 increRound();
             }
