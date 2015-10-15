@@ -35,6 +35,8 @@ public class Player {
 		energy = 0;
 		crystite = 0;
 		smithore = 0;
-		mule = 0;
+		mule1 = 0;
+		mule2 = 0;
+		mule3 = 0;
 	}
 }

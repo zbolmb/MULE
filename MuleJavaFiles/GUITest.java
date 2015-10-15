@@ -311,7 +311,9 @@ public class GUITest extends Application{
         store = new Store(config);
 
         // -------------------- Creation of Buttons -----------------------
-        Button mule = new Button("Buy Mules");
+        Button mule1 = new Button("Buy Mule #1");
+        Button mule2 = new Button("Buy Mule #2");
+        Button mule3 = new Button("Buy Mule #3");
         Button smithore = new Button("Buy Smithores");
         Button crystite = new Button("Buy Crystites");
         Button food = new Button("Buy Food");
@@ -320,8 +322,16 @@ public class GUITest extends Application{
 
         // -------------------- Action Handlers of Buttons ---------------------
 
-        mule.setOnAction(e -> {
-            store.buyMule();
+        mule1.setOnAction(e -> {
+            store.buyMule(store.mule1);
+        });
+
+        mule2.setOnAction(e -> {
+            store.buyMule(store.mule2);
+        });
+
+        mule3.setOnAction(e -> {
+            store.buyMule(store.mule3);
         });
 
         smithore.setOnAction(e -> {
@@ -347,7 +357,7 @@ public class GUITest extends Application{
         });
 
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(mule, smithore, crystite, food, energy, back);
+        vbox.getChildren().addAll(mule1, mule2, mule3, smithore, crystite, food, energy, back);
 
         storeScreen_Layout.getChildren().add(vbox);
 

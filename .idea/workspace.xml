@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="907974bf-c0a3-4cb8-8d5a-c00ba8720aef" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MuleJavaFiles/GUI.java" afterPath="$PROJECT_DIR$/MuleJavaFiles/GUI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MuleJavaFiles/GUITest.java" afterPath="$PROJECT_DIR$/MuleJavaFiles/GUITest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MuleJavaFiles/Player.java" afterPath="$PROJECT_DIR$/MuleJavaFiles/Player.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MuleJavaFiles/Store.java" afterPath="$PROJECT_DIR$/MuleJavaFiles/Store.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MULE.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,24 +28,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Store.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Store.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MuleJavaFiles/Store.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="87" column="50" selection-start-line="87" selection-start-column="50" selection-end-line="87" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.61639345">
+              <caret line="87" column="38" selection-start-line="87" selection-start-column="38" selection-end-line="87" selection-end-column="38" />
               <folding>
-                <element signature="e#3682#3683#0" expanded="true" />
-                <element signature="e#3715#3716#0" expanded="true" />
+                <element signature="e#3683#3684#0" expanded="true" />
+                <element signature="e#3716#3717#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MuleJavaFiles/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73770493">
-              <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+            <state vertical-scroll-proportion="-19.44">
+              <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -63,8 +64,8 @@
       <file leaf-file-name="GUITest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MuleJavaFiles/GUITest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.379311">
-              <caret line="323" column="26" selection-start-line="323" selection-start-column="26" selection-end-line="323" selection-end-column="26" />
+            <state vertical-scroll-proportion="-7.8965516">
+              <caret line="355" column="40" selection-start-line="355" selection-start-column="40" selection-end-line="355" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -75,8 +76,8 @@
       <file leaf-file-name="GUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MuleJavaFiles/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.862069">
-              <caret line="321" column="35" selection-start-line="321" selection-start-column="35" selection-end-line="321" selection-end-column="35" />
+            <state vertical-scroll-proportion="-6.137931">
+              <caret line="316" column="31" selection-start-line="316" selection-start-column="31" selection-end-line="316" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -106,8 +107,8 @@
       <list>
         <option value="$PROJECT_DIR$/MuleJavaFiles/GUI_Test.java" />
         <option value="$PROJECT_DIR$/MuleJavaFiles/Player.java" />
-        <option value="$PROJECT_DIR$/MuleJavaFiles/GUI.java" />
         <option value="$PROJECT_DIR$/MuleJavaFiles/GUITest.java" />
+        <option value="$PROJECT_DIR$/MuleJavaFiles/GUI.java" />
         <option value="$PROJECT_DIR$/MuleJavaFiles/Store.java" />
       </list>
     </option>
@@ -501,12 +502,12 @@
       <created>1444866564542</created>
       <option name="number" value="Default" />
       <updated>1444866564542</updated>
-      <workItem from="1444866566015" duration="17065000" />
+      <workItem from="1444866566015" duration="17334000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17065000" />
+    <option name="totallyTimeSpent" value="17334000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="21" width="1252" height="1059" extended-state="4" />
@@ -567,27 +568,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MuleJavaFiles/GUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.862069">
-          <caret line="321" column="35" selection-start-line="321" selection-start-column="35" selection-end-line="321" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MuleJavaFiles/Store.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="87" column="50" selection-start-line="87" selection-start-column="50" selection-end-line="87" selection-end-column="50" />
-          <folding>
-            <element signature="e#3682#3683#0" expanded="true" />
-            <element signature="e#3715#3716#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MuleJavaFiles/Resource.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -596,21 +576,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MuleJavaFiles/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.44">
+          <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MuleJavaFiles/GUITest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.379311">
-          <caret line="323" column="26" selection-start-line="323" selection-start-column="26" selection-end-line="323" selection-end-column="26" />
+        <state vertical-scroll-proportion="-7.8965516">
+          <caret line="355" column="40" selection-start-line="355" selection-start-column="40" selection-end-line="355" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MuleJavaFiles/Player.java">
+    <entry file="file://$PROJECT_DIR$/MuleJavaFiles/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73770493">
-          <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
-          <folding />
+        <state vertical-scroll-proportion="-6.137931">
+          <caret line="316" column="31" selection-start-line="316" selection-start-column="31" selection-end-line="316" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MuleJavaFiles/Store.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61639345">
+          <caret line="87" column="38" selection-start-line="87" selection-start-column="38" selection-end-line="87" selection-end-column="38" />
+          <folding>
+            <element signature="e#3683#3684#0" expanded="true" />
+            <element signature="e#3716#3717#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

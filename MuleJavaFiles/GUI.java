@@ -315,7 +315,7 @@ public class GUI extends Application{
 
         // -------------------- Action Handlers of Buttons ---------------------
         mule.setOnAction(e -> {
-            store.buy(store.mule);
+            store.buy(store.mule1);
             endGame = true;
         });
 

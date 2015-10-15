@@ -85,7 +85,7 @@ public class Store {
             currPlayer.mule3++;
             currPlayer.money -= mule3.cost;
         } else {
-            System.out.print("Not enoough money");
+            System.out.println("Not enough money");
         }
     }
     public void setCurrent(Player curr) {
