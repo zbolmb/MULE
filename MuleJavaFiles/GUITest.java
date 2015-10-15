@@ -47,8 +47,7 @@ public class GUITest extends Application{
 
     private TextField name;
 
-    private boolean movePhase = false;
-    private boolean inTown = false;
+    private boolean movePhase = false, inTown = false, endGame = true;
 
     //-----TEMP SCOREBOARD---
     private Scene score;
@@ -308,6 +307,7 @@ public class GUITest extends Application{
 
         // Store Screen is made here
         Pane storeScreen_Layout = new Pane();
+        Store store = new Store(config);
 
         // -------------------- Creation of Buttons -----------------------
         Button mule = new Button("Buy Mules");
@@ -318,24 +318,31 @@ public class GUITest extends Application{
 
         // -------------------- Action Handlers of Buttons ---------------------
         mule.setOnAction(e -> {
-            boolean t = false;
+            store.buy(store.mule);
+            endGame = true;
         });
 
         smithore.setOnAction(e -> {
-            boolean t = false;
+            store.buy(store.smithore);
+            endGame = true;
         });
 
         crystite.setOnAction(e -> {
-            boolean t = false;
+            store.buy(store.crystalite);
+            endGame = true;
         });
 
         food.setOnAction(e -> {
-            boolean t = false;
+            store.buy(store.food);
+            endGame = true;
         });
 
         energy.setOnAction(e -> {
-            boolean t = false;
+            store.buy(store.energy);
+            endGame = true;
         });
+
+        storeScreen_Layout.getChildren().addAll(mule, smithore, crystite, food, energy);
 
         storeScreen = new Scene(storeScreen_Layout, 800, 500);
 
@@ -519,7 +526,6 @@ public class GUITest extends Application{
         int xSpeed;
         int ySpeed;
         double time;
-        boolean dummy = true;
 
         public LoopService(PlayerMove move, Stage primaryStage, Scene town, Pane townMapPane, TownTurn townTurn) {
             this.move = move;
@@ -530,7 +536,7 @@ public class GUITest extends Application{
         }
 
         protected void runOnFXThread() {
-            if (dummy) {
+            if (endGame) {
                 if (movePhase) {
                     if (time <= 120) {
                         playerIcon = move.curPlayer.playerIcon;
@@ -589,10 +595,13 @@ public class GUITest extends Application{
                                         scores.getChildren().add(new Text(p.name + "'s Score : " + p.score));
                                     }
                                     primaryStage.setScene(score);
-                                    dummy = false;
+                                    endGame = false;
                                 }
                             }
+                            // this is one of the tiles in town
+                            // this is the store
                             if (x > 635 && x < 800 && y > 327 && y < 493) {
+                                endGame = false;
                                 primaryStage.setScene(storeScreen);
                             }
                         }
@@ -609,7 +618,7 @@ public class GUITest extends Application{
                                 scores.getChildren().add(new Text(p.name + "'s Score : " + p.score));
                             }
                             primaryStage.setScene(score);
-                            dummy = false;
+                            endGame = false;
                         }
                     }
                 }

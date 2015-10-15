@@ -41,8 +41,8 @@ public class Store {
                 currPlayer.money = currPlayer.money - food.cost;
 
         } else {
-            throw new IllegalArgumentException("Not something you can buy");
-         }
+            System.out.println("Not enough money or store does not carry");
+        }
 
     }
 
