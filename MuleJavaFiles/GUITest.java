@@ -645,5 +645,3 @@ public class GUITest extends Application{
         }
     }
 }
-
-

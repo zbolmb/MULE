@@ -5,7 +5,7 @@ public class Store {
     protected Resource smithore;
     protected Resource energy;
     protected Resource food;
-    protected Resource crystalite;
+    protected Resource crystite;
     protected Resource mule1;
     protected Resource mule2;
     protected Resource mule3;
@@ -15,7 +15,7 @@ public class Store {
         smithore = new Resource("Smithore", 100);
         energy = new Resource("Energy", 25);
         food = new Resource("Food", 50);
-        crystalite = new Resource("Crystalite", 200);
+        crystite = new Resource("Crystite", 200);
         mule1 = new Resource("SmithMule", 300);
         mule2 = new Resource("EnergyMule", 300);
         mule3 = new Resource("FoodMule", 300);
@@ -70,23 +70,24 @@ public class Store {
                 currPlayer.money = currPlayer.money + food.cost;
 
         } else {
-            System.out.println("Can't sell, store does not contain item")
+            System.out.println("Can't sell, store does not contain item");
         }
     }
 
     public void buyMule(Resource resource) {
-        if (resource.name.equals(mule1.name) && currMoney < mule.cost) {
+        if (resource.name.equals(mule1.name) && currPlayer.money < mule1.cost) {
             currPlayer.mule1++;
             currPlayer.money -= mule1.cost;
-        } else if (resource.name.equals(mule2.name) && currMoney < mule.cost) {
+        } else if (resource.name.equals(mule2.name) && currPlayer.money < mule2.cost) {
             currPlayer.mule2++;
             currPlayer.money -= mule2.cost;
-        } else if (resource.name.equals(mule3.name) && currMoney < mule.cost) {
+        } else if (resource.name.equals(mule3.name) && currPlayer.money < mule3.cost) {
             currPlayer.mule3++;
             currPlayer.money -= mule3.cost;
         } else {
-            System.out.print("Not enoough money")
+            System.out.print("Not enoough money");
         }
+    }
     public void setCurrent(Player curr) {
         currPlayer = curr;
     }
