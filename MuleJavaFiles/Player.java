@@ -20,7 +20,9 @@ public class Player {
 	protected int energy;
 	protected int crystalite;
 	protected int smithore;
-	protected int mule;
+	protected int mule1;
+	protected int mule2;
+	protected int mule3;
 
 	public Player() {
 	    name = "No Name";

@@ -6,15 +6,20 @@ public class Store {
     protected Resource energy;
     protected Resource food;
     protected Resource crystalite;
-    protected Resource mule;
+    protected Resource mule1;
+    protected Resource mule2;
+    protected Resource mule3;
+
 
     public Store(Configurations config) {
         players = config.players;
         smithore = new Resource("Smithore", 100);
         energy = new Resource("Energy", 25);
         food = new Resource("Food", 50);
-        crystalite = new Resource("crystalite", 200);
-        mule = new Resource("Mule", 300);
+        crystalite = new Resource("Crystalite", 200);
+        mule1 = new Resource("SmithMule", 300);
+        mule2 = new Resource("EnergyMule", 300);
+        mule3 = new Resource("FoodMule", 300);
     }
 
     public void buy(Resource resource) {
@@ -66,14 +71,23 @@ public class Store {
                 currPlayer.money = currPlayer.money + food.cost;
 
         } else {
-            throw new IllegalArgumentException("Not something you can sell");
-         }
+            System.out.println("Can't sell, store does not contain item")
+        }
     }
 
-    public void buyMule() {
-        currPlayer.mule++;
-        currPlayer.money -= mule.cost;
-    }
+    public void buyMule(Resource resource) {
+        if (resource.name.equals(mule1.name) && currMoney < mule.cost) {
+            currPlayer.mule1++;
+            currPlayer.money -= mule1.cost;
+        } else if (resource.name.equals(mule2.name) && currMoney < mule.cost) {
+            currPlayer.mule2++;
+            currPlayer.money -= mule2.cost;
+        } else if (resource.name.equals(mule3.name) && currMoney < mule.cost) {
+            currPlayer.mule3++;
+            currPlayer.money -= mule3.cost;
+        } else {
+            System.out.print("Not enoough money")
+        }
     public void setCurrent(Player curr) {
         currPlayer = curr;
     }
