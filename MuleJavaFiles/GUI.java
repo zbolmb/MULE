@@ -1,3 +1,6 @@
+/**
+ * Created by zmjung on 10/14/15.
+ */
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -50,6 +53,7 @@ public class GUI extends Application{
     private Scene score;
     //---------------Map Data-----------------------------------------------------
     GameMap map = new GameMap();
+    Store store;
 
 
     @Override
@@ -304,42 +308,58 @@ public class GUI extends Application{
 
         // Store Screen is made here
         Pane storeScreen_Layout = new Pane();
-        Store store = new Store(config);
+        store = new Store(config);
 
         // -------------------- Creation of Buttons -----------------------
-        Button mule = new Button("Buy Mules");
+        Button mule1 = new Button("Buy Mule #1");
+        Button mule2 = new Button("Buy Mule #2");
+        Button mule3 = new Button("Buy Mule #3");
         Button smithore = new Button("Buy Smithores");
         Button crystite = new Button("Buy Crystites");
         Button food = new Button("Buy Food");
         Button energy = new Button("Buy Energy");
+        Button back = new Button("Back");
 
         // -------------------- Action Handlers of Buttons ---------------------
-        mule.setOnAction(e -> {
-            store.buy(store.mule1);
-            endGame = true;
+
+        mule1.setOnAction(e -> {
+            store.buyMule(store.mule1);
+        });
+
+        mule2.setOnAction(e -> {
+            store.buyMule(store.mule2);
+        });
+
+        mule3.setOnAction(e -> {
+            store.buyMule(store.mule3);
         });
 
         smithore.setOnAction(e -> {
             store.buy(store.smithore);
-            endGame = true;
         });
 
         crystite.setOnAction(e -> {
             store.buy(store.crystite);
-            endGame = true;
         });
 
         food.setOnAction(e -> {
             store.buy(store.food);
-            endGame = true;
         });
 
         energy.setOnAction(e -> {
             store.buy(store.energy);
-            endGame = true;
         });
 
-        storeScreen_Layout.getChildren().addAll(mule, smithore, crystite, food, energy);
+        back.setOnAction(e -> {
+            endGame = true;
+
+            primaryStage.setScene(town);
+        });
+
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(mule1, mule2, mule3, smithore, crystite, food, energy, back);
+
+        storeScreen_Layout.getChildren().add(vbox);
 
         storeScreen = new Scene(storeScreen_Layout, 800, 500);
 
@@ -497,7 +517,7 @@ public class GUI extends Application{
         protected int u = 0;
         protected int d = 0;
         protected char dir;
-        private Player curPlayer;
+        protected Player curPlayer;
 
         public void setCurPlayer(Player curPlayer) {
             this.curPlayer = curPlayer;
@@ -600,6 +620,7 @@ public class GUI extends Application{
                             if (x > 635 && x < 800 && y > 327 && y < 493) {
                                 endGame = false;
                                 primaryStage.setScene(storeScreen);
+                                store.setCurrent(move.curPlayer);
                             }
                         }
                     } else {
