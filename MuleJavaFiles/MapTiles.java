@@ -17,7 +17,9 @@ public abstract class MapTiles {
 	private int ore;
 	private boolean crystalite;
 	private boolean highlightable;
-	private boolean mule;
+	private boolean mule1;
+	private boolean mule2;
+	private boolean mule3;
 	private String owner;
 	private String name;
 	private Image img;
@@ -49,7 +51,9 @@ public abstract class MapTiles {
 		this.owner = "None";
 		this.name = name;
 		this.img = img;
-		this.mule = false;
+		this.mule1 = false;
+		this.mule2 = false;
+		this.mule3 = false;
 	}
 
 	/**
@@ -66,7 +70,10 @@ public abstract class MapTiles {
 	public boolean isCrystalite() { return crystalite; }
 	public void setCrystalite(boolean crystalite) { this.crystalite = crystalite; }
 	public boolean isHighlightable() { return highlightable; }
-	public boolean isMule() { return this.mule;}
+	public boolean isMule1() { return this.mule1;}
+	public boolean isMule2() { return this.mule2;}
+	public boolean isMule3() { return this.mule3;}
+
 	public void setHighlightable(boolean highlightable) { this.highlightable = highlightable; }
 	public Color getMapType() { return mapType; }
 	public void getMapType(Color mapType) { this.mapType = mapType; }

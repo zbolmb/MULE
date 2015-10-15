@@ -651,7 +651,10 @@ public class GUI extends Application{
                         } else {
                             VBox scores = new VBox();
                             score = new Scene(scores, 500, 500);
+                            Production product = new Production(config);
                             for (Player p : config.players) {
+                                product.setCurrent(p);
+                                product.produce();
                                 scores.getChildren().add(new Text(p.name + "'s Score : " + p.score));
                             }
                             primaryStage.setScene(score);
