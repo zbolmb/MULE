@@ -15,7 +15,7 @@ public class Store {
         smithore = new Resource("Smithore", 100);
         energy = new Resource("Energy", 25);
         food = new Resource("Food", 50);
-        crystalite = new Resource("Crystalite", 200);
+        crystalite = new Resource("crystalite", 200);
         mule1 = new Resource("SmithMule", 300);
         mule2 = new Resource("EnergyMule", 300);
         mule3 = new Resource("FoodMule", 300);
@@ -70,7 +70,7 @@ public class Store {
                 currPlayer.money = currPlayer.money + food.cost;
 
         } else {
-            System.out.println("Can't sell, store does not contain item")
+            System.out.println("Can't sell, store does not contain item");
         }
     }
 
@@ -85,8 +85,9 @@ public class Store {
             currPlayer.mule3++;
             currPlayer.money -= mule3.cost;
         } else {
-            System.out.print("Not enoough money")
+            System.out.print("Not enoough money");
         }
+    }
     public void setCurrent(Player curr) {
         currPlayer = curr;
     }

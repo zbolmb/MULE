@@ -17,9 +17,11 @@ public abstract class MapTiles {
 	private int ore;
 	private boolean crystalite;
 	private boolean highlightable;
+	private boolean mule;
 	private String owner;
 	private String name;
 	private Image img;
+
 
 	//----------Should replace this with an image of tile--------------
 	private Rectangle mapTileGui;
@@ -29,7 +31,7 @@ public abstract class MapTiles {
 	//-----------------------------------------------------------------
 
 	/**
-	 * 
+	 *
 	 * @param food
 	 * @param energy
 	 * @param ore
@@ -37,7 +39,7 @@ public abstract class MapTiles {
 	 * @param highlightable
 	 * @param mapType ** This is temporary. Should be an image **
 	 */
-	public MapTiles(int food, int energy, int ore, boolean crystalite, boolean highlightable, String name, Color mapType, Image img) {
+	public MapTiles(int food, int energy, int ore, boolean crystalite, boolean highlightable, String name, Color mapType, Image img, boolean mule) {
 		this.food = food;
 		this.ore = ore;
 		this.crystalite = crystalite;
@@ -47,6 +49,7 @@ public abstract class MapTiles {
 		this.owner = "None";
 		this.name = name;
 		this.img = img;
+		this.mule = mule;
 	}
 
 	/**
@@ -63,6 +66,7 @@ public abstract class MapTiles {
 	public boolean isCrystalite() { return crystalite; }
 	public void setCrystalite(boolean crystalite) { this.crystalite = crystalite; }
 	public boolean isHighlightable() { return highlightable; }
+	public boolean isMule() { return this.mule;}
 	public void setHighlightable(boolean highlightable) { this.highlightable = highlightable; }
 	public Color getMapType() { return mapType; }
 	public void getMapType(Color mapType) { this.mapType = mapType; }
@@ -73,12 +77,11 @@ public abstract class MapTiles {
 	public Rectangle getMapTileGui() { return mapTileGui;}
 	public void setMapTileGui(Rectangle mapTileGui) { this.mapTileGui = mapTileGui; };
 	//-------------------------------------------------------------------
-	
+
 	public String getOwner() { return owner; }
 	public void setOwner(String owner) { this.owner = owner; }
 	public Image getImg() { return img; }
 	public void setImg(Image img) { this.img = img; }
 	public ImageView getImgView() { return new ImageView(img); }
-	
-}
 
+}

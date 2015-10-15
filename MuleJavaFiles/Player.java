@@ -32,7 +32,7 @@ public class Player {
 	    owned = new ArrayList<>();
 	    score = 0;
 		food = 0;
-		energy = 0;
+		energy = 4;
 		crystite = 0;
 		smithore = 0;
 		mule = 0;
