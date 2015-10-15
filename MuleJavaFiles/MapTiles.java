@@ -12,15 +12,16 @@ import javafx.scene.shape.Rectangle;
 
 public abstract class MapTiles {
 
+	String owner;
+
 	private int food;
 	private int energy;
 	private int ore;
-	private boolean crystalite;
+	private boolean crystite;
 	private boolean highlightable;
 	private boolean mule1;
 	private boolean mule2;
 	private boolean mule3;
-	private String owner;
 	private String name;
 	private Image img;
 
@@ -37,14 +38,14 @@ public abstract class MapTiles {
 	 * @param food
 	 * @param energy
 	 * @param ore
-	 * @param crystalite
+	 * @param crystite
 	 * @param highlightable
 	 * @param mapType ** This is temporary. Should be an image **
 	 */
-	public MapTiles(int food, int energy, int ore, boolean crystalite, boolean highlightable, String name, Color mapType, Image img) {
+	public MapTiles(int food, int energy, int ore, boolean crystite, boolean highlightable, String name, Color mapType, Image img) {
 		this.food = food;
 		this.ore = ore;
-		this.crystalite = crystalite;
+		this.crystite = crystite;
 		this.highlightable = highlightable;
 		this.mapTileGui = new Rectangle(w, h, mapType);
 		this.mapType = mapType;
@@ -67,8 +68,8 @@ public abstract class MapTiles {
 	public void setEnergy(int energy) { this.energy = energy; }
 	public int getOre() { return ore; }
 	public void setOre(int ore) { this.ore = ore; }
-	public boolean isCrystalite() { return crystalite; }
-	public void setCrystalite(boolean crystalite) { this.crystalite = crystalite; }
+	public boolean isCrystalite() { return crystite; }
+	public void setCrystalite(boolean crystalite) { this.crystite = crystite; }
 	public boolean isHighlightable() { return highlightable; }
 	public boolean isMule1() { return this.mule1;}
 	public boolean isMule2() { return this.mule2;}
