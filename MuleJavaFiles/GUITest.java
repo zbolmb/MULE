@@ -53,6 +53,7 @@ public class GUITest extends Application{
     private Scene score;
     //---------------Map Data-----------------------------------------------------
     GameMap map = new GameMap();
+    Store store;
 
 
     @Override
@@ -307,7 +308,7 @@ public class GUITest extends Application{
 
         // Store Screen is made here
         Pane storeScreen_Layout = new Pane();
-        Store store = new Store(config);
+        store = new Store(config);
 
         // -------------------- Creation of Buttons -----------------------
         Button mule = new Button("Buy Mules");
@@ -315,9 +316,9 @@ public class GUITest extends Application{
         Button crystite = new Button("Buy Crystites");
         Button food = new Button("Buy Food");
         Button energy = new Button("Buy Energy");
+        Button back = new Button("Back");
 
         // -------------------- Action Handlers of Buttons ---------------------
-        store.setCurrent(move.curPlayer);
 
         mule.setOnAction(e -> {
             store.buyMule();
@@ -343,6 +344,8 @@ public class GUITest extends Application{
             store.buy(store.energy);
             endGame = true;
         });
+
+
 
         VBox vbox = new VBox();
         vbox.getChildren().addAll(mule, smithore, crystite, food, energy);
@@ -608,6 +611,7 @@ public class GUITest extends Application{
                             if (x > 635 && x < 800 && y > 327 && y < 493) {
                                 endGame = false;
                                 primaryStage.setScene(storeScreen);
+                                store.setCurrent(move.curPlayer);
                             }
                         }
                     } else {
