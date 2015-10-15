@@ -329,7 +329,7 @@ public class GUITest extends Application{
         });
 
         crystite.setOnAction(e -> {
-            store.buy(store.crystalite);
+            store.buy(store.crystite);
         });
 
         food.setOnAction(e -> {
