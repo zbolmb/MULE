@@ -311,43 +311,64 @@ public class GUITest extends Application{
         store = new Store(config);
 
         // -------------------- Creation of Buttons -----------------------
-        Button mule = new Button("Buy Mules");
-        Button smithore = new Button("Buy Smithores");
-        Button crystite = new Button("Buy Crystites");
-        Button food = new Button("Buy Food");
-        Button energy = new Button("Buy Energy");
+        Button buyMule1 = new Button("Buy Mule #1");
+        Button buyMule2 = new Button("Buy Mule #2");
+        Button buyMule3 = new Button("Buy Mule #3");
+        Button buySmithore = new Button("Buy Smithores");
+        Button buyCrystite = new Button("Buy Crystites");
+        Button buyFood = new Button("Buy Food");
+        Button buyEnergy = new Button("Buy Energy");
+
+        Button sellMule1 = new Button("Sell Mule #1");
+        Button sellMule2 = new Button("Sell Mule #2");
+        Button sellMule3 = new Button("Sell Mule #3");
+        Button sellSmithore = new Button("Sell Smithores");
+        Button sellCrystite = new Button("Sell Crystites");
+        Button sellFood = new Button("Sell Food");
+        Button sellEnergy = new Button("Sell Energy");
+
         Button back = new Button("Back");
 
         // -------------------- Action Handlers of Buttons ---------------------
 
-        mule.setOnAction(e -> {
-            store.buyMule();
+        buyMule1.setOnAction(e -> {
+            store.buyMule(store.mule1);
         });
 
-        smithore.setOnAction(e -> {
+        buyMule2.setOnAction(e -> {
+            store.buyMule(store.mule2);
+        });
+
+        buyMule3.setOnAction(e -> {
+            store.buyMule(store.mule3);
+        });
+
+        buySmithore.setOnAction(e -> {
             store.buy(store.smithore);
         });
 
-        crystite.setOnAction(e -> {
+        buyCrystite.setOnAction(e -> {
             store.buy(store.crystite);
         });
 
-        food.setOnAction(e -> {
+        buyFood.setOnAction(e -> {
             store.buy(store.food);
         });
 
-        energy.setOnAction(e -> {
+        buyEnergy.setOnAction(e -> {
             store.buy(store.energy);
         });
 
         back.setOnAction(e -> {
             endGame = true;
-
+            move.curPlayer.playerIcon.setCenterX(400);
+            move.curPlayer.playerIcon.setCenterY(250);
             primaryStage.setScene(town);
         });
 
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(mule, smithore, crystite, food, energy, back);
+        vbox.getChildren().addAll(buyMule1, buyMule2, buyMule3, buySmithore, buyCrystite, buyFood, buyEnergy,
+                sellMule1, sellMule2, sellMule3, sellSmithore, sellCrystite, sellFood, sellEnergy, back);
 
         storeScreen_Layout.getChildren().add(vbox);
 
@@ -645,5 +666,3 @@ public class GUITest extends Application{
         }
     }
 }
-
-

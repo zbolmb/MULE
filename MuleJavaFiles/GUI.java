@@ -1,3 +1,6 @@
+/**
+ * Created by zmjung on 10/14/15.
+ */
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -50,6 +53,7 @@ public class GUI extends Application{
     private Scene score;
     //---------------Map Data-----------------------------------------------------
     GameMap map = new GameMap();
+    Store store;
 
 
     @Override
@@ -304,42 +308,69 @@ public class GUI extends Application{
 
         // Store Screen is made here
         Pane storeScreen_Layout = new Pane();
-        Store store = new Store(config);
+        store = new Store(config);
 
         // -------------------- Creation of Buttons -----------------------
-        Button mule = new Button("Buy Mules");
-        Button smithore = new Button("Buy Smithores");
-        Button crystite = new Button("Buy Crystites");
-        Button food = new Button("Buy Food");
-        Button energy = new Button("Buy Energy");
+        Button buyMule1 = new Button("Buy Mule #1");
+        Button buyMule2 = new Button("Buy Mule #2");
+        Button buyMule3 = new Button("Buy Mule #3");
+        Button buySmithore = new Button("Buy Smithores");
+        Button buyCrystite = new Button("Buy Crystites");
+        Button buyFood = new Button("Buy Food");
+        Button buyEnergy = new Button("Buy Energy");
+
+        Button sellMule1 = new Button("Sell Mule #1");
+        Button sellMule2 = new Button("Sell Mule #2");
+        Button sellMule3 = new Button("Sell Mule #3");
+        Button sellSmithore = new Button("Sell Smithores");
+        Button sellCrystite = new Button("Sell Crystites");
+        Button sellFood = new Button("Sell Food");
+        Button sellEnergy = new Button("Sell Energy");
+
+        Button back = new Button("Back");
 
         // -------------------- Action Handlers of Buttons ---------------------
-        mule.setOnAction(e -> {
-            store.buy(store.mule);
-            endGame = true;
+
+        buyMule1.setOnAction(e -> {
+            store.buyMule(store.mule1);
         });
 
-        smithore.setOnAction(e -> {
+        buyMule2.setOnAction(e -> {
+            store.buyMule(store.mule2);
+        });
+
+        buyMule3.setOnAction(e -> {
+            store.buyMule(store.mule3);
+        });
+
+        buySmithore.setOnAction(e -> {
             store.buy(store.smithore);
-            endGame = true;
         });
 
-        crystite.setOnAction(e -> {
+        buyCrystite.setOnAction(e -> {
             store.buy(store.crystite);
-            endGame = true;
         });
 
-        food.setOnAction(e -> {
+        buyFood.setOnAction(e -> {
             store.buy(store.food);
-            endGame = true;
         });
 
-        energy.setOnAction(e -> {
+        buyEnergy.setOnAction(e -> {
             store.buy(store.energy);
-            endGame = true;
         });
 
-        storeScreen_Layout.getChildren().addAll(mule, smithore, crystite, food, energy);
+        back.setOnAction(e -> {
+            endGame = true;
+            move.curPlayer.playerIcon.setCenterX(400);
+            move.curPlayer.playerIcon.setCenterY(250);
+            primaryStage.setScene(town);
+        });
+
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(buyMule1, buyMule2, buyMule3, buySmithore, buyCrystite, buyFood, buyEnergy,
+                sellMule1, sellMule2, sellMule3, sellSmithore, sellCrystite, sellFood, sellEnergy, back);
+
+        storeScreen_Layout.getChildren().add(vbox);
 
         storeScreen = new Scene(storeScreen_Layout, 800, 500);
 
@@ -497,7 +528,7 @@ public class GUI extends Application{
         protected int u = 0;
         protected int d = 0;
         protected char dir;
-        private Player curPlayer;
+        protected Player curPlayer;
 
         public void setCurPlayer(Player curPlayer) {
             this.curPlayer = curPlayer;
@@ -600,6 +631,7 @@ public class GUI extends Application{
                             if (x > 635 && x < 800 && y > 327 && y < 493) {
                                 endGame = false;
                                 primaryStage.setScene(storeScreen);
+                                store.setCurrent(move.curPlayer);
                             }
                         }
                     } else {
