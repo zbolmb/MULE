@@ -72,7 +72,7 @@ public class Store {
 
     public void buyMule() {
         currPlayer.mule++;
-        currPlayer.money = currPlayer.money - mule.cost;
+        currPlayer.money -= mule.cost;
     }
     public void setCurrent(Player curr) {
         currPlayer = curr;

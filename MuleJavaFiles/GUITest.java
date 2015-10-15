@@ -317,8 +317,10 @@ public class GUITest extends Application{
         Button energy = new Button("Buy Energy");
 
         // -------------------- Action Handlers of Buttons ---------------------
+        store.setCurrent(move.curPlayer);
+
         mule.setOnAction(e -> {
-            store.buy(store.mule);
+            store.buyMule();
             endGame = true;
         });
 
@@ -342,7 +344,10 @@ public class GUITest extends Application{
             endGame = true;
         });
 
-        storeScreen_Layout.getChildren().addAll(mule, smithore, crystite, food, energy);
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(mule, smithore, crystite, food, energy);
+
+        storeScreen_Layout.getChildren().add(vbox);
 
         storeScreen = new Scene(storeScreen_Layout, 800, 500);
 
@@ -500,7 +505,7 @@ public class GUITest extends Application{
         protected int u = 0;
         protected int d = 0;
         protected char dir;
-        private Player curPlayer;
+        protected Player curPlayer;
 
         public void setCurPlayer(Player curPlayer) {
             this.curPlayer = curPlayer;
