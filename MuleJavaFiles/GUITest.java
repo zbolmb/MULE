@@ -1,6 +1,8 @@
 /**
- * Created by zmjung on 10/14/15.
+ * title: Project M.U.L.E.
+ * authors: William Hsu, Min Je Jung, Zhijian Li, Karl Nicodemus, William Su
  */
+
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -361,16 +363,18 @@ public class GUITest extends Application{
 
         back.setOnAction(e -> {
             endGame = true;
-            move.curPlayer.playerIcon.setCenterX(400);
+            move.curPlayer.playerIcon.setCenterX(720);
             move.curPlayer.playerIcon.setCenterY(250);
             primaryStage.setScene(town);
         });
 
-        VBox vbox = new VBox();
-        vbox.getChildren().addAll(buyMule1, buyMule2, buyMule3, buySmithore, buyCrystite, buyFood, buyEnergy,
-                sellMule1, sellMule2, sellMule3, sellSmithore, sellCrystite, sellFood, sellEnergy, back);
-
-        storeScreen_Layout.getChildren().add(vbox);
+        VBox vbox1 = new VBox();
+        VBox vbox2 = new VBox();
+        HBox hbox = new HBox();
+        vbox1.getChildren().addAll(buyMule1, buyMule2, buyMule3, buySmithore, buyCrystite, buyFood, buyEnergy, back);
+        vbox2.getChildren().addAll(sellMule1, sellMule2, sellMule3, sellSmithore, sellCrystite, sellFood, sellEnergy);
+        hbox.getChildren().addAll(vbox1, vbox2);
+        storeScreen_Layout.getChildren().add(hbox);
 
         storeScreen = new Scene(storeScreen_Layout, 800, 500);
 
@@ -632,6 +636,10 @@ public class GUITest extends Application{
                                 endGame = false;
                                 primaryStage.setScene(storeScreen);
                                 store.setCurrent(move.curPlayer);
+                                move.l = 0;
+                                move.r = 0;
+                                move.u = 0;
+                                move.d = 0;
                             }
                         }
                     } else {
