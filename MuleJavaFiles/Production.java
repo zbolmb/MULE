@@ -16,8 +16,17 @@ public class Production {
                 break;
             }
             curr.food = curr.food + tile.getFood();
+            if (tile.isMule3()) {
+                curr.food = curr.food + tile.getFood();
+            }
             curr.energy = curr.energy + tile.getEnergy();
+            if (tile.isMule2()) {
+                curr.energy = curr.energy + tile.getEnergy();
+            }
             curr.smithore = curr.smithore + tile.getOre();
+            if (tile.isMule1()) {
+                curr.smithore = curr.smithore + tile.getOre();
+            }
             curr.energy--;
         }
     }

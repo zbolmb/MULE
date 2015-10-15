@@ -651,8 +651,16 @@ public class GUI extends Application{
                         } else {
                             VBox scores = new VBox();
                             score = new Scene(scores, 500, 500);
+                            Production product = new Production(config);
                             for (Player p : config.players) {
+                                product.setCurrent(p);
+                                product.produce();
                                 scores.getChildren().add(new Text(p.name + "'s Score : " + p.score));
+                                scores.getChildren().add(new Text(p.name + "'s Food : " + p.food));
+                                scores.getChildren().add(new Text(p.name + "'s Energy : " + p.energy));
+                                scores.getChildren().add(new Text(p.name + "'s Ore : " + p.smithore));
+
+
                             }
                             primaryStage.setScene(score);
                             endGame = false;
