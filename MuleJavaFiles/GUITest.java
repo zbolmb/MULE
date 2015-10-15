@@ -322,33 +322,32 @@ public class GUITest extends Application{
 
         mule.setOnAction(e -> {
             store.buyMule();
-            endGame = true;
         });
 
         smithore.setOnAction(e -> {
             store.buy(store.smithore);
-            endGame = true;
         });
 
         crystite.setOnAction(e -> {
             store.buy(store.crystalite);
-            endGame = true;
         });
 
         food.setOnAction(e -> {
             store.buy(store.food);
-            endGame = true;
         });
 
         energy.setOnAction(e -> {
             store.buy(store.energy);
-            endGame = true;
         });
 
+        back.setOnAction(e -> {
+            endGame = true;
 
+            primaryStage.setScene(town);
+        });
 
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(mule, smithore, crystite, food, energy);
+        vbox.getChildren().addAll(mule, smithore, crystite, food, energy, back);
 
         storeScreen_Layout.getChildren().add(vbox);
 

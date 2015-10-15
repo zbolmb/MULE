@@ -18,7 +18,7 @@ public class Player {
 
 	protected int food;
 	protected int energy;
-	protected int crystalite;
+	protected int crystite;
 	protected int smithore;
 	protected int mule;
 
@@ -31,7 +31,7 @@ public class Player {
 	    score = 0;
 		food = 0;
 		energy = 0;
-		crystalite = 0;
+		crystite = 0;
 		smithore = 0;
 		mule = 0;
 	}
