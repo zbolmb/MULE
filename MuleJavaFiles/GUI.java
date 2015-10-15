@@ -20,15 +20,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import java.util.Random;
 
-/**
- * @author Zhijian Li, William Hsu
- * The main class that has all the graphics
- * also has some behind the scene work (coded not so well)
- */
 public class GUI extends Application{
-    private Scene config1, config2, gameScreen;
+    private Scene config1, config2, gameScreen, storeScreen;
 
     private Configurations config;
 
@@ -42,16 +36,15 @@ public class GUI extends Application{
     //, config2_ButtonPanel;
 
     private Button difficulty_Easy, difficulty_Medium, difficulty_Hard,
-    map_River, map_Mountain, map_Plain,
-    toConfig2;
+            map_River, map_Mountain, map_Plain,
+            toConfig2;
 
     private Text difficulty_txt, mapType_txt, playerNum_txt;
     private ComboBox<String> player_number, race, color;
 
     private TextField name;
 
-    private boolean movePhase = false;
-    private boolean inTown = false;
+    private boolean movePhase = false, inTown = false, endGame = true;
 
     //-----TEMP SCOREBOARD---
     private Scene score;
@@ -114,7 +107,7 @@ public class GUI extends Application{
                         "2",
                         "3",
                         "4"
-                        );
+                );
         final ComboBox<String> comboBox = new ComboBox<>(options);
         comboBox.setPromptText("Number of Players: ");
         //comboBox.setEditable(true);
@@ -190,7 +183,7 @@ public class GUI extends Application{
                         "Orc",
                         "High Humans",
                         "Protoss"
-                        );
+                );
         ComboBox<String> race = new ComboBox<>(races);
         race.setPromptText("Choose a Race");
         //race.setEditable(true);
@@ -224,7 +217,7 @@ public class GUI extends Application{
                         "Popular Purple",
                         "Pretty Pink",
                         "Yucky Yellow"
-                        );
+                );
         ComboBox<String> colorBox = new ComboBox<>(colors);
         colorBox.setPromptText("Choose a Color");
         //colorBox.setEditable(true);
@@ -308,6 +301,47 @@ public class GUI extends Application{
         Pane townMapPane = townMap.generateMapGui();
         Scene town = new Scene(townMapPane, 800, 500);
         TownTurn townTurn = new TownTurn(config.players);
+
+        // Store Screen is made here
+        Pane storeScreen_Layout = new Pane();
+        Store store = new Store(config);
+
+        // -------------------- Creation of Buttons -----------------------
+        Button mule = new Button("Buy Mules");
+        Button smithore = new Button("Buy Smithores");
+        Button crystite = new Button("Buy Crystites");
+        Button food = new Button("Buy Food");
+        Button energy = new Button("Buy Energy");
+
+        // -------------------- Action Handlers of Buttons ---------------------
+        mule.setOnAction(e -> {
+            store.buy(store.mule);
+            endGame = true;
+        });
+
+        smithore.setOnAction(e -> {
+            store.buy(store.smithore);
+            endGame = true;
+        });
+
+        crystite.setOnAction(e -> {
+            store.buy(store.crystalite);
+            endGame = true;
+        });
+
+        food.setOnAction(e -> {
+            store.buy(store.food);
+            endGame = true;
+        });
+
+        energy.setOnAction(e -> {
+            store.buy(store.energy);
+            endGame = true;
+        });
+
+        storeScreen_Layout.getChildren().addAll(mule, smithore, crystite, food, energy);
+
+        storeScreen = new Scene(storeScreen_Layout, 800, 500);
 
         /**
          * LoopService has data called curplayer
@@ -489,7 +523,6 @@ public class GUI extends Application{
         int xSpeed;
         int ySpeed;
         double time;
-        boolean dummy = true;
 
         public LoopService(PlayerMove move, Stage primaryStage, Scene town, Pane townMapPane, TownTurn townTurn) {
             this.move = move;
@@ -500,7 +533,7 @@ public class GUI extends Application{
         }
 
         protected void runOnFXThread() {
-            if (dummy) {
+            if (endGame) {
                 if (movePhase) {
                     if (time <= 120) {
                         playerIcon = move.curPlayer.playerIcon;
@@ -528,6 +561,8 @@ public class GUI extends Application{
                                 move.d = 0;
                             }
                         } else {
+                            // this is when you move out of town
+                            // goes back to game scene
                             if (x < 5 || x > 795 || y < 5 || y > 495) {
                                 primaryStage.setScene(gameScreen);
                                 townMapPane.getChildren().remove(playerIcon);
@@ -540,11 +575,11 @@ public class GUI extends Application{
                                 move.u = 0;
                                 move.d = 0;
                             }
+
+                            // this is one of the tiles in town
+                            // this is the pub
                             if (x > 475 && x < 635 && y > 327 && y < 493) {
-                                Random rand = new Random();
-                                int randomNumber = rand.nextInt(5);
-                                double randNumb = randomNumber / 10.0;
-                                move.curPlayer.score += (1 + randNumb) * (120 - time);
+                                move.curPlayer.score += 120 - time;
                                 move.setCurPlayer(townTurn.getRichGuy());
                                 if (move.curPlayer != null) {
                                     primaryStage.setScene(gameScreen);
@@ -557,8 +592,14 @@ public class GUI extends Application{
                                         scores.getChildren().add(new Text(p.name + "'s Score : " + p.score));
                                     }
                                     primaryStage.setScene(score);
-                                    dummy = false;
+                                    endGame = false;
                                 }
+                            }
+                            // this is one of the tiles in town
+                            // this is the store
+                            if (x > 635 && x < 800 && y > 327 && y < 493) {
+                                endGame = false;
+                                primaryStage.setScene(storeScreen);
                             }
                         }
                     } else {
@@ -574,7 +615,7 @@ public class GUI extends Application{
                                 scores.getChildren().add(new Text(p.name + "'s Score : " + p.score));
                             }
                             primaryStage.setScene(score);
-                            dummy = false;
+                            endGame = false;
                         }
                     }
                 }
