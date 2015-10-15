@@ -578,11 +578,15 @@ public class GUITest extends Application{
                         playerIcon.setCenterY(y + ySpeed);
                         x = playerIcon.getCenterX();
                         y = playerIcon.getCenterY();
+
+                        // not in town
                         if (!inTown) {
                             if (x < 5) playerIcon.setCenterX(5);
                             if (x > 895) playerIcon.setCenterX(895);
                             if (y < 5) playerIcon.setCenterY(5);
                             if (y > 495) playerIcon.setCenterY(495);
+
+                            // if you are in the middle, then go into town
                             if (x + xSpeed < 500 && x + xSpeed > 400 && y + ySpeed < 300 && y + ySpeed > 200) {
                                 primaryStage.setScene(town);
                                 townMapPane.getChildren().add(playerIcon);
@@ -594,6 +598,15 @@ public class GUITest extends Application{
                                 move.r = 0;
                                 move.u = 0;
                                 move.d = 0;
+                            }
+
+                            if (move.curPlayer.mule1 != 0 || move.curPlayer.mule3 != 0 || move.curPlayer.mule2 != 0) {
+                                if (map.aMap[(int) move.curPlayer.playerIcon.getCenterX() % 100]
+                                        [(int) move.curPlayer.playerIcon.getCenterY()].owner != move.curPlayer.name) {
+                                    move.curPlayer.mule1 = 0;
+                                    move.curPlayer.mule2 = 0;
+                                    move.curPlayer.mule3 = 0;
+                                }
                             }
                         } else {
                             // this is when you move out of town
