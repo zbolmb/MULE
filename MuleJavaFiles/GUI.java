@@ -153,7 +153,7 @@ public class GUI extends Application{
 
         primaryStage.setScene(config1);
         primaryStage.show();
-        primaryStage.setTitle("MULE");
+        primaryStage.setTitle("M.U.L.E.");
         primaryStage.setResizable(true);
         //config1_Grid.setGridLinesVisible(true);
 
