@@ -656,6 +656,11 @@ public class GUI extends Application{
                                 product.setCurrent(p);
                                 product.produce();
                                 scores.getChildren().add(new Text(p.name + "'s Score : " + p.score));
+                                scores.getChildren().add(new Text(p.name + "'s Food : " + p.food));
+                                scores.getChildren().add(new Text(p.name + "'s Energy : " + p.energy));
+                                scores.getChildren().add(new Text(p.name + "'s Ore : " + p.smithore));
+
+
                             }
                             primaryStage.setScene(score);
                             endGame = false;
