@@ -16,6 +16,12 @@ public class Player {
 	protected Circle playerIcon;
 	protected ArrayList<MapTiles> owned;
 
+	protected int food;
+	protected int energy;
+	protected int crystalite;
+	protected int smithore;
+	protected int mule;
+
 	public Player() {
 	    name = "No Name";
 	    race = "Exile";
@@ -23,5 +29,10 @@ public class Player {
 	    money = 1000;
 	    owned = new ArrayList<>();
 	    score = 0;
+		food = 0;
+		energy = 0;
+		crystalite = 0;
+		smithore = 0;
+		mule = 0;
 	}
 }
