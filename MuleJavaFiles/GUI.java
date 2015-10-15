@@ -59,7 +59,7 @@ public class GUI extends Application{
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception {	    
+    public void start(Stage primaryStage) throws Exception {
         config = new Configurations();
         config1_ButtonPanel = new VBox();
         config1_Grid = new GridPane();
@@ -280,10 +280,10 @@ public class GUI extends Application{
     /**
      * This method creates the game screen (The actual game)
      * REQUIRES EDITING
-     * RELEVANT FILES: 
+     * RELEVANT FILES:
      *      SelectionSquare: drawing tool for the selection icon with mouse
      *      TurnTracker: keeps track of players turn during buyPhase ONLY
-     *      util: has some utility functions: CURRENTLY ONLY HAS TOOL FOR 
+     *      util: has some utility functions: CURRENTLY ONLY HAS TOOL FOR
      *          DRAWING RECTANGLE TO MARK THAT TILE IS OWNED BY CURRENT PLAYER
      * Need to add turn based clock
      * @param primaryStage the stage that is being used (the window)
@@ -310,7 +310,7 @@ public class GUI extends Application{
 
         /**
          * LoopService has data called curplayer
-         * When implementing turn based, make sure to change curPlayer for different player. 
+         * When implementing turn based, make sure to change curPlayer for different player.
          */
         animate = new LoopService(move, primaryStage, town, townMapPane, townTurn);
 
@@ -540,7 +540,11 @@ public class GUI extends Application{
                                 move.d = 0;
                             }
                             if (x > 475 && x < 635 && y > 327 && y < 493) {
-                                move.curPlayer.score += 120 - time;
+                                Random rand = new Random();
+                                int randomNumber = rand.nextInt(5);
+                                double randNumb = randomNumber / 10.0;
+                                move.curPlayer.score += (1 + randNumb) (120 - time);
+
                                 move.setCurPlayer(townTurn.getRichGuy());
                                 if (move.curPlayer != null) {
                                     primaryStage.setScene(gameScreen);
