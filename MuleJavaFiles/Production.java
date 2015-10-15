@@ -1,37 +1,37 @@
 import java.util.ArrayList;
 
 public class Production {
-    protected ArrayList<MapTiles> owned;
+    protected ArrayList<MapTiles> own;
     protected ArrayList<Player> players;
-    protected Player curr;
+    protected Player player;
 
     public Production(Configurations config) {
         players = config.players;
     }
 
     public void produce() {
-        owned = curr.owned;
-        for (MapTiles tile : owned) {
-            if (curr.energy == 0) {
+        own = player.owned;
+        for (MapTiles tile : own) {
+            if (player.energy == 0) {
                 break;
             }
-            curr.food = curr.food + tile.getFood();
+            player.food = player.food + tile.getFood();
             if (tile.isMule3()) {
-                curr.food = curr.food + tile.getFood();
+                player.food = player.food + tile.getFood();
             }
-            curr.energy = curr.energy + tile.getEnergy();
+            player.energy = player.energy + tile.getEnergy();
             if (tile.isMule2()) {
-                curr.energy = curr.energy + tile.getEnergy();
+                player.energy = player.energy + tile.getEnergy();
             }
-            curr.smithore = curr.smithore + tile.getOre();
+            player.smithore = player.smithore + tile.getOre();
             if (tile.isMule1()) {
-                curr.smithore = curr.smithore + tile.getOre();
+                player.smithore = player.smithore + tile.getOre();
             }
-            curr.energy--;
+            player.energy--;
         }
     }
 
-    public void setCurrent(Player curr) {
-        curr = curr;
+    public void setCurrent(Player p) {
+        player = p;
     }
 }
