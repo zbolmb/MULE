@@ -10,7 +10,6 @@ public class Store {
     protected Resource mule2;
     protected Resource mule3;
 
-
     public Store(Configurations config) {
         players = config.players;
         smithore = new Resource("Smithore", 100);
@@ -28,11 +27,11 @@ public class Store {
                 currPlayer.smithore++;
                 smithore.storeCount--;
                 currPlayer.money = currPlayer.money - smithore.cost;
-        } else if (resource.name.equals(crystalite.name) && crystalite.storeCount > 0
-            && currPlayer.money > crystalite.cost) {
-                currPlayer.crystalite++;
-                crystalite.storeCount--;
-                currPlayer.money = currPlayer.money - crystalite.cost;
+        } else if (resource.name.equals(crystite.name) && crystite.storeCount > 0
+            && currPlayer.money > crystite.cost) {
+                currPlayer.crystite++;
+                crystite.storeCount--;
+                currPlayer.money = currPlayer.money - crystite.cost;
 
         } else if (resource.name.equals(energy.name) && energy.storeCount > 0
             && currPlayer.money > energy.cost) {
@@ -56,10 +55,10 @@ public class Store {
                 currPlayer.smithore--;
                 smithore.storeCount++;
                 currPlayer.money = currPlayer.money + smithore.cost;
-        } else if (resource.name.equals(crystalite.name) && currPlayer.crystalite > 0) {
-                currPlayer.crystalite--;
-                crystalite.storeCount++;
-                currPlayer.money = currPlayer.money + crystalite.cost;
+        } else if (resource.name.equals(crystite.name) && currPlayer.crystite > 0) {
+                currPlayer.crystite--;
+                crystite.storeCount++;
+                currPlayer.money = currPlayer.money + crystite.cost;
 
         } else if (resource.name.equals(energy.name) && currPlayer.energy > 0) {
                 currPlayer.energy--;
