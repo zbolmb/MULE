@@ -600,13 +600,40 @@ public class GUITest extends Application{
                                 move.d = 0;
                             }
 
-                            if (move.curPlayer.mule1 != 0 || move.curPlayer.mule3 != 0 || move.curPlayer.mule2 != 0) {
-                                if (map.aMap[(int) move.curPlayer.playerIcon.getCenterX() % 100]
-                                        [(int) move.curPlayer.playerIcon.getCenterY()].owner != move.curPlayer.name) {
-                                    move.curPlayer.mule1 = 0;
-                                    move.curPlayer.mule2 = 0;
-                                    move.curPlayer.mule3 = 0;
+                            if (map.aMap[(int) move.curPlayer.playerIcon.getCenterX() % 100]
+                                    [(int) move.curPlayer.playerIcon.getCenterY() % 100].owner.equals(move.curPlayer.name)) {
+
+                                if (!map.aMap[(int) move.curPlayer.playerIcon.getCenterX() % 100]
+                                        [(int) move.curPlayer.playerIcon.getCenterY() % 100].mule1) {
+                                    if (move.curPlayer.mule1 > 0) {
+                                        move.curPlayer.mule1--;
+                                        map.aMap[(int) move.curPlayer.playerIcon.getCenterX() % 100]
+                                                [(int) move.curPlayer.playerIcon.getCenterY() % 100].mule1 = true;
+                                    }
                                 }
+
+                                if (!map.aMap[(int) move.curPlayer.playerIcon.getCenterX() % 100]
+                                        [(int) move.curPlayer.playerIcon.getCenterY() % 100].mule2) {
+                                    if (move.curPlayer.mule2 > 0) {
+                                        move.curPlayer.mule2--;
+                                        map.aMap[(int) move.curPlayer.playerIcon.getCenterX() % 100]
+                                                [(int) move.curPlayer.playerIcon.getCenterY() % 100].mule2 = true;
+                                    }
+                                }
+
+                                if (!map.aMap[(int) move.curPlayer.playerIcon.getCenterX() % 100]
+                                        [(int) move.curPlayer.playerIcon.getCenterY() % 100].mule3) {
+                                    if (move.curPlayer.mule3 > 0) {
+                                        move.curPlayer.mule3--;
+                                        map.aMap[(int) move.curPlayer.playerIcon.getCenterX() % 100]
+                                                [(int) move.curPlayer.playerIcon.getCenterY() % 100].mule3 = true;
+                                    }
+                                }
+                            } else if (!map.aMap[(int) move.curPlayer.playerIcon.getCenterX() % 100]
+                                    [(int) move.curPlayer.playerIcon.getCenterY() % 100].owner.equals("None")) {
+                                move.curPlayer.mule1 = 0;
+                                move.curPlayer.mule2 = 0;
+                                move.curPlayer.mule3 = 0;
                             }
                         } else {
                             // this is when you move out of town

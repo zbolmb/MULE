@@ -13,15 +13,15 @@ import javafx.scene.shape.Rectangle;
 public abstract class MapTiles {
 
 	String owner;
+	boolean mule1;
+	boolean mule2;
+	boolean mule3;
 
 	private int food;
 	private int energy;
 	private int ore;
 	private boolean crystite;
 	private boolean highlightable;
-	private boolean mule1;
-	private boolean mule2;
-	private boolean mule3;
 	private String name;
 	private Image img;
 
@@ -71,9 +71,6 @@ public abstract class MapTiles {
 	public boolean isCrystalite() { return crystite; }
 	public void setCrystalite(boolean crystalite) { this.crystite = crystite; }
 	public boolean isHighlightable() { return highlightable; }
-	public boolean isMule1() { return this.mule1;}
-	public boolean isMule2() { return this.mule2;}
-	public boolean isMule3() { return this.mule3;}
 
 	public void setHighlightable(boolean highlightable) { this.highlightable = highlightable; }
 	public Color getMapType() { return mapType; }
