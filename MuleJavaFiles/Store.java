@@ -15,7 +15,7 @@ public class Store {
         smithore = new Resource("Smithore", 100);
         energy = new Resource("Energy", 25);
         food = new Resource("Food", 50);
-        crystalite = new Resource("crystalite", 200);
+        crystite = new Resource("crystite", 200);
         mule1 = new Resource("SmithMule", 300);
         mule2 = new Resource("EnergyMule", 300);
         mule3 = new Resource("FoodMule", 300);

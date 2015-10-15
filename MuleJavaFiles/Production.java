@@ -3,9 +3,9 @@ import java.util.ArrayList;
 public class Production {
     protected ArrayList<MapTiles> owned;
     protected ArrayList<Player> players;
-    protected Player currPlayer;
+    protected Player curr;
 
-    public Production(Config config) {
+    public Production(Configurations config) {
         players = config.players;
     }
 
@@ -17,12 +17,12 @@ public class Production {
             }
             curr.food = curr.food + tile.getFood();
             curr.energy = curr.energy + tile.getEnergy();
-            curr.smithore = curr.smithore + curr.getOre();
+            curr.smithore = curr.smithore + tile.getOre();
             curr.energy--;
         }
     }
 
     public void setCurrent(Player curr) {
-        currPlayer = curr;
+        curr = curr;
     }
 }

@@ -39,7 +39,7 @@ public abstract class MapTiles {
 	 * @param highlightable
 	 * @param mapType ** This is temporary. Should be an image **
 	 */
-	public MapTiles(int food, int energy, int ore, boolean crystalite, boolean highlightable, String name, Color mapType, Image img, boolean mule) {
+	public MapTiles(int food, int energy, int ore, boolean crystalite, boolean highlightable, String name, Color mapType, Image img) {
 		this.food = food;
 		this.ore = ore;
 		this.crystalite = crystalite;
@@ -49,7 +49,7 @@ public abstract class MapTiles {
 		this.owner = "None";
 		this.name = name;
 		this.img = img;
-		this.mule = mule;
+		this.mule = false;
 	}
 
 	/**
