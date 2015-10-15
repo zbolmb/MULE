@@ -75,13 +75,13 @@ public class Store {
     }
 
     public void buyMule(Resource resource) {
-        if (resource.name.equals(mule1.name) && currPlayer.money < mule1.cost) {
+        if (resource.name.equals(mule1.name) && currPlayer.money > mule1.cost) {
             currPlayer.mule1++;
             currPlayer.money -= mule1.cost;
-        } else if (resource.name.equals(mule2.name) && currPlayer.money < mule2.cost) {
+        } else if (resource.name.equals(mule2.name) && currPlayer.money > mule2.cost) {
             currPlayer.mule2++;
             currPlayer.money -= mule2.cost;
-        } else if (resource.name.equals(mule3.name) && currPlayer.money < mule3.cost) {
+        } else if (resource.name.equals(mule3.name) && currPlayer.money > mule3.cost) {
             currPlayer.mule3++;
             currPlayer.money -= mule3.cost;
         } else {
