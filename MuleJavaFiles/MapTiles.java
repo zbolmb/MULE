@@ -34,7 +34,6 @@ public abstract class MapTiles {
 	//-----------------------------------------------------------------
 
 	/**
-	 *
 	 * @param food
 	 * @param energy
 	 * @param ore
@@ -89,4 +88,8 @@ public abstract class MapTiles {
 	public void setImg(Image img) { this.img = img; }
 	public ImageView getImgView() { return new ImageView(img); }
 
+	@Override
+	public String toString() {
+		return ("Mule1: " + mule1 + "\nMule2: " + mule2 + "\nMule3: " + mule3);
+	}
 }

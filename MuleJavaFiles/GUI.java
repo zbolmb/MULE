@@ -595,6 +595,42 @@ public class GUI extends Application{
                                 move.u = 0;
                                 move.d = 0;
                             }
+
+                            if (map.aMap[(int) move.curPlayer.playerIcon.getCenterX() / 100]
+                                    [(int) move.curPlayer.playerIcon.getCenterY() / 100].owner.equals(move.curPlayer.name)) {
+
+                                if (!map.aMap[(int) move.curPlayer.playerIcon.getCenterX() / 100]
+                                        [(int) move.curPlayer.playerIcon.getCenterY() / 100].mule1) {
+                                    if (move.curPlayer.mule1 > 0) {
+                                        move.curPlayer.mule1--;
+                                        map.aMap[(int) move.curPlayer.playerIcon.getCenterX() / 100]
+                                                [(int) move.curPlayer.playerIcon.getCenterY() / 100].mule1 = true;
+                                    }
+                                }
+
+                                if (!map.aMap[(int) move.curPlayer.playerIcon.getCenterX() / 100]
+                                        [(int) move.curPlayer.playerIcon.getCenterY() / 100].mule2) {
+                                    if (move.curPlayer.mule2 > 0) {
+                                        move.curPlayer.mule2--;
+                                        map.aMap[(int) move.curPlayer.playerIcon.getCenterX() / 100]
+                                                [(int) move.curPlayer.playerIcon.getCenterY() / 100].mule2 = true;
+                                    }
+                                }
+
+                                if (!map.aMap[(int) move.curPlayer.playerIcon.getCenterX() / 100]
+                                        [(int) move.curPlayer.playerIcon.getCenterY() / 100].mule3) {
+                                    if (move.curPlayer.mule3 > 0) {
+                                        move.curPlayer.mule3--;
+                                        map.aMap[(int) move.curPlayer.playerIcon.getCenterX() / 100]
+                                                [(int) move.curPlayer.playerIcon.getCenterY() / 100].mule3 = true;
+                                    }
+                                }
+                            } else if (!map.aMap[(int) move.curPlayer.playerIcon.getCenterX() / 100]
+                                    [(int) move.curPlayer.playerIcon.getCenterY() / 100].owner.equals("None")) {
+                                move.curPlayer.mule1 = 0;
+                                move.curPlayer.mule2 = 0;
+                                move.curPlayer.mule3 = 0;
+                            }
                         } else {
                             // this is when you move out of town
                             // goes back to game scene
@@ -634,6 +670,12 @@ public class GUI extends Application{
                                     }
                                     primaryStage.setScene(score);
                                     endGame = false;
+
+//                                    for (int i = 0; i < 8; i++) {
+//                                        for (int j = 0; j < 5; j++) {
+//                                            System.out.println((i + " " + j + map.aMap[i][j]));
+//                                        }
+//                                    }
                                 }
                             }
                             // this is one of the tiles in town
@@ -665,9 +707,13 @@ public class GUI extends Application{
                                 scores.getChildren().add(new Text(p.name + "'s Food : " + p.food));
                                 scores.getChildren().add(new Text(p.name + "'s Energy : " + p.energy));
                                 scores.getChildren().add(new Text(p.name + "'s Ore : " + p.smithore));
-
-
                             }
+
+//                            for (int i = 0; i < 8; i++) {
+//                                for (int j = 0; j < 5; j++) {
+//                                    System.out.println((i + " " + j + map.aMap[i][j]));
+//                                }
+//                            }
                             primaryStage.setScene(score);
                             endGame = false;
                         }

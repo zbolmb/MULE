@@ -16,15 +16,15 @@ public class Production {
                 break;
             }
             player.food = player.food + tile.getFood();
-            if (tile.isMule3()) {
+            if (tile.mule3) {
                 player.food = player.food + tile.getFood();
             }
             player.energy = player.energy + tile.getEnergy();
-            if (tile.isMule2()) {
+            if (tile.mule2) {
                 player.energy = player.energy + tile.getEnergy();
             }
             player.smithore = player.smithore + tile.getOre();
-            if (tile.isMule1()) {
+            if (tile.mule3) {
                 player.smithore = player.smithore + tile.getOre();
             }
             player.energy--;
