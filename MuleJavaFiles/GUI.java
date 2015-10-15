@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import java.util.Random;
 
 /**
  * @author Zhijian Li, William Hsu
@@ -543,8 +544,7 @@ public class GUI extends Application{
                                 Random rand = new Random();
                                 int randomNumber = rand.nextInt(5);
                                 double randNumb = randomNumber / 10.0;
-                                move.curPlayer.score += (1 + randNumb) (120 - time);
-
+                                move.curPlayer.score += (1 + randNumb) * (120 - time);
                                 move.setCurPlayer(townTurn.getRichGuy());
                                 if (move.curPlayer != null) {
                                     primaryStage.setScene(gameScreen);
