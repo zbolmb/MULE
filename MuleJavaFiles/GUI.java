@@ -63,7 +63,7 @@ public class GUI extends Application{
         config = new Configurations();
         config1_ButtonPanel = new VBox();
         config1_Grid = new GridPane();
-        config1 = new Scene(config1_Grid, 400, 225);
+        config1 = new Scene(config1_Grid, 450, 300);
         //------------------------------------------------------------------------
         HBox difficultyBox = new HBox();
         difficulty_Easy = new Button("Easy");
@@ -175,7 +175,7 @@ public class GUI extends Application{
         text.setSpacing(10);
         config.players.add(p);
         GridPane grid = new GridPane();
-        players[cur] = new Scene(grid, 325, 200);
+        players[cur] = new Scene(grid, 450, 300);
         TextField nameField = new TextField("Enter your name: ");
         nameField.setOnAction(event -> {
             p.name = nameField.getText();
@@ -426,7 +426,8 @@ public class GUI extends Application{
          * Temporary game text that displays on the top of the game screen
          * Tells whos turn it is to claim plot and displays money of the player
          */
-        Text gameText = new Text(turns.getCurPlayer().name + " Choose Initial Plot. Money: " + turns.getCurPlayer().money);
+        Text gameText = new Text(turns.getCurPlayer().name + " Choose Initial Plot. Money: "
+                + turns.getCurPlayer().money);
 
 
         //MOUSE_MOVED event handler. When mouse moves, moves the selection square to tile that mouse is hovering over
@@ -438,8 +439,9 @@ public class GUI extends Application{
             }
         });
 
-        //MOUSE_PRESSED event handler. When mouse is pressed, the tile at that spot is claimed for the current player, if valid.
-        //Does nothing if tile invalid
+        // MOUSE_PRESSED event handler. When mouse is pressed, the tile at that spot
+        // is claimed for the current player, if valid.
+        // Does nothing if tile invalid
         gameScreen.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
             if (!movePhase) {
                 double x = e.getX() - 20;
@@ -466,7 +468,7 @@ public class GUI extends Application{
                     gameText.setText("Move Phase");
                     move.setCurPlayer(townTurn.getRichGuy());
                 }
-            };
+            }
         });
 
         gameScreen_Layout.add(gameText, 1, 0);
@@ -514,7 +516,8 @@ public class GUI extends Application{
             if (done) {
                 gameText.setText("Move Phase");
             } else {
-                gameText.setText(turns.getCurPlayer().name + " Choose Initial Plot. Money: " + turns.getCurPlayer().money);
+                gameText.setText(turns.getCurPlayer().name + " Choose Initial Plot. Money: "
+                        + turns.getCurPlayer().money);
             }
             return done;
         }
@@ -523,8 +526,6 @@ public class GUI extends Application{
 
     /**
      * Class that contains data for animation movement
-     * @author Zhijian
-     *
      */
     class PlayerMove {
         protected int l = 0;
@@ -542,8 +543,6 @@ public class GUI extends Application{
     /**
      * Animation Renderer that runs functions every certain frames
      * has a method to run on thread and to run off thread
-     * @author Zhijian
-     *
      */
     class LoopService extends AbstractLoopService {
 
