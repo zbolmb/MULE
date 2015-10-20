@@ -1,4 +1,5 @@
 import java.util.Random;
+import landTiles.*;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,9 +17,11 @@ import javafx.scene.shape.Rectangle;
 
 public class GameMap {
     
+    protected DisplayContents dc;
 	protected MapTiles[][] aMap;
 
 	public GameMap() {
+	    dc = Configurations.displayContents;
 		this.aMap = new MapTiles[9][5];
 	}
 
@@ -116,7 +119,7 @@ public class GameMap {
 
 	}
 
-	public Pane generateMapGui() {
+	public Pane getGUI() {
 		createDefaultGameMap();
 		//Rectangle tile;
 		ImageView tile;
@@ -130,6 +133,11 @@ public class GameMap {
 			}
 		}
 		return pane;
+	}
+	
+	public void updateDC() {
+	    dc.mapGUI = getGUI();
+	    dc.map = this;
 	}
 
 	public MapTiles[][] getAMap() { return aMap; }

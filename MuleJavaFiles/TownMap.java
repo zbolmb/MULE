@@ -1,13 +1,20 @@
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import townTiles.*;
+
 
 /**
  * Created by willi on 9/28/2015.
  */
 public class TownMap {
+    
+    protected static DisplayContents dc;
     protected TownTiles[][] aMap;
+    protected Pane pane;
 
     public TownMap() {
+        this.dc = Configurations.displayContents;
         this.aMap = new TownTiles[5][3];
     }
 
@@ -15,7 +22,7 @@ public class TownMap {
      * Creates the default map for the game.
      * @return The default map
      */
-    public void createDefaultGameMap() {
+    public void createDefaultTownMap() {
         aMap[0][0] = new crystiteTownTile();
         aMap[1][0] = new smithoreTownTile();
         aMap[2][0] = new floorTile();
@@ -33,14 +40,16 @@ public class TownMap {
         aMap[2][2] = new floorTile();
         aMap[3][2] = new pubTile();
         aMap[4][2] = new muleTile();
-
-
     }
 
-    public Pane generateMapGui() {
-        createDefaultGameMap();
+    public Scene getGUI() {
+        createDefaultTownMap();
+        pane = new Pane();
+        Scene scene = new Scene(pane, 800, 500);
+        
+        util.addMovementHandlers(scene);
+
         Rectangle tile;
-        Pane pane = new Pane();
         for (int i = 0; i < aMap.length; i++) {
             for (int j = 0; j < aMap[0].length; j++) {
                 tile = aMap[i][j].getMapTileGui();
@@ -49,9 +58,24 @@ public class TownMap {
                 pane.getChildren().add(tile);
             }
         }
-        return pane;
+        return scene;
     }
 
+    public void updateDC() {
+        dc.townMapGUI = getGUI();
+        dc.townMap = this;
+    }
+    
+    public void addPlayerToGUI(Player p) {
+        pane.getChildren().add(p.playerIcon);
+        dc.mapGUI.getChildren().remove(p.playerIcon);  
+    }
+    
+    public void removePlayerFromGUI(Player p) {
+        pane.getChildren().remove(p.playerIcon);
+        dc.mapGUI.getChildren().add(p.playerIcon);
+    }
+    
     public TownTiles[][] getAMap() { return aMap; }
     public void setAMap(TownTiles[][] aMap) { this.aMap = aMap; }
 }

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+import landTiles.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
@@ -15,6 +16,12 @@ public class Player {
 	protected int score;
 	protected Circle playerIcon;
 	protected ArrayList<MapTiles> owned;
+	protected double startX;
+	protected double startY;
+	/**
+	 * phase = 0 when in gameScreen
+	 */
+	protected int phase = 0;
 
 	protected int food;
 	protected int energy;
@@ -39,4 +46,30 @@ public class Player {
 		mule2 = 0;
 		mule3 = 0;
 	}
+
+    public void move(double vx, double vy) {
+        playerIcon.setCenterX(playerIcon.getCenterX() + vx);
+        playerIcon.setCenterY(playerIcon.getCenterY() + vy);
+    }
+    
+    public void moveTo(double x, double y) {
+        playerIcon.setCenterX(x);
+        playerIcon.setCenterY(y);
+    }
+    
+    public void setX(double x) {
+        playerIcon.setCenterX(x);
+    }
+    
+    public void setY(double y) {
+        playerIcon.setCenterY(y);
+    }
+    
+    public double getX() {
+        return playerIcon.getCenterX();
+    }
+    
+    public double getY() {
+        return playerIcon.getCenterY();
+    }
 }
