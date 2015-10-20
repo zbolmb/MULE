@@ -48,7 +48,6 @@ public class util {
     }
 
     public static void incrementTurn() {
-        System.out.println(Configurations.round);
         if (Configurations.round == 0) {
             buyTurnIncre();
         } else {

@@ -38,6 +38,7 @@ public class LoopService extends AbstractLoopService {
                 if (cp.getY() > 495) cp.setY(495);
                 if (cp.getX() < 500 && cp.getX() > 400 && cp.getY() < 300 && cp.getY() > 200) {
                     dc.townMap.addPlayerToGUI(cp);
+                    dc.mainWindow.setScene(dc.townMapGUI);
                     cp.setX(400);
                     cp.setY(250);
                     cp.phase = 1;
@@ -85,7 +86,7 @@ public class LoopService extends AbstractLoopService {
     protected void runInBackground() {
         if (Configurations.phase == 1 || Configurations.phase == 2) {
             vx = move.l + move.r;
-            vx = move.u + move.d;
+            vy = move.u + move.d;
             if (vx == 5) move.dir = 'r';
             if (vx == -5) move.dir = 'l';
             if (vy == 5) move.dir = 'd';
