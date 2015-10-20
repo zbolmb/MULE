@@ -10,17 +10,18 @@ import javafx.scene.text.Text;
 public class GameScreen {
 
     static DisplayContents dc;
+    Text gameText;
 
     public GameScreen() {
         dc = Configurations.displayContents;
         dc.gameScreen = this;
+        gameText = new Text();
     }
 
     public Scene getGUI() {
         GridPane layout = new GridPane();
-        Scene scene = new Scene(layout, 940, 540);
+        Scene scene = new Scene(layout, 940, 610);
         SelectionSquare sq;
-        Text gameText;
 
 
         layout.add(dc.mapGUI, 1, 1);
@@ -33,7 +34,9 @@ public class GameScreen {
          * Temporary game text that displays on the top of the game screen
          * Tells whos turn it is to claim plot and displays money of the player
          */
-        gameText = new Text(Configurations.curPlayer.name + " Choose Initial Plot. Money: " + Configurations.curPlayer.money);
+        gameText.setText(Configurations.curPlayer.name + " Choose Initial Plot. Money: " + Configurations.curPlayer.money
+                + "\n\n\n");
+        gameText.minHeight(100);
 
         util.addMovementHandlers(scene);
         util.addMovementHandlers(dc.townMapGUI);
@@ -97,5 +100,24 @@ public class GameScreen {
         loopService.start();
         dc.gameScreenGUI = getGUI();
         dc.gameScreen = this;
+    }
+
+    public void updateText() {
+        if (dc.loopService != null) {
+            gameText.setText(Configurations.curPlayer.name + "'s Turn. "
+                    + "\nMoney : " + Configurations.curPlayer.money
+                    + " Food : " + Configurations.curPlayer.food
+                    + "\nEnergy : " + Configurations.curPlayer.energy
+                    + " Smithore : " + Configurations.curPlayer.smithore
+                    + "\nScore : " + Configurations.curPlayer.score
+                    + "\nTime : " + (int)dc.loopService.time);
+        } else {
+            gameText.setText(Configurations.curPlayer.name + "'s Turn. "
+                    + "\nMoney : " + Configurations.curPlayer.money
+                    + " Food : " + Configurations.curPlayer.food
+                    + "\nEnergy : " + Configurations.curPlayer.energy
+                    + " Smithore : " + Configurations.curPlayer.smithore
+                    + "\nScore : " + Configurations.curPlayer.score);
+        }
     }
 }

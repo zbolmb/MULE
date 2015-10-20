@@ -66,15 +66,17 @@ public class util {
             }
         }
         Configurations.curPlayer = playerOrder.remove();
+        dc.gameScreen.gameText.setText(Configurations.curPlayer.name + " Choose Initial Plot. Money: " + Configurations.curPlayer.money);
     }
 
     private static void movePhaseTurnIncre() {
         if (playerOrder.isEmpty()) {
             for (Player p : Configurations.players) playerOrder.add(p);
             Configurations.round++;
-            produce();
+            if (Configurations.phase == 1) produce();
         }
         Configurations.curPlayer = playerOrder.remove();
+        dc.gameScreen.updateText();
     }
 
     /**
@@ -155,14 +157,14 @@ public class util {
         for (Player p : Configurations.players) {
             for (MapTiles tile : p.owned) {
                 if (p.energy > 0) {
-                    if (tile.getMule(1)) {
-                        p.food = p.food + tile.getOre();
+                    if (tile.getMule(0)) {
+                        p.food = p.food + tile.getFood();
                     }
-                    if (tile.getMule(2)) {
+                    if (tile.getMule(1)) {
                         p.energy = p.energy + tile.getEnergy();
                     }
-                    if (tile.getMule(3)) {
-                        p.smithore = p.smithore + tile.getFood();
+                    if (tile.getMule(2)) {
+                        p.smithore = p.smithore + tile.getOre();
                     }
                     p.food = p.food + tile.getFood();
                     p.energy = p.energy + tile.getEnergy();

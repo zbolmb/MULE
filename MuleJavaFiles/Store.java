@@ -5,9 +5,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 public class Store {
 
     protected static DisplayContents dc;
+    protected Text stats;
     protected Player cp;
     protected int smithore;
     protected int energy;
@@ -99,9 +101,18 @@ public class Store {
         cp = Configurations.curPlayer;
         if (cp.money > 300) {
             cp.money -= 300;
-            if (mule == 1) cp.mule1++;
-            else if (mule == 2) cp.mule2++;
-            else cp.mule3++;
+            if (mule == 1) {
+                cp.mule1++;
+                mule1--;
+            }
+            else if (mule == 2) {
+                cp.mule2++;
+                mule2--;
+            }
+            else {
+                cp.mule3++;
+                mule3--;
+            }
         } else {
             System.out.print("Not enoough money");
         }
@@ -115,7 +126,8 @@ public class Store {
         //Buy Buttons
         Button buyMule1, buyMule2, buyMule3, buySmithore, buyCrystite, buyFood, buyEnergy;
         //Sell Buttons
-        Button sellMule1, sellMule2, sellMule3, sellSmithore, sellCrystite, sellFood, sellEnergy;
+        Button sellSmithore, sellCrystite, sellFood, sellEnergy;
+        //Text
 
         Button back;
 
@@ -141,11 +153,18 @@ public class Store {
         sellCrystite = new Button("Sell Crystites");
         sellCrystite.setOnAction(e -> sell(1));
         sellFood = new Button("Sell Food");
-        sellFood.setOnAction(e -> sell(2));
+        sellFood.setOnAction(e -> sell(3));
         sellEnergy = new Button("Sell Energy");
-        sellEnergy.setOnAction(e -> sell(3));
+        sellEnergy.setOnAction(e -> sell(2));
 
-        //Set up sell buttons
+        stats = new Text("Smithore : " + smithore
+                + "\nCrystite : " + crystite
+                + "\nFood : " + food
+                + "\nEnergy : " + energy
+                + "\nFood Mule : " + mule1
+                + "\nEnergy Mule : " + mule2
+                + "\nOre Mule : " + mule3);
+        
 
         back = new Button("Back");
         back.setOnAction(e -> {
@@ -161,7 +180,7 @@ public class Store {
         HBox hbox = new HBox();
         vbox1.getChildren().addAll(buyMule1, buyMule2, buyMule3, buySmithore, buyCrystite, buyFood, buyEnergy, back);
         vbox2.getChildren().addAll(sellSmithore, sellCrystite, sellFood, sellEnergy);
-        hbox.getChildren().addAll(vbox1, vbox2);
+        hbox.getChildren().addAll(vbox1, vbox2, stats);
         pane.getChildren().add(hbox);
 
         return scene;
@@ -170,5 +189,16 @@ public class Store {
     public void updateDC() {
         dc.storeGUI = getGUI();
         dc.store = this;
+    }
+    
+    public void updateText() {
+        stats.setText("Smithore : " + smithore
+                + "\nCrystite : " + crystite
+                + "\nFood : " + food
+                + "\nEnergy : " + energy
+                + "\nFood Mule : " + mule1
+                + "\nEnergy Mule : " + mule2
+                + "\nOre Mule : " + mule3
+                + "\nMoney : " + Configurations.curPlayer.money);
     }
 }
