@@ -51,6 +51,8 @@ public class LoopService extends AbstractLoopService {
             // In Town
             } else if (cp.phase == 1) {
                 cp = Configurations.curPlayer;
+                
+                //leaving town
                 if (cp.getX() < 5 || cp.getX() > 795 || cp.getY() < 5 || cp.getY() > 495) {
                     dc.mainWindow.setScene(dc.gameScreenGUI);
                     dc.townMap.removePlayerFromGUI(cp);

@@ -148,6 +148,7 @@ public class util {
         cp.moveTo(cp.startX, cp.startY);
         if (cp.phase != 0) {
             dc.townMap.removePlayerFromGUI(cp);
+            cp.phase = 0;
         }
         dc.mainWindow.setScene(dc.gameScreenGUI);
     }
