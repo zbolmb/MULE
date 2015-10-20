@@ -7,8 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import landTiles.MapTiles;
-import landTiles.townTile;
+import landTiles.*;
 
 
 public class util {
@@ -58,23 +57,22 @@ public class util {
     private static void buyTurnIncre() {
         if (playerOrder.isEmpty()) {
             for (Player p : Configurations.players) {
-                if (p.money > 300) playerOrder.add(p);
+                if (p.money > 300 && !p.passed) playerOrder.add(p);
             }
             if (playerOrder.isEmpty()) {
                 Configurations.round++;
                 movePhaseTurnIncre();
-            } else {
-                Configurations.curPlayer = playerOrder.remove();
+                return;
             }
-
         }
-
+        Configurations.curPlayer = playerOrder.remove();
     }
 
     private static void movePhaseTurnIncre() {
         if (playerOrder.isEmpty()) {
             for (Player p : Configurations.players) playerOrder.add(p);
             Configurations.round++;
+            produce();
         }
         Configurations.curPlayer = playerOrder.remove();
     }
@@ -141,7 +139,7 @@ public class util {
             incrementTurn();
         }
     }
-    
+
     public static void next(Player p) {
         util.incrementTurn();
         Player cp = Configurations.curPlayer;
@@ -151,5 +149,27 @@ public class util {
             cp.phase = 0;
         }
         dc.mainWindow.setScene(dc.gameScreenGUI);
+    }
+
+    public static void produce() {
+        for (Player p : Configurations.players) {
+            for (MapTiles tile : p.owned) {
+                if (p.energy > 0) {
+                    if (tile.getMule(1)) {
+                        p.food = p.food + tile.getOre();
+                    }
+                    if (tile.getMule(2)) {
+                        p.energy = p.energy + tile.getEnergy();
+                    }
+                    if (tile.getMule(3)) {
+                        p.smithore = p.smithore + tile.getFood();
+                    }
+                    p.food = p.food + tile.getFood();
+                    p.energy = p.energy + tile.getEnergy();
+                    p.smithore = p.smithore + tile.getOre();
+                    p.energy--;
+                }
+            }
+        }
     }
 }

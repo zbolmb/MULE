@@ -52,7 +52,7 @@ public class PlayerSettings {
             
             name_Text = new Text("Name : " + p.name);
             race_Text = new Text("Race : " + p.race);
-            color_Text = new Text("Color : Azure");
+            color_Text = new Text("Color : Black");
             text.setMinWidth(100);
             text.setSpacing(10);
             nameField = new TextField("Enter your name : ");

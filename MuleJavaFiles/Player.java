@@ -18,8 +18,11 @@ public class Player {
 	protected ArrayList<MapTiles> owned;
 	protected double startX;
 	protected double startY;
+	protected boolean passed = false;
 	/**
 	 * phase = 0 when in gameScreen
+	 * phase = 1 when in town
+	 * phase = 2 when in store
 	 */
 	protected int phase = 0;
 
@@ -34,7 +37,7 @@ public class Player {
 	public Player() {
 	    name = "No Name";
 	    race = "Exile";
-	    color = Color.AZURE;
+	    color = Color.BLACK;
 	    money = 1000;
 	    owned = new ArrayList<>();
 	    score = 0;

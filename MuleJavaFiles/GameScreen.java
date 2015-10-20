@@ -33,7 +33,7 @@ public class GameScreen {
          * Temporary game text that displays on the top of the game screen
          * Tells whos turn it is to claim plot and displays money of the player
          */
-        gameText = new Text(Configurations.curPlayer + " Choose Initial Plot. Money: " + Configurations.curPlayer.money);
+        gameText = new Text(Configurations.curPlayer.name + " Choose Initial Plot. Money: " + Configurations.curPlayer.money);
 
         util.addMovementHandlers(scene);
         util.addMovementHandlers(dc.townMapGUI);
@@ -41,8 +41,8 @@ public class GameScreen {
         //MOUSE_MOVED event handler. When mouse moves, moves the selection square to tile that mouse is hovering over
         dc.mapGUI.addEventHandler(MouseEvent.MOUSE_MOVED, e -> {
             if (Configurations.phase == 0) {
-                double x = e.getX(); //there is an offset of 20 for x
-                double y = e.getY(); //there is an offset of 37 for y
+                double x = e.getX(); 
+                double y = e.getY();
                 sq.moveSelection(x, y);
             }
         });
@@ -68,6 +68,7 @@ public class GameScreen {
          */
         scene.addEventHandler(KeyEvent.KEY_PRESSED, p -> {
             if (Configurations.phase == 0 && p.getCode() == KeyCode.P) {
+                Configurations.curPlayer.passed = true;
                 util.incrementTurn();
                 if (Configurations.round > 0) {
                     sq.remove();
@@ -88,8 +89,8 @@ public class GameScreen {
         GameMap map = new GameMap();
         TownMap townMap = new TownMap();
         Store store = new Store();
-        LoopService loopService = new LoopService();
         map.updateDC();
+        LoopService loopService = new LoopService();
         townMap.updateDC();
         loopService.updateDC();
         store.updateDC();
