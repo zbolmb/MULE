@@ -26,7 +26,7 @@ public class util {
 
     static DisplayContents dc = Configurations.displayContents;
     static PriorityQueue<Player> playerOrder = new PriorityQueue<>(4, (Player a, Player b) -> {
-        return a.score - b.score;
+        return b.score - a.score;
     });
     
 
@@ -95,6 +95,7 @@ public class util {
             }
         }
         Configurations.curPlayer = playerOrder.remove();
+        if (Configurations.curPlayer.passed) buyTurnIncre();
         dc.gameScreen.updateText();
     }
 

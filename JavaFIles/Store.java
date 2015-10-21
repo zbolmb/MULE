@@ -134,11 +134,11 @@ public class Store {
 
         // -------------------- Action Handlers of Buttons ---------------------
 
-        buyMule1 = new Button("Buy Mule #1");
+        buyMule1 = new Button("Buy Food Mule");
         buyMule1.setOnAction(e -> buyMule(1));
-        buyMule2 = new Button("Buy Mule #2");
+        buyMule2 = new Button("Buy Energy Mule");
         buyMule2.setOnAction(e -> buyMule(2));
-        buyMule3 = new Button("Buy Mule #3");
+        buyMule3 = new Button("Buy Ore Mule");
         buyMule3.setOnAction(e -> buyMule(3));
         buySmithore = new Button("Buy Smithores");
         buySmithore.setOnAction(e -> buy(0));
