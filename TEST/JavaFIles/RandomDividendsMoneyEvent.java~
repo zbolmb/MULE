@@ -1,0 +1,15 @@
+public class RandomDividendsMoneyEvent extends RandomEvent {
+
+    private int money;
+    
+    public RandomDividendsMoneyEvent() {
+        super("YOUR OFFWORLD INVESTMENTS IN ARTIFICIAL DUMBNESS SEXTUPLED YOUR MONEY WITH DIVIDENDS.");
+    }
+    
+    @Override
+    protected String generate() {
+        Configurations.curPlayer.money *= 6;
+        
+        return msg;
+    }
+}

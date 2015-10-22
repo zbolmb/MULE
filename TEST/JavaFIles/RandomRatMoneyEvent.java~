@@ -1,0 +1,15 @@
+public class RandomRatMoneyEvent extends RandomEvent {
+
+    private int money;
+    
+    public RandomRatMoneyEvent() {
+        super("YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE. YOU DOUBLED YOUR MONEY.");
+    }
+    
+    @Override
+    protected String generate() {
+        Configurations.curPlayer.money *= 2;
+        
+        return msg;
+    }
+}

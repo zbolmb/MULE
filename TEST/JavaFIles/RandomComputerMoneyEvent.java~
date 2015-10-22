@@ -1,0 +1,15 @@
+public class RandomComputerMoneyEvent extends RandomEvent {
+
+    private int money;
+    
+    public RandomComputerMoneyEvent() {
+        super("THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER AND OCTUPLED YOUR MONEY.");
+    }
+    
+    @Override
+    protected String generate() {
+        Configurations.curPlayer.money *= 8;
+        
+        return msg;
+    }
+}
