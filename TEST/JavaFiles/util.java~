@@ -24,10 +24,11 @@ import landTiles.*;
  */
 public class util {
 
-    protected static DisplayContents dc = Configurations.displayContents;
-    protected static PriorityQueue<Player> playerOrder = new PriorityQueue<>(4, (Player a, Player b) -> {
+    static DisplayContents dc = Configurations.displayContents;
+    static PriorityQueue<Player> playerOrder = new PriorityQueue<>(4, (Player a, Player b) -> {
         return b.score - a.score;
     });
+    
 
     /**
      * method that highlights a tile the color of current player to indicate it is that players land
@@ -180,24 +181,5 @@ public class util {
                 }
             }
         }
-    }
-    
-    public static String applyRandomEvent() {
-        String[] moneyEvents = {
-                "YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE. YOU EARNED $100.",
-                "YOUR MULE WAS JUDGED 'BEST BUILT' AT THE COLONY FAIR. YOU WON $100.",
-                "A CHARITY FROM YOUR HOME-WORLD TOOK PITY ON YOU AND SENT $150.",
-                "THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER FOR $400.",
-                "YOUR OFFWORLD INVESTMENTS IN ARTIFICIAL DUMBNESS PAID $300 IN DIVIDENDS.",
-                "YOUR SPACE GYPSY INLAWS MADE A MESS OF THE TOWN. IT COST YOU $300 TO CLEAN IT UP.",
-                "YOUR CHILD WAS BITTEN BY A BAT LIZARD AND THE HOSPITAL BILL COST YOU $200.",
-                "YOU LOST $200 BETTING ON THE TWO-LEGGED KAZINGA RACES.",
-                "ONE OF YOUR MULES LOST A BOLT. REPAIRS COST YOU $150.",
-                "FLYING CAT-BUGS ATE THE ROOF OFF YOUR HOUSE. REPAIRS COST $200."};
-        
-        int[] money = {100, 100, 150, 400, 300, -300, -200, -200 -150, -200};
-        
-        
-        return "";
     }
 }

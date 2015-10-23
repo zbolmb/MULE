@@ -12,6 +12,7 @@ public class Player {
 	protected String name;
 	protected String race;
 	protected Color color;
+	protected int money;
 	protected int score;
 	protected Circle playerIcon;
 	protected ArrayList<MapTiles> owned;
@@ -24,8 +25,7 @@ public class Player {
 	 * phase = 2 when in store
 	 */
 	protected int phase = 0;
-	
-    protected int money;
+
 	protected int food;
 	protected int energy;
 	protected int crystite;
