@@ -28,6 +28,21 @@ public class util {
     protected static PriorityQueue<Player> playerOrder = new PriorityQueue<>(4, (Player a, Player b) -> {
         return b.score - a.score;
     });
+    
+    protected static RandomEvent[] randomEvents = {
+            new RandomEvent(100, 0, 0, "YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE. YOU EARNED $100."),
+            new RandomEvent(100, 0, 0, "YOUR MULE WAS JUDGED 'BEST BUILT' AT THE COLONY FAIR. YOU WON $100."),
+            new RandomEvent(150, 0, 0, "A CHARITY FROM YOUR HOME-WORLD TOOK PITY ON YOU AND SENT $150."),
+            new RandomEvent(400, 0, 0, "THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER FOR $400."),
+            new RandomEvent(300, 0, 0, "YOUR OFFWORLD INVESTMENTS IN ARTIFICIAL DUMBNESS PAID $300 "
+                    + "IN DIVIDENDS."),
+            new RandomEvent(-300, 0, 0, "YOUR SPACE GYPSY INLAWS MADE A MESS OF THE TOWN. IT COST YOU $300 TO"
+                    + " CLEAN IT UP."),
+            new RandomEvent(-200, 0, 0, "YOUR CHILD WAS BITTEN BY A BAT LIZARD AND THE HOSPITAL BILL COST " 
+                    + "YOU $200."),
+            new RandomEvent(-200, 0, 0, "YOU LOST $200 BETTING ON THE TWO-LEGGED KAZINGA RACES."),
+            new RandomEvent(-150, 0, 0, "ONE OF YOUR MULES LOST A BOLT. REPAIRS COST YOU $150."),
+            new RandomEvent(-200, 0, 0, "FLYING CAT-BUGS ATE THE ROOF OFF YOUR HOUSE. REPAIRS COST $200.")};
 
     /**
      * method that highlights a tile the color of current player to indicate it is that players land
@@ -105,7 +120,12 @@ public class util {
             if (Configurations.phase == 1) produce();
         }
         Configurations.curPlayer = playerOrder.remove();
-        dc.gameScreen.updateText();
+        if (Configurations.phase != 0) {
+            Configurations.curPlayer.message = applyRandomEvent();
+            dc.gameScreen.updateText(Configurations.curPlayer.message);
+        } else {
+            dc.gameScreen.updateText();
+        }  
     }
 
     /**
@@ -183,21 +203,25 @@ public class util {
     }
     
     public static String applyRandomEvent() {
-        String[] moneyEvents = {
-                "YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE. YOU EARNED $100.",
-                "YOUR MULE WAS JUDGED 'BEST BUILT' AT THE COLONY FAIR. YOU WON $100.",
-                "A CHARITY FROM YOUR HOME-WORLD TOOK PITY ON YOU AND SENT $150.",
-                "THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER FOR $400.",
-                "YOUR OFFWORLD INVESTMENTS IN ARTIFICIAL DUMBNESS PAID $300 IN DIVIDENDS.",
-                "YOUR SPACE GYPSY INLAWS MADE A MESS OF THE TOWN. IT COST YOU $300 TO CLEAN IT UP.",
-                "YOUR CHILD WAS BITTEN BY A BAT LIZARD AND THE HOSPITAL BILL COST YOU $200.",
-                "YOU LOST $200 BETTING ON THE TWO-LEGGED KAZINGA RACES.",
-                "ONE OF YOUR MULES LOST A BOLT. REPAIRS COST YOU $150.",
-                "FLYING CAT-BUGS ATE THE ROOF OFF YOUR HOUSE. REPAIRS COST $200."};
+
+             
+        int rand = (int) (Math.random() * randomEvents.length);
         
-        int[] money = {100, 100, 150, 400, 300, -300, -200, -200 -150, -200};
+        Player cp = Configurations.curPlayer;
+        cp.money += randomEvents[rand].money;
+        cp.food += randomEvents[rand].food;
+        cp.energy += randomEvents[rand].energy;
         
+        if (cp.money < 0) {
+            cp.money = 0;
+        } else if (cp.food < 0) {
+            cp.food = 0;
+        } else if (cp.energy < 0) {
+            cp.energy = 0;
+        }
         
-        return "";
+        //System.out.println(randomEvents[rand].message);
+        
+        return randomEvents[rand].message;
     }
 }

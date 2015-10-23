@@ -12,20 +12,21 @@ public class Player {
 	protected String name;
 	protected String race;
 	protected Color color;
-	protected int money;
 	protected int score;
 	protected Circle playerIcon;
 	protected ArrayList<MapTiles> owned;
 	protected double startX;
 	protected double startY;
 	protected boolean passed = false;
+	protected String message;
 	/**
 	 * phase = 0 when in gameScreen
 	 * phase = 1 when in town
 	 * phase = 2 when in store
 	 */
 	protected int phase = 0;
-
+	
+    protected int money;
 	protected int food;
 	protected int energy;
 	protected int crystite;
@@ -48,6 +49,7 @@ public class Player {
 		mule1 = 0;
 		mule2 = 0;
 		mule3 = 0;
+		message = "";
 	}
 
     public void move(double vx, double vy) {

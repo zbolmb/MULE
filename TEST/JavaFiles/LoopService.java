@@ -41,7 +41,7 @@ public class LoopService extends AbstractLoopService {
     protected void runOnFXThread() {
         if (Configurations.phase == 1) {
             cp = Configurations.curPlayer;
-            dc.gameScreen.updateText();
+            dc.gameScreen.updateText(cp.message);
             dc.store.updateText();
             if (time <= 120) {
                 cp.move(vx, vy);

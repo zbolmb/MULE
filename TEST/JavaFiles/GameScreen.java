@@ -112,6 +112,10 @@ public class GameScreen {
      * updates the gameText to present values
      */
     public void updateText() {
+        updateText("");
+    }
+    
+    public void updateText(String message) {
         Player cp = Configurations.curPlayer;
         gameText.setText(cp.name + "'s Turn. "
                 + "\nMoney : $" + cp.money
@@ -125,6 +129,6 @@ public class GameScreen {
         if (dc.loopService != null) {
             gameText.setText(gameText.getText() + "\nTime : " + (120 - (int)dc.loopService.time));
         }
-        
+        gameText.setText(gameText.getText() + "\n" + message);
     }
 }
