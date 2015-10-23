@@ -124,7 +124,9 @@ public class LoopService extends AbstractLoopService {
 
                     //in pub
                 } else if (cp.getX() > 475 && cp.getX() < 635 && cp.getY() > 327 && cp.getY() < 493) {
-                    cp.score += 50 + rand.nextDouble() * (120 - time);
+                    double rng = rand.nextDouble();
+                    cp.score += 50 + rng * (120 - time);
+                    cp.money += 50 + rng * (120 - time);
                     time = 0;
                     util.next();
                     move.l = 0;
