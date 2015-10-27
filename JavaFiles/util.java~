@@ -212,7 +212,7 @@ public class util {
         int food = randomEvents[rand].food;
         int energy = randomEvents[rand].energy;
         
-        if (playerOrder.size() == 0) {
+        if (playerOrder.size() == 1) {
             while (money < 0 || food < 0 || energy < 0) {
                 rand = (int) (Math.random() * randomEvents.length);
                 money = randomEvents[rand].money;
