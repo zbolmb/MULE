@@ -102,8 +102,16 @@ public class util {
             for (Player p : Configurations.players) {
                 if (p.money > 300 && !p.passed) playerOrder.add(p);
             }
+            
+            
+            
             if (playerOrder.isEmpty()) {
                 Configurations.round++;
+
+                // Applying random event to first player initially during game start
+                Configurations.curPlayer.message = applyRandomEvent();
+                dc.gameScreen.updateText(Configurations.curPlayer.message);
+                
                 movePhaseTurnIncre();
                 return;
             }
@@ -163,10 +171,10 @@ public class util {
                 cp.startX = rx + 0.5 * MapTiles.getW();
                 cp.startY = ry + 0.5 * MapTiles.getH();
                 cp.playerIcon = new Circle(
-                        cp.startX
-                        , cp.startY
-                        , 10
-                        , cp.color);
+                        cp.startX,
+                        cp.startY,
+                        10,
+                        cp.color);
                 dc.mapGUI.getChildren().add(cp.playerIcon);
             }
             cp.owned.add(tile);
