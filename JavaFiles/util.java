@@ -107,7 +107,7 @@ public class util {
             
             if (playerOrder.isEmpty()) {
                 Configurations.round++;
-
+                
                 // Applying random event to first player initially during game start
                 Configurations.curPlayer.message = applyRandomEvent();
                 dc.gameScreen.updateText(Configurations.curPlayer.message);
@@ -129,8 +129,13 @@ public class util {
         }
         Configurations.curPlayer = playerOrder.remove();
         if (Configurations.phase != 0) {
-            Configurations.curPlayer.message = applyRandomEvent();
-            dc.gameScreen.updateText(Configurations.curPlayer.message);
+            if (Math.random() < .27) {
+                Configurations.curPlayer.message = applyRandomEvent();
+                dc.gameScreen.updateText(Configurations.curPlayer.message);
+            } else {
+                Configurations.curPlayer.message = "";
+                dc.gameScreen.updateText(Configurations.curPlayer.message);
+            }
         } else {
             dc.gameScreen.updateText();
         }  
