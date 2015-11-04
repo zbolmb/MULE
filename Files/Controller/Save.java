@@ -8,6 +8,7 @@ import Model.landTiles.MapTiles;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
@@ -15,43 +16,76 @@ import java.util.ArrayList;
  */
 public class Save {
     public static void save() throws IOException {
-        BufferedWriter out = null;
+		try {
+			PrintWriter writer = new PrintWriter("ihatemylife.txt");
+			writer.print("");
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		BufferedWriter out = null;
         try
         {
-            FileWriter fstream = new FileWriter("out.txt", true); //true tells to append data.
+            FileWriter fstream = new FileWriter("ihatemylife.txt", true); //true tells to append data.
             out = new BufferedWriter(fstream);
             out.write(Configurations.getNum_Players());
+			out.newLine();
             out.write(Configurations.getDifficulty());
-            out.write(Configurations.getMap_Type());
-            out.write(Configurations.getPhase());
-            out.write(Configurations.getRound());
+			out.newLine();
+			out.write(Configurations.getMap_Type());
+			out.newLine();
+			out.write(Configurations.getPhase());
+			out.newLine();
+			out.write(Configurations.getRound());
+			out.newLine();
 			out.write(Configurations.getCurPlayer().getName());
+			out.newLine();
 			for (Player p: Configurations.getPlayers()) {
             	out.write(p.getPhase());
-            	out.write(p.getCrystite());
+				out.newLine();
+				out.write(p.getCrystite());
+				out.newLine();
             	out.write(p.getEnergy());
+				out.newLine();
 				out.write(p.getFood());
+				out.newLine();
 				out.write(p.getMessage());
+				out.newLine();
 				out.write(p.getMoney());
+				out.newLine();
 				out.write(p.getMule1());
+				out.newLine();
 				out.write(p.getMule2());
+				out.newLine();
 				out.write(p.getMule3());
+				out.newLine();
 				out.write(p.getName());
+				out.newLine();
 				out.write(p.getRace());
+				out.newLine();
 				out.write(p.getScore());
+				out.newLine();
 				out.write(p.getColor().toString());
+				out.newLine();
 				ArrayList<Model.landTiles.MapTiles> tiles = p.getOwned();
+				out.newLine();
 				for (int i = 0; i < p.getOwned().size(); i++) {
 					out.write(tiles.get(i).getName());
+					out.newLine();
 					boolean[] mules = tiles.get(i).getMules();
 					for (int j = 0; j < tiles.get(i).getMules().length; j++) {
 						out.write(Boolean.toString(mules[j]));
+						out.newLine();
 					}
 				}
 				out.write(p.getPlayerIcon().toString());
+				out.newLine();
 				out.write(Double.toString(p.getStartX()));
+				out.newLine();
 				out.write(Double.toString(p.getStartY()));
+				out.newLine();
 				out.write(Double.toString(p.getX()));
+				out.newLine();
 				out.write(Double.toString(p.getY()));
 			}
 		}

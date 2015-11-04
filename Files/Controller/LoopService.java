@@ -161,6 +161,11 @@ public class LoopService extends AbstractLoopService {
             if (vy == 5) move.setDir('d');
             if (vy == -5) move.setDir('u');
             time = time + 0.02;
+            try {
+                Save.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
