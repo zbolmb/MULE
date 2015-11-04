@@ -1,5 +1,6 @@
 package Controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import Controller.util;
@@ -154,7 +155,11 @@ public class PlayerSettings {
             next.setOnAction(e -> {
                 //------------ Creates Map / Game Screen -------------------------
                 if (curPlayer == Configurations.getNum_Players() - 1) {
-                    util.incrementTurn();
+                    try {
+                        util.incrementTurn();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
                     dc.getGameScreen().updateDC();
                     dc.getMainWindow().setScene(dc.getGameScreenGUI());
                 } else {

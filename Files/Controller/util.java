@@ -1,6 +1,7 @@
 package Controller;
 
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.PriorityQueue;
@@ -89,7 +90,7 @@ public class util {
      * more robust than incrementTurn
      * @param p current player
      */
-    public static void next() {
+    public static void next() throws IOException {
         util.incrementTurn();
         Player cp = Configurations.getCurPlayer();
         cp.moveTo(cp.getStartX(), cp.getStartY());
@@ -100,7 +101,7 @@ public class util {
         dc.getMainWindow().setScene(dc.getGameScreenGUI());
     }
     
-    public static void incrementTurn() {
+    public static void incrementTurn() throws IOException {
         if (Configurations.getRound() == 0) {
             buyTurnIncre();
         } else {
@@ -108,7 +109,7 @@ public class util {
         }
     }
 
-    private static void buyTurnIncre() {
+    private static void buyTurnIncre() throws IOException {
         if (playerOrder.isEmpty()) {
             for (Player p : Configurations.getPlayers()) {
                 if (p.getMoney() > 300 && !p.isPassed()) playerOrder.add(p);
@@ -132,7 +133,7 @@ public class util {
         dc.getGameScreen().updateText();
     }
 
-    private static void movePhaseTurnIncre() {
+    private static void movePhaseTurnIncre() throws IOException {
         if (playerOrder.isEmpty()) {
             for (Player p : Configurations.getPlayers()) playerOrder.add(p);
             Configurations.setRound(Configurations.getRound() + 1);
@@ -174,7 +175,7 @@ public class util {
         });
     }
 
-    public static void claimTile(double x, double y, MapTiles tile) {
+    public static void claimTile(double x, double y, MapTiles tile) throws IOException {
         if (Configurations.getRound() == 0 && Configurations.getCurPlayer().getMoney() < 300) {
             return;
         }
@@ -205,7 +206,7 @@ public class util {
         }
     }
 
-    public static void produce() {
+    public static void produce() throws IOException {
         for (Player p : Configurations.getPlayers()) {
             for (MapTiles tile : p.getOwned()) {
                 for (int i = 0; i < tile.getMules().length && p.getEnergy() > 0; i++) {
@@ -225,6 +226,7 @@ public class util {
                 }
             }
         }
+        Save.save();
     }
     
     public static String applyRandomEvent() {

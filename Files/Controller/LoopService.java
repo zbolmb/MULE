@@ -1,5 +1,6 @@
 package Controller;
 
+import java.io.IOException;
 import java.util.Random;
 
 import Model.Configurations;
@@ -42,7 +43,7 @@ public class LoopService extends AbstractLoopService {
     }
 
     //Make sure to always change Configurations.phase back to 1 at start of each turn
-    protected void runOnFXThread() {
+    protected void runOnFXThread() throws IOException {
         if (Configurations.getPhase() == 1) {
             cp = Configurations.getCurPlayer();
             dc.getGameScreen().updateText(cp.getMessage());

@@ -11,6 +11,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+
 /**
  * Content contains the game screen where main game takes place
  * gameText is the text that flashes on top of the map
@@ -64,7 +66,11 @@ public class GameScreen {
             if (Configurations.getPhase() == 0) {
                 double x = e.getX();
                 double y = e.getY();
-                util.claimTile(x, y, sq.getTile(x, y, dc.getMap()));
+                try {
+                    util.claimTile(x, y, sq.getTile(x, y, dc.getMap()));
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 if (Configurations.getRound() > 0) {
                     sq.remove();
                     Configurations.setPhase(1);
@@ -79,7 +85,11 @@ public class GameScreen {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, p -> {
             if (Configurations.getPhase() == 0 && p.getCode() == KeyCode.P) {
                 Configurations.getCurPlayer().setPassed(true);
-                util.incrementTurn();
+                try {
+                    util.incrementTurn();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 if (Configurations.getRound() > 0) {
                     sq.remove();
                     Configurations.setPhase(1);

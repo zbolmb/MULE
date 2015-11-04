@@ -1,5 +1,6 @@
 package Controller;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
@@ -86,7 +87,11 @@ public abstract class AbstractLoopService extends ScheduledService<Void>{
 	protected void succeeded() {
 		super.succeeded();
 		// Setup to handle Actions for UI here     
-		runOnFXThread();
+		try {
+			runOnFXThread();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -106,7 +111,7 @@ public abstract class AbstractLoopService extends ScheduledService<Void>{
 	 *      Methods for access
 	 */
 
-	protected abstract void runOnFXThread();
+	protected abstract void runOnFXThread() throws IOException;
 	protected abstract void runInBackground();
 
 	/*==========================================================================
