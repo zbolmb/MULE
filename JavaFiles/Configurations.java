@@ -37,4 +37,11 @@ public class Configurations {
 		displayContents = new DisplayContents(primaryStage);
 	}
 
+	public Configurations(String difficulty, String map_Type, int num_Players) {
+		players = new ArrayList<>();
+		this.difficulty = difficulty;
+		this.map_Type = map_Type;
+		this.num_Players = num_Players;
+	}
+
 }
