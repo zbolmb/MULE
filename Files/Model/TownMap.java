@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.DisplayContents;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;

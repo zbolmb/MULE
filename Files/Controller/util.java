@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 import Model.Configurations;
-import Model.DisplayContents;
+import Controller.DisplayContents;
 import Model.Player;
 import Model.RandomEvent;
 import Model.landTiles.MapTiles;

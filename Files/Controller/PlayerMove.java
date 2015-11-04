@@ -1,4 +1,4 @@
-package Model;
+package Controller;
 
 public class PlayerMove {
     private int l = 0;

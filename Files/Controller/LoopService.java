@@ -3,9 +3,9 @@ package Controller;
 import java.util.Random;
 
 import Model.Configurations;
-import Model.DisplayContents;
+import Controller.DisplayContents;
 import Model.Player;
-import Model.PlayerMove;
+import Controller.PlayerMove;
 import javafx.scene.layout.Pane;
 
 /**

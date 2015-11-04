@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.DisplayContents;
 import Controller.LoopService;
 import Controller.util;
 import javafx.scene.Scene;

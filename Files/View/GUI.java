@@ -3,12 +3,12 @@
  * authors: William Hsu, Min Je Jung, Zhijian Li, Karl Nicodemus, William Su
  * @version 1.3
  */
-package Controller;
+package View;
 
 import Model.Configurations;
 import Model.GameScreen;
 import Model.IntroScreen;
-import Model.PlayerSettings;
+import Controller.PlayerSettings;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

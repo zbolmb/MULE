@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.DisplayContents;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 

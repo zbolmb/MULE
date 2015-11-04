@@ -2,15 +2,63 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e38da6fc-d48a-4e62-84b2-fe4d3b094c01" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaFiles/Configurations.java" afterPath="$PROJECT_DIR$/JavaFiles/Configurations.java" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\Files\Controller\GUI.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\Files\Model\DisplayContents.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\Files\Model\PlayerMove.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\Files\Model\PlayerSettings.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\BuyPhaseTurnTracker.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\GUI$1.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\GUI$2.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\GUI$3.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\GUI$LoopService.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\GUI$PlayerMove.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\GUITest$1.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\GUITest$2.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\GUITest$3.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\GUITest$LoopService.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\GUITest$PlayerMove.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\GUITest.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\MapTiles.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\Production.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\Resource.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\TownTiles.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\TownTurn.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\TurnTracker.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\assayTownTile.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\crystiteTownTile.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\energyTownTile.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\floorTile.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\foodTownTile.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\landTownTile.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\m1Tile.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\m2Tile.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\m3Tile.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\muleTile.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\plainsTile.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\pubTile.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\riverTile.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\smithoreTownTile.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\William\Documents\WMule\MULE\out\production\MULE\townTile.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MULE/Configurations.class" afterPath="$PROJECT_DIR$/out/production/MULE/Configurations.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MULE/GUI.class" afterPath="$PROJECT_DIR$/out/production/MULE/GUI.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MULE/GameMap.class" afterPath="$PROJECT_DIR$/out/production/MULE/GameMap.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MULE/GameScreen.class" afterPath="$PROJECT_DIR$/out/production/MULE/GameScreen.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MULE/IntroScreen.class" afterPath="$PROJECT_DIR$/out/production/MULE/IntroScreen.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MULE/Player.class" afterPath="$PROJECT_DIR$/out/production/MULE/Player.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MULE/PlayerSettings.class" afterPath="$PROJECT_DIR$/out/production/MULE/PlayerSettings.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MULE/SelectionSquare.class" afterPath="$PROJECT_DIR$/out/production/MULE/SelectionSquare.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MULE/Store.class" afterPath="$PROJECT_DIR$/out/production/MULE/Store.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MULE/TownMap.class" afterPath="$PROJECT_DIR$/out/production/MULE/TownMap.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MULE/util.class" afterPath="$PROJECT_DIR$/out/production/MULE/util.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Files/Model/Configurations.java" afterPath="$PROJECT_DIR$/Files/Model/Configurations.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Files/Model/GameMap.java" afterPath="$PROJECT_DIR$/Files/Model/GameMap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Files/Model/GameScreen.java" afterPath="$PROJECT_DIR$/Files/Model/GameScreen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Files/Model/IntroScreen.java" afterPath="$PROJECT_DIR$/Files/Model/IntroScreen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Files/Controller/LoopService.java" afterPath="$PROJECT_DIR$/Files/Controller/LoopService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MULE.iml" afterPath="$PROJECT_DIR$/MULE.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaFiles/Player.java" afterPath="$PROJECT_DIR$/JavaFiles/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M2/src/main/main.iml" afterPath="$PROJECT_DIR$/M2/src/main/main.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Files/Model/Store.java" afterPath="$PROJECT_DIR$/Files/Model/Store.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Files/Model/TownMap.java" afterPath="$PROJECT_DIR$/Files/Model/TownMap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Files/Controller/util.java" afterPath="$PROJECT_DIR$/Files/Controller/util.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MULE.iws" />
@@ -34,44 +82,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JavaFiles/GUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IntroScreen.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JavaFiles/IntroScreen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="136" column="37" selection-start-line="136" selection-start-column="31" selection-end-line="136" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JavaFiles/Player.java">
+        <entry file="file://$PROJECT_DIR$/Files/Model/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.924528">
-              <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-              <folding>
-                <element signature="e#1582#1583#0" expanded="true" />
-                <element signature="e#1622#1623#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JUNIT.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../1332stuff/HW7/JUNIT.java">
+      <file leaf-file-name="RandomEvent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Files/Model/RandomEvent.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="25" selection-start-line="18" selection-start-column="4" selection-end-line="19" selection-end-column="25" />
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SelectionSquare.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Files/Model/SelectionSquare.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Store.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Files/Model/Store.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TownMap.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Files/Model/TownMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Files/View/GUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,71 +144,44 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JUNITW.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/JavaFiles/JUNITW.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="2" selection-start-line="0" selection-start-column="2" selection-end-line="17" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Configurations.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JavaFiles/Configurations.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="36" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractLoopService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JavaFiles/AbstractLoopService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="LoopService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JavaFiles/LoopService.java">
+        <entry file="file://$PROJECT_DIR$/Files/Controller/LoopService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlayerMove.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JavaFiles/PlayerMove.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JUNIT4.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../1332stuff/HW7/JUNIT4.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="159" column="38" selection-start-line="159" selection-start-column="38" selection-end-line="159" selection-end-column="38" />
+              <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
               <folding>
-                <element signature="e#394#395#0" expanded="false" />
-                <element signature="e#432#433#0" expanded="false" />
-                <element signature="e#474#475#0" expanded="false" />
-                <element signature="e#531#532#0" expanded="false" />
-                <element signature="e#576#577#0" expanded="false" />
-                <element signature="e#618#619#0" expanded="false" />
-                <element signature="e#775#776#0" expanded="false" />
-                <element signature="e#819#820#0" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlayerMove.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Files/Controller/PlayerMove.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.039099526">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="util.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Files/Controller/util.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlayerSettings.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Files/Controller/PlayerSettings.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -171,6 +209,19 @@
         <option value="$PROJECT_DIR$/JavaFiles/Configurations.java" />
         <option value="$PROJECT_DIR$/JavaFiles/Player.java" />
         <option value="$PROJECT_DIR$/JavaFiles/JUNITW.java" />
+        <option value="$PROJECT_DIR$/Files/Controller/AbstractLoopService.java" />
+        <option value="$PROJECT_DIR$/Files/Controller/PlayerMove.java" />
+        <option value="$PROJECT_DIR$/Files/Controller/DisplayContents.java" />
+        <option value="$PROJECT_DIR$/Files/Controller/PlayerSettings.java" />
+        <option value="$PROJECT_DIR$/Files/Model/Configurations.java" />
+        <option value="$PROJECT_DIR$/Files/Model/GameMap.java" />
+        <option value="$PROJECT_DIR$/Files/Model/GameScreen.java" />
+        <option value="$PROJECT_DIR$/Files/Model/IntroScreen.java" />
+        <option value="$PROJECT_DIR$/Files/Model/Store.java" />
+        <option value="$PROJECT_DIR$/Files/Model/TownMap.java" />
+        <option value="$PROJECT_DIR$/Files/View/GUI.java" />
+        <option value="$PROJECT_DIR$/Files/Controller/LoopService.java" />
+        <option value="$PROJECT_DIR$/Files/Controller/util.java" />
       </list>
     </option>
   </component>
@@ -238,14 +289,54 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="JavaFiles" />
+              <option name="myItemId" value="Files" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MULE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MULE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Files" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MULE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MULE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Files" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -259,8 +350,30 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../1332stuff/HW7/JUNIT.java" />
     <property name="FullScreen" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="dynamic.classpath" value="false" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.GUI">
+    <configuration default="false" name="GUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="View.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="View.GUI" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="MULE" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
@@ -510,6 +623,14 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Application.GUI" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Application.GUI" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration">
@@ -523,40 +644,42 @@
       <updated>1446602478403</updated>
       <workItem from="1446602479905" duration="2246000" />
       <workItem from="1446604749793" duration="465000" />
+      <workItem from="1446620604577" duration="1379000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2711000" />
+    <option name="totallyTimeSpent" value="4090000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="2906" height="1574" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32981133" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32981133" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32981133" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -573,6 +696,10 @@
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/JavaFiles/GUI.java">
@@ -594,10 +721,10 @@
     <entry file="file://$PROJECT_DIR$/JavaFiles/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
           <folding>
-            <element signature="e#1582#1583#0" expanded="true" />
-            <element signature="e#1622#1623#0" expanded="true" />
+            <element signature="e#1582#1583#0" expanded="false" />
+            <element signature="e#1622#1623#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -607,7 +734,92 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="25" selection-start-line="18" selection-start-column="4" selection-end-line="19" selection-end-column="25" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaFiles/JUNITW.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaFiles/Configurations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="36" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaFiles/AbstractLoopService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaFiles/LoopService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaFiles/PlayerMove.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../1332stuff/HW7/JUNIT4.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="159" column="38" selection-start-line="159" selection-start-column="38" selection-end-line="159" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaFiles/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaFiles/IntroScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="136" column="37" selection-start-line="136" selection-start-column="31" selection-end-line="136" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaFiles/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#1582#1583#0" expanded="false" />
+            <element signature="e#1622#1623#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../1332stuff/HW7/JUNIT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="25" selection-start-line="18" selection-start-column="4" selection-end-line="19" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -656,16 +868,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="159" column="38" selection-start-line="159" selection-start-column="38" selection-end-line="159" selection-end-column="38" />
-          <folding>
-            <element signature="e#394#395#0" expanded="false" />
-            <element signature="e#432#433#0" expanded="false" />
-            <element signature="e#474#475#0" expanded="false" />
-            <element signature="e#531#532#0" expanded="false" />
-            <element signature="e#576#577#0" expanded="false" />
-            <element signature="e#618#619#0" expanded="false" />
-            <element signature="e#775#776#0" expanded="false" />
-            <element signature="e#819#820#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -681,16 +884,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="159" column="38" selection-start-line="159" selection-start-column="38" selection-end-line="159" selection-end-column="38" />
-          <folding>
-            <element signature="e#394#395#0" expanded="false" />
-            <element signature="e#432#433#0" expanded="false" />
-            <element signature="e#474#475#0" expanded="false" />
-            <element signature="e#531#532#0" expanded="false" />
-            <element signature="e#576#577#0" expanded="false" />
-            <element signature="e#618#619#0" expanded="false" />
-            <element signature="e#775#776#0" expanded="false" />
-            <element signature="e#819#820#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -736,11 +930,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JavaFiles/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.924528">
+        <state vertical-scroll-proportion="0.0">
           <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
           <folding>
-            <element signature="e#1582#1583#0" expanded="true" />
-            <element signature="e#1622#1623#0" expanded="true" />
+            <element signature="e#1582#1583#0" expanded="false" />
+            <element signature="e#1622#1623#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -758,7 +952,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="25" selection-start-line="18" selection-start-column="4" selection-end-line="19" selection-end-column="25" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -767,6 +961,146 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="2" selection-start-line="0" selection-start-column="2" selection-end-line="17" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/Controller/AbstractLoopService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/Controller/DisplayContents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/Model/Configurations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/Model/GameMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/Model/GameScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/Model/IntroScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/Model/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/Model/SelectionSquare.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/Model/Store.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/Model/TownMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/Controller/PlayerSettings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/View/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/Controller/util.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/Model/RandomEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/Controller/LoopService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/Controller/PlayerMove.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.039099526">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding />
         </state>
       </provider>

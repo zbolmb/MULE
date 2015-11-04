@@ -1,8 +1,10 @@
-package Model;
+package Controller;
 
 import java.util.ArrayList;
 
 import Controller.util;
+import Model.Configurations;
+import Model.Player;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

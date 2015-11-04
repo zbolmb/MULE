@@ -2,6 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 
+import Controller.DisplayContents;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;

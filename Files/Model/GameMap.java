@@ -2,6 +2,7 @@ package Model;
 
 import java.util.Random;
 
+import Controller.DisplayContents;
 import Model.landTiles.*;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
