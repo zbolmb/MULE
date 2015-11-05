@@ -1,3 +1,5 @@
-javac files/view/GUI.java
-javac files/model/*.java
-javac files/controller/*.java
+javac ./view/GUI.java
+javac ./model/*.java
+javac ./model/Tiles/*.java
+javac ./model/townTiles/*.java
+javac ./controller/*.java
