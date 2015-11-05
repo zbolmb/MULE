@@ -1,0 +1,3 @@
+javac files/view/GUI.java
+javac files/model/*.java
+javac files/controller/*.java
