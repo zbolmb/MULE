@@ -13,13 +13,13 @@ import javafx.stage.Stage;
  * Contains all the graphics objects that will be used in GUI
  * this is constantly updated through updateDC in all
  * content classes.
- * This is so that every class can have access to 
+ * This is so that every class can have access to
  * these contents through Configurations
  * @author Zhijian
  * @version 1.3
  */
 public class DisplayContents {
-    
+
     private IntroScreen introScreen;
     private PlayerSettings playerSettings;
     private GameScreen gameScreen;
@@ -34,9 +34,9 @@ public class DisplayContents {
     private Pane mapGUI;
     private Scene townMapGUI;
     private Scene storeGUI;
-    
+
     private LoopService loopService;
-    
+
     public DisplayContents(Stage primaryStage) {
         mainWindow = primaryStage;
     }
@@ -152,7 +152,7 @@ public class DisplayContents {
     public void setLoopService(LoopService loopService) {
         this.loopService = loopService;
     }
-    
-    
-    
+
+
+
 }

@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.PriorityQueue;
-
 import Model.Configurations;
 import Controller.DisplayContents;
 import Model.Player;
@@ -40,7 +39,7 @@ public class util {
     static PriorityQueue<Player> playerOrder = new PriorityQueue<>((Player a, Player b) -> {
         return b.getScore() - a.getScore();
     });
-    
+
     protected static RandomEvent[] randomEvents = {
             new RandomEvent(100, 0, 0, "YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE. YOU EARNED $100."),
             new RandomEvent(100, 0, 0, "YOUR MULE WAS JUDGED 'BEST BUILT' AT THE COLONY FAIR. YOU WON $100."),
@@ -50,11 +49,12 @@ public class util {
                     + "IN DIVIDENDS."),
             new RandomEvent(-300, 0, 0, "YOUR SPACE GYPSY INLAWS MADE A MESS OF THE TOWN. IT COST YOU $300 TO"
                     + " CLEAN IT UP."),
-            new RandomEvent(-200, 0, 0, "YOUR CHILD WAS BITTEN BY A BAT LIZARD AND THE HOSPITAL BILL COST " 
+            new RandomEvent(-200, 0, 0, "YOUR CHILD WAS BITTEN BY A BAT LIZARD AND THE HOSPITAL BILL COST "
                     + "YOU $200."),
             new RandomEvent(-200, 0, 0, "YOU LOST $200 BETTING ON THE TWO-LEGGED KAZINGA RACES."),
             new RandomEvent(-150, 0, 0, "ONE OF YOUR MULES LOST A BOLT. REPAIRS COST YOU $150."),
-            new RandomEvent(-200, 0, 0, "FLYING CAT-BUGS ATE THE ROOF OFF YOUR HOUSE. REPAIRS COST $200.")};
+            new RandomEvent(-200, 0, 0, "FLYING CAT-BUGS ATE THE ROOF OFF YOUR HOUSE. REPAIRS COST $200.")
+    };
 
     /**
      * method that highlights a tile the color of current player to indicate it is that players land
@@ -72,11 +72,11 @@ public class util {
         Rectangle d = new Rectangle(100, 10, c);
 
         r.setX(rx);
-        r.setY(ry);    
+        r.setY(ry);
         l.setX(rx + 90);
-        l.setY(ry);        
+        l.setY(ry);
         u.setX(rx);
-        u.setY(ry);        
+        u.setY(ry);
         d.setX(rx);
         d.setY(ry + 90);
 
@@ -100,7 +100,10 @@ public class util {
         }
         dc.getMainWindow().setScene(dc.getGameScreenGUI());
     }
-    
+
+    /**
+     * increments turn
+     */
     public static void incrementTurn() throws IOException {
         if (Configurations.getRound() == 0) {
             buyTurnIncre();
@@ -109,21 +112,24 @@ public class util {
         }
     }
 
+    /**
+     * gives turns for buying to players
+     */
     private static void buyTurnIncre() throws IOException {
         if (playerOrder.isEmpty()) {
             for (Player p : Configurations.getPlayers()) {
                 if (p.getMoney() > 300 && !p.isPassed()) playerOrder.add(p);
             }
-            
-            
-            
+
+
+
             if (playerOrder.isEmpty()) {
                 Configurations.setRound(Configurations.getRound() + 1);
-                
+
                 // Applying random event to first player initially during game start
                 Configurations.getCurPlayer().setMessage(applyRandomEvent());
                 dc.getGameScreen().updateText(Configurations.getCurPlayer().getMessage());
-                
+
                 movePhaseTurnIncre();
                 return;
             }
@@ -133,6 +139,9 @@ public class util {
         dc.getGameScreen().updateText();
     }
 
+    /**
+     * moves / increments turn based off of players priority queue
+     */
     private static void movePhaseTurnIncre() throws IOException {
         if (playerOrder.isEmpty()) {
             for (Player p : Configurations.getPlayers()) playerOrder.add(p);
@@ -150,7 +159,7 @@ public class util {
             }
         } else {
             dc.getGameScreen().updateText();
-        }  
+        }
     }
 
     /**
@@ -175,16 +184,21 @@ public class util {
         });
     }
 
-    public static void claimTile(double x, double y, MapTiles tile) throws IOException {
-        if (Configurations.getRound() == 0 && Configurations.getCurPlayer().getMoney() < 300) {
+    /**
+     * claims tiles for players
+     */
+    public static void claimTile(double x, double y, MapTiles tile)
+            throws IOException {
+        if (Configurations.getRound() == 0
+                && Configurations.getCurPlayer().getMoney() < 300) {
             return;
         }
         DisplayContents dc = Configurations.getDisplayContents();
         if (!(tile instanceof townTile) && tile.getOwner().equals("None")) {
             Player cp = Configurations.getCurPlayer();
             if (cp.getOwned().size() <= 0) {
-                int rx = (int)(x / 100) * 100;
-                int ry = (int)(y / 100) * 100;
+                int rx = (int) (x / 100) * 100;
+                int ry = (int) (y / 100) * 100;
                 cp.setStartX(rx + 0.5 * MapTiles.getW());
                 cp.setStartY(ry + 0.5 * MapTiles.getH());
                 cp.setPlayerIcon(new Circle(
@@ -201,15 +215,22 @@ public class util {
             }
             Rectangle[] sq = util.drawSelectionSq(x, y, cp.getColor());
 
-            for (Rectangle r : sq) dc.getMapGUI().getChildren().add(r);
+            for (Rectangle r : sq) {
+                dc.getMapGUI().getChildren().add(r);
+            }
             incrementTurn();
         }
     }
 
+    /**
+     * produces game values
+     */
+    @throws
     public static void produce() throws IOException {
         for (Player p : Configurations.getPlayers()) {
             for (MapTiles tile : p.getOwned()) {
-                for (int i = 0; i < tile.getMules().length && p.getEnergy() > 0; i++) {
+                for (int i = 0; i < tile.getMules().length
+                        && p.getEnergy() > 0; i++) {
                     if (tile.getMules()[i]) {
                         if (i == 0) {
                             p.setFood(p.getFood() + tile.getFood());
@@ -228,17 +249,19 @@ public class util {
         }
         Save.save();
     }
-    
-    public static String applyRandomEvent() {
 
-             
+    /**
+     * generates random events to players
+     * @return String message of random event
+     */
+    public static String applyRandomEvent() {
         int rand = (int) (Math.random() * randomEvents.length);
-        
+
         Player cp = Configurations.getCurPlayer();
         int money = randomEvents[rand].getMoney();
         int food = randomEvents[rand].getFood();
         int energy = randomEvents[rand].getEnergy();
-        
+
         if (playerOrder.size() == 0) {
             while (money < 0 || food < 0 || energy < 0) {
                 rand = (int) (Math.random() * randomEvents.length);
@@ -247,11 +270,11 @@ public class util {
                 energy = randomEvents[rand].getEnergy();
             }
         }
-        
+
         cp.setMoney(cp.getMoney() + money);
         cp.setFood(cp.getFood() + food);
         cp.setEnergy(cp.getEnergy() + energy);
-        
+
         if (cp.getMoney() < 0) {
             cp.setMoney(0);
         } else if (cp.getFood() < 0) {

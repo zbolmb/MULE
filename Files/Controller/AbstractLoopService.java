@@ -10,9 +10,10 @@ import javafx.concurrent.Task;
 import javafx.util.Duration;
 
 /**
- * Simple Looping Service. Useful for games, Simulations, or other items that require a running "Loop".
+ * Simple Looping Service. Useful for games, Simulations,
+ * or other items that require a running "Loop".
  *
- * @author Jason Pollastrini aka jdub1581
+ * @author William Hsu, Zhijian Li, Min Jung, Will Su, Karl Nicodemus
  */
 public abstract class AbstractLoopService extends ScheduledService<Void>{
 	private final long ONE_NANO = 1_000_000_000L;
@@ -21,8 +22,9 @@ public abstract class AbstractLoopService extends ScheduledService<Void>{
 	private long startTime, previousTime;
 	private double frameRate, deltaTime;
 
-	private final LoopThreadFactory tf = new LoopThreadFactory();    
-	private final ExecutorService cachedExecutor = Executors.newCachedThreadPool(tf);
+	private final LoopThreadFactory tf = new LoopThreadFactory();
+	private final ExecutorService cachedExecutor =
+			Executors.newCachedThreadPool(tf);
 
 
 	protected AbstractLoopService() {
@@ -86,7 +88,7 @@ public abstract class AbstractLoopService extends ScheduledService<Void>{
 	@Override
 	protected void succeeded() {
 		super.succeeded();
-		// Setup to handle Actions for UI here     
+		// Setup to handle Actions for UI here
 		try {
 			runOnFXThread();
 		} catch (IOException e) {
@@ -102,20 +104,21 @@ public abstract class AbstractLoopService extends ScheduledService<Void>{
 
 	@Override
 	public String toString() {
-		return "ElapsedTime: " + getCurrentTime() + "\nTime in seconds: " + getTimeElapsed()
+		return "ElapsedTime: " + getCurrentTime() + "\nTime in seconds: "
+				+ getTimeElapsed()
 				+ "\nFrame Rate: " + getFrameRate()
 				+ "\nDeltaTime: " + getDeltaTime();
 	}
 
-	/*==========================================================================
+	/*=========================================================================
 	 *      Methods for access
 	 */
 
 	protected abstract void runOnFXThread() throws IOException;
 	protected abstract void runInBackground();
 
-	/*==========================================================================
-
+	/*=========================================================================
+	 *
 	 */
 	private final class LoopThreadFactory implements ThreadFactory {
 

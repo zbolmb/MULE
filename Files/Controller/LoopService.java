@@ -172,9 +172,8 @@ public class LoopService extends AbstractLoopService {
     public void updateDC() {
         dc.setLoopService(this);
     }
-    
+
     public double getTime() {
         return time;
     }
 }
-

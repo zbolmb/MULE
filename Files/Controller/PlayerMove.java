@@ -6,7 +6,7 @@ public class PlayerMove {
     private int u = 0;
     private int d = 0;
     private char dir;
-    
+
     public int getL() {
         return l;
     }
@@ -37,6 +37,6 @@ public class PlayerMove {
     public void setDir(char dir) {
         this.dir = dir;
     }
-    
-    
+
+
 }
