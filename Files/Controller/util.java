@@ -224,8 +224,8 @@ public class util {
 
     /**
      * produces game values
+     * @throws IOException exception
      */
-    @throws
     public static void produce() throws IOException {
         for (Player p : Configurations.getPlayers()) {
             for (MapTiles tile : p.getOwned()) {
