@@ -1,7 +1,5 @@
 package Model;
 
-import java.util.ArrayList;
-
 import Controller.DisplayContents;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,6 +20,9 @@ public class Store {
     protected int mule2;
     protected int mule3;
 
+    /**
+     * Store method
+     */
     public Store() {
         dc = Configurations.getDisplayContents();
         cp = Configurations.getCurPlayer();
@@ -46,7 +47,6 @@ public class Store {
     }
 
     /**
-     * 
      * @param resource
      * 0 = smithore;
      * 1 = crystite;
@@ -77,6 +77,10 @@ public class Store {
         }
     }
 
+    /**
+     * sell method
+     * @param resource resource
+     */
     public void sell(int resource) {
         cp = Configurations.getCurPlayer();
         if (resource == 0 && cp.getSmithore() > 0) {
@@ -101,6 +105,10 @@ public class Store {
         }
     }
 
+    /**
+     * buyMule method
+     * @param mule mule
+     */
     public void buyMule(int mule) {
         cp = Configurations.getCurPlayer();
         if (cp.getMoney() >= 300) {
@@ -108,12 +116,10 @@ public class Store {
             if (mule == 1) {
                 cp.setMule1(cp.getMule1() + 1);
                 mule1--;
-            }
-            else if (mule == 2) {
+            } else if (mule == 2) {
                 cp.setMule2(cp.getMule2() + 1);
                 mule2--;
-            }
-            else {
+            } else {
                 cp.setMule3(cp.getMule3() + 1);
                 mule3--;
             }
@@ -122,15 +128,28 @@ public class Store {
         }
     }
 
+    /**
+     * getGui method
+     * @return data
+     */
     public Scene getGUI() {
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 800, 500);
 
         //Buy Buttons
-        Button buyMule1, buyMule2, buyMule3, buySmithore, buyCrystite, buyFood, buyEnergy;
+        Button buyMule1;
+        Button buyMule2;
+        Button buyMule3;
+        Button buySmithore;
+        Button buyCrystite;
+        Button buyFood;
+        Button buyEnergy;
         //Sell Buttons
-        Button sellSmithore, sellCrystite, sellFood, sellEnergy;
+        Button sellSmithore;
+        Button sellCrystite;
+        Button sellFood;
+        Button sellEnergy;
         //Text
 
         Button back;
@@ -151,7 +170,6 @@ public class Store {
         buyFood.setOnAction(e -> buy(2));
         buyEnergy = new Button("Buy Energy");
         buyEnergy.setOnAction(e -> buy(3));
-        
         sellSmithore = new Button("Sell Smithores");
         sellSmithore.setOnAction(e -> sell(0));
         sellCrystite = new Button("Sell Crystites");
@@ -161,33 +179,40 @@ public class Store {
         sellEnergy = new Button("Sell Energy");
         sellEnergy.setOnAction(e -> sell(2));
 
-        updateText();        
-
+        updateText();
         back = new Button("Back");
         back.setOnAction(e -> {
-            dc.getMainWindow().setScene(dc.getTownMapGUI());
-            Player cp = Configurations.getCurPlayer();
-            cp.setPhase(1);
-            cp.setX(720);
-            cp.setY(250);
-        });
+                dc.getMainWindow().setScene(dc.getTownMapGUI());
+                Player cp = Configurations.getCurPlayer();
+                cp.setPhase(1);
+                cp.setX(720);
+                cp.setY(250);
+            });
 
         VBox vbox1 = new VBox();
         VBox vbox2 = new VBox();
         HBox hbox = new HBox();
-        vbox1.getChildren().addAll(buyMule1, buyMule2, buyMule3, buySmithore, buyCrystite, buyFood, buyEnergy, back);
-        vbox2.getChildren().addAll(sellSmithore, sellCrystite, sellFood, sellEnergy);
+        vbox1.getChildren().addAll(buyMule1, buyMule2,
+                buyMule3, buySmithore, buyCrystite, buyFood, buyEnergy, back);
+        vbox2.getChildren().addAll(sellSmithore,
+                sellCrystite, sellFood, sellEnergy);
         hbox.getChildren().addAll(vbox1, vbox2, stats);
         pane.getChildren().add(hbox);
 
         return scene;
     }
 
+    /**
+     * updateDC method
+     */
     public void updateDC() {
         dc.setStoreGUI(getGUI());
         dc.setStore(this);
     }
-    
+
+    /**
+     * updateText method
+     */
     public void updateText() {
         stats.setText("Smithore($100): " + smithore
                 + "\nCrystite($200): " + crystite

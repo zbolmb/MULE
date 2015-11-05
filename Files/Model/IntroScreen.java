@@ -14,9 +14,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * The intro screen in the beginning of the game
@@ -33,49 +30,62 @@ public class IntroScreen {
 
     protected static DisplayContents dc;
 
+    /**
+     * IntroScreen method
+     */
     public IntroScreen() {
         dc = Configurations.getDisplayContents();
         dc.setIntroScreen(this);
     }
 
+    /**
+     * Scene method
+     * @return data
+     */
     public Scene getGUI() {
         GridPane layout = new GridPane();
         Scene scene = new Scene(layout, 450, 300);
 
-        /** 
+        /**
          * Predefine objects
          */
         //Difficulty
-        Button easy, medium, hard;
+        Button easy;
+        Button medium;
+        Button hard;
         Text difficulty_Text;
         //MapType
-        Button river, mountain, plain;
+        Button river;
+        Button mountain;
+        Button plain;
         Text mapType_Text;
         //Player Number
         ComboBox<String> playerNum;
         Text playerNum_Text;
         //Next
         Button next;
-        
         /**
          * Difficulty Settings
          */
         difficulty_Text = new Text("Difficulty : Easy");
         easy = new Button("Easy");
         easy.setOnAction(e -> {
-            Configurations.setDifficulty("Easy");
-            difficulty_Text.setText("Difficulty : " + Configurations.getDifficulty());
-        });
+                Configurations.setDifficulty("Easy");
+                difficulty_Text.setText("Difficulty : "
+                        + Configurations.getDifficulty());
+            });
         medium = new Button("Medium");
         medium.setOnAction(e -> {
-            Configurations.setDifficulty("Medium");
-            difficulty_Text.setText("Difficulty : " + Configurations.getDifficulty());
-        });
+                Configurations.setDifficulty("Medium");
+                difficulty_Text.setText("Difficulty : "
+                        + Configurations.getDifficulty());
+            });
         hard = new Button("Hard");
         hard.setOnAction(e -> {
-            Configurations.setDifficulty("Hard");
-            difficulty_Text.setText("Difficulty : " + Configurations.getDifficulty());
-        });
+                Configurations.setDifficulty("Hard");
+                difficulty_Text.setText("Difficulty : "
+                        + Configurations.getDifficulty());
+            });
         layout.add(easy, 1, 1);
         layout.add(medium, 2, 1);
         layout.add(hard, 3, 1);
@@ -86,19 +96,22 @@ public class IntroScreen {
         mapType_Text = new Text("Map Type : River");
         river = new Button("River");
         river.setOnAction(e -> {
-            Configurations.setMap_Type("River");
-            mapType_Text.setText("Map Type : " + Configurations.getMap_Type());
-        });
+                Configurations.setMap_Type("River");
+                mapType_Text.setText("Map Type : "
+                        + Configurations.getMap_Type());
+            });
         mountain = new Button("Mountain");
         mountain.setOnAction(e -> {
-            Configurations.setMap_Type("Mountain");
-            mapType_Text.setText("Map Type : " + Configurations.getMap_Type());
-        });
+                Configurations.setMap_Type("Mountain");
+                mapType_Text.setText("Map Type : "
+                        + Configurations.getMap_Type());
+            });
         plain = new Button("Plain");
         plain.setOnAction(e -> {
-            Configurations.setMap_Type("Plain");
-            mapType_Text.setText("Map Type : " + Configurations.getMap_Type());
-        });
+                Configurations.setMap_Type("Plain");
+                mapType_Text.setText("Map Type : "
+                        + Configurations.getMap_Type());
+            });
         layout.add(river, 1, 2);
         layout.add(mountain, 2, 2);
         layout.add(plain, 3, 2);
@@ -125,16 +138,16 @@ public class IntroScreen {
         dc = Configurations.getDisplayContents();
         next = new Button("Next");
         next.setOnAction(e -> {
-            dc.getPlayerSettings().updateDC();
-            dc.getMainWindow().setScene((dc.getPlayerSettingsGUI()).get(0));
-            dc.getMainWindow().setTitle("Player 1");
-        });
-        
+                dc.getPlayerSettings().updateDC();
+                dc.getMainWindow().setScene((dc.getPlayerSettingsGUI()).get(0));
+                dc.getMainWindow().setTitle("Player 1");
+            });
         /**
          * Add To GridPane
          */
         VBox text = new VBox();
-        text.getChildren().addAll(difficulty_Text, mapType_Text, playerNum_Text);
+        text.getChildren().addAll(difficulty_Text,
+                mapType_Text, playerNum_Text);
         layout.add(playerNum, 1, 3, 2, 1);
         layout.add(text, 4, 2);
         layout.add(next, 3, 5);
@@ -142,12 +155,13 @@ public class IntroScreen {
         layout.setVgap(20);
         layout.setPadding(new Insets(30, 0, 0, 35));
         GridPane.setHalignment(playerNum, HPos.CENTER);
-        
         //layout.setGridLinesVisible(true);
-        
         return scene;
     }
-    
+
+    /**
+     * updateDC method
+     */
     public void updateDC() {
         dc.setIntroScreenGUI(getGUI());
         dc.setIntroScreen(this);
