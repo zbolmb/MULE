@@ -1,9 +1,9 @@
-package Model;
+package model;
 
 import java.util.Random;
 
-import Controller.DisplayContents;
-import Model.landTiles.*;
+import controller.DisplayContents;
+import model.landTiles.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;

@@ -1,6 +1,6 @@
-package Model;
+package model;
 
-import Controller.DisplayContents;
+import controller.DisplayContents;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -10,8 +10,8 @@ import java.util.ArrayList;
  */
 public class Configurations {
     private static String difficulty = "Easy";
-    private static String map_Type = "River";
-    private static int num_Players = 1;
+    private static String mapType = "River";
+    private static int numberPlayers = 1;
     private static DisplayContents displayContents;
     private static Player curPlayer;
 
@@ -59,32 +59,32 @@ public class Configurations {
      * getMapType gets the map type
      * @return String the map type
      */
-    public static String getMap_Type() {
-        return map_Type;
+    public static String getMapType() {
+        return mapType;
     }
 
     /**
      * setMapType sets the map type
      * @param map_Type map type
      */
-    public static void setMap_Type(String map_Type) {
-        Configurations.map_Type = map_Type;
+    public static void setMapType(String map_Type) {
+        Configurations.mapType = map_Type;
     }
 
     /**
      * getNum_Players gets the number of players
      * @return int the number of players
      */
-    public static int getNum_Players() {
-        return num_Players;
+    public static int getNumPlayers() {
+        return numberPlayers;
     }
 
     /**
      * setNum_Players sets the number of players
      * @param num_Players the number of players
      */
-    public static void setNum_Players(int num_Players) {
-        Configurations.num_Players = num_Players;
+    public static void setNumPlayers(int num_Players) {
+        Configurations.numberPlayers = num_Players;
     }
 
     /**

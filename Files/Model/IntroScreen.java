@@ -1,6 +1,6 @@
-package Model;
+package model;
 
-import Controller.DisplayContents;
+import controller.DisplayContents;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -96,21 +96,21 @@ public class IntroScreen {
         mapType_Text = new Text("Map Type : River");
         river = new Button("River");
         river.setOnAction(e -> {
-                Configurations.setMap_Type("River");
+                Configurations.setMapType("River");
                 mapType_Text.setText("Map Type : "
-                        + Configurations.getMap_Type());
+                        + Configurations.getMapType());
             });
         mountain = new Button("Mountain");
         mountain.setOnAction(e -> {
-                Configurations.setMap_Type("Mountain");
+                Configurations.setMapType("Mountain");
                 mapType_Text.setText("Map Type : "
-                        + Configurations.getMap_Type());
+                        + Configurations.getMapType());
             });
         plain = new Button("Plain");
         plain.setOnAction(e -> {
-                Configurations.setMap_Type("Plain");
+                Configurations.setMapType("Plain");
                 mapType_Text.setText("Map Type : "
-                        + Configurations.getMap_Type());
+                        + Configurations.getMapType());
             });
         layout.add(river, 1, 2);
         layout.add(mountain, 2, 2);
@@ -131,7 +131,7 @@ public class IntroScreen {
         playerNum.setPromptText("Number of Players : ");
         playerNum.valueProperty().addListener(new ChangeListener<String>() {
             public void changed(ObservableValue ov, String t, String t1) {
-                Configurations.setNum_Players(Integer.parseInt(t1));
+                Configurations.setNumPlayers(Integer.parseInt(t1));
                 playerNum_Text.setText("Players : " + t1);
             }
         });

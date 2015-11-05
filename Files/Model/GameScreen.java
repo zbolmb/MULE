@@ -1,8 +1,8 @@
-package Model;
+package model;
 
-import Controller.DisplayContents;
-import Controller.LoopService;
-import Controller.util;
+import controller.DisplayContents;
+import controller.LoopService;
+import controller.util;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;

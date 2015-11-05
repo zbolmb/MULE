@@ -1,6 +1,6 @@
-package Model;
+package model;
 
-import Controller.DisplayContents;
+import controller.DisplayContents;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;

@@ -1,16 +1,16 @@
-package Controller;
+package controller;
 
 
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.PriorityQueue;
-import Model.Configurations;
-import Controller.DisplayContents;
-import Model.Player;
-import Model.RandomEvent;
-import Model.landTiles.MapTiles;
-import Model.landTiles.townTile;
+import model.Configurations;
+import controller.DisplayContents;
+import model.Player;
+import model.RandomEvent;
+import model.landTiles.MapTiles;
+import model.landTiles.townTile;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -18,7 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import Model.landTiles.*;
+import model.landTiles.*;
 
 /**
  * utility class

@@ -1,6 +1,6 @@
-package Model;
+package model;
 
-import Model.landTiles.MapTiles;
+import model.landTiles.MapTiles;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 

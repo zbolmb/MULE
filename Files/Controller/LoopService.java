@@ -1,12 +1,12 @@
-package Controller;
+package controller;
 
 import java.io.IOException;
 import java.util.Random;
 
-import Model.Configurations;
-import Controller.DisplayContents;
-import Model.Player;
-import Controller.PlayerMove;
+import model.Configurations;
+import controller.DisplayContents;
+import model.Player;
+import controller.PlayerMove;
 import javafx.scene.layout.Pane;
 
 /**
@@ -24,7 +24,7 @@ import javafx.scene.layout.Pane;
 public class LoopService extends AbstractLoopService {
 
     protected static DisplayContents dc;
-    protected Model.landTiles.MapTiles[][] map;
+    protected model.landTiles.MapTiles[][] map;
     protected Pane mapGUI;
     protected PlayerMove move;
     protected double x;

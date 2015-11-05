@@ -1,10 +1,10 @@
-package Controller;
+package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import Model.Configurations;
-import Model.Player;
+import controller.util;
+import model.Configurations;
+import model.Player;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -46,7 +46,7 @@ public class PlayerSettings {
      */
     public ArrayList<Scene> getGUI() {
         ArrayList<Scene> scenes = new ArrayList<>();
-        for (int i = 0; i < Configurations.getNum_Players(); i++) {
+        for (int i = 0; i < Configurations.getNumPlayers(); i++) {
             GridPane layout = new GridPane();
             Scene scene = new Scene(layout, 450, 300);
 
@@ -155,6 +155,7 @@ public class PlayerSettings {
             next = new Button("Next");
             int curPlayer = i;
             next.setOnAction(e -> {
+<<<<<<< Updated upstream
                     //------------ Creates Map / Game Screen ------------------
                     if (curPlayer == Configurations.getNum_Players() - 1) {
                         try {
@@ -169,6 +170,14 @@ public class PlayerSettings {
                                 .get(curPlayer + 1));
                         dc.getMainWindow().setTitle("Player "
                                 + (curPlayer + 1));
+=======
+                //------------ Creates Map / Game Screen -------------------------
+                if (curPlayer == Configurations.getNumPlayers() - 1) {
+                    try {
+                        util.incrementTurn();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+>>>>>>> Stashed changes
                     }
                     if (!nameField.getText().equals("Enter your name : ")) {
                         p.setName(nameField.getText());

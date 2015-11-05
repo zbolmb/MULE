@@ -1,8 +1,8 @@
-package Model;
+package model;
 
 import java.util.ArrayList;
 
-import Model.landTiles.*;
+import model.landTiles.MapTiles;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 

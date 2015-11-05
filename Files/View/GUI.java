@@ -3,16 +3,17 @@
  * authors: William Hsu, Min Je Jung, Zhijian Li, Karl Nicodemus, William Su
  * @version 1.3
  */
-package View;
+package view;
 
-import Model.Configurations;
-import Model.GameScreen;
-import Model.IntroScreen;
-import Controller.PlayerSettings;
+import model.Configurations;
+import model.GameScreen;
+import model.IntroScreen;
+import controller.PlayerSettings;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class GUI extends Application{
+public class GUI extends Application {
+
 
     public void start(Stage primaryStage) throws Exception {
         Configurations.initDC(primaryStage);

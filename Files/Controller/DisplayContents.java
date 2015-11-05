@@ -1,10 +1,12 @@
-package Controller;
-
-import Model.*;
-
+package controller;
 import java.util.ArrayList;
 
-import Controller.LoopService;
+import model.Store;
+import model.GameMap;
+import model.GameScreen;
+import model.IntroScreen;
+import model.TownMap;
+import controller.LoopService;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;

@@ -1,4 +1,4 @@
-package Model.landTiles;
+package model.landTiles;
 
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;

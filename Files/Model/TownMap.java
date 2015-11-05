@@ -1,21 +1,21 @@
-package Model;
+package model;
 
-import Controller.DisplayContents;
-import Model.townTiles.TownTiles;
-import Model.townTiles.assayTownTile;
-import Model.townTiles.crystiteTownTile;
-import Model.townTiles.energyTownTile;
-import Model.townTiles.floorTile;
-import Model.townTiles.foodTownTile;
-import Model.townTiles.landTownTile;
-import Model.townTiles.muleTile;
-import Model.townTiles.pubTile;
-import Model.townTiles.smithoreTownTile;
+import controller.DisplayContents;
+import model.townTiles.TownTiles;
+import model.townTiles.assayTownTile;
+import model.townTiles.crystiteTownTile;
+import model.townTiles.energyTownTile;
+import model.townTiles.floorTile;
+import model.townTiles.foodTownTile;
+import model.townTiles.landTownTile;
+import model.townTiles.muleTile;
+import model.townTiles.pubTile;
+import model.townTiles.smithoreTownTile;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import Controller.util;
+import controller.util;
 
 
 /**
