@@ -1,5 +1,0 @@
-javac ./view/GUI.java
-javac ./model/*.java
-javac ./model/Tiles/*.java
-javac ./model/townTiles/*.java
-javac ./controller/*.java
