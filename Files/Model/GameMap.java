@@ -4,8 +4,6 @@ import java.util.Random;
 
 import Controller.DisplayContents;
 import Model.landTiles.*;
-import javafx.scene.Node;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -26,6 +24,9 @@ public class GameMap {
     protected DisplayContents dc;
     protected MapTiles[][] aMap;
 
+    /**
+     * gamemap method
+     */
     public GameMap() {
         dc = Configurations.getDisplayContents();
         this.aMap = new MapTiles[9][5];
@@ -33,7 +34,6 @@ public class GameMap {
 
     /**
      * Creates the default map for the game.
-     * @return The default map
      */
     public void createDefaultGameMap() {
 
@@ -88,6 +88,9 @@ public class GameMap {
         aMap[8][4] = new m2Tile();
     }
 
+    /**
+     * createRandomGameMap method
+     */
     public void createRandomGameMap() {
         Random rand = new Random();
 
@@ -125,6 +128,10 @@ public class GameMap {
 
     }
 
+    /**
+     * Pane getGUI method
+     * @return data
+     */
     public Pane getGUI() {
         createDefaultGameMap();
         //Rectangle tile;
@@ -141,25 +148,57 @@ public class GameMap {
         return pane;
     }
 
+    /**
+     * add Mule method
+     * @param x x value
+     * @param y y value
+     * @param m m value
+     */
     public void addMule(int x, int y, int m) {
         if (!dc.getMap().aMap[x][y].getMule(m)) {
             dc.getMap().aMap[x][y].setMule(m);
-            Rectangle mule = new Rectangle(x * 100 + 20 + (20 * m), y * 100 + 55, 15, 33);
-            Text t = new Text(x * 100 + 20 + (20 * m) + 4, y * 100 + 55 + 25, "F");
-            if (m == 0) t.setText("F");
-            if (m == 1) t.setText("E");
-            if (m == 2) t.setText("O");
-            if (Configurations.getCurPlayer().getColor() == Color.BLACK) t.setFill(Color.WHITE);
+            Rectangle mule = new Rectangle(x * 100 + 20
+                    + (20 * m), y * 100 + 55, 15, 33);
+            Text t = new Text(x * 100 + 20 + (20 * m) + 4,
+                    y * 100 + 55 + 25, "F");
+            if (m == 0) {
+                t.setText("F");
+            }
+            if (m == 1) {
+                t.setText("E");
+            }
+            if (m == 2) {
+                t.setText("O");
+            }
+            if (Configurations.getCurPlayer().getColor() == Color.BLACK) {
+                t.setFill(Color.WHITE);
+            }
             mule.setFill(Configurations.getCurPlayer().getColor());
             dc.getMapGUI().getChildren().addAll(mule, t);
         }
     }
 
+    /**
+     * updateDC method
+     */
     public void updateDC() {
         dc.setMapGUI(getGUI());
         dc.setMap(this);
     }
 
-    public MapTiles[][] getAMap() { return aMap; }
-    public void setAMap(MapTiles[][] aMap) { this.aMap = aMap; }
+    /**
+     * MapTiles method
+     * @return aMap
+     */
+    public MapTiles[][] getAMap() {
+        return aMap;
+    }
+
+    /**
+     * setAMap method
+     * @param aMap aMap
+     */
+    public void setAMap(MapTiles[][] aMap) {
+        this.aMap = aMap;
+    }
 }

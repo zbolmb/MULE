@@ -25,15 +25,22 @@ import java.io.IOException;
  */
 public class GameScreen {
 
-    static DisplayContents dc;
-    Text gameText;
+    private static DisplayContents dc;
+    private Text gameText;
 
+    /**
+     * GameScreen method
+     */
     public GameScreen() {
         dc = Configurations.getDisplayContents();
         dc.setGameScreen(this);
         gameText = new Text();
     }
 
+    /**
+     * getGui method
+     * @return data
+     */
     public Scene getGUI() {
         GridPane layout = new GridPane();
         Scene scene = new Scene(layout, 940, 610);
@@ -42,60 +49,60 @@ public class GameScreen {
 
         layout.add(dc.getMapGUI(), 1, 1);
 
-        // add a white square around the plot that mouse is currently hovering over
         sq = new SelectionSquare();
-        for (Rectangle r : sq.sq) dc.getMapGUI().getChildren().add(r);
+        for (Rectangle r : sq.sq) {
+            dc.getMapGUI().getChildren().add(r);
+        }
 
         updateText();
         util.addMovementHandlers(scene);
         util.addMovementHandlers(dc.getTownMapGUI());
 
-        //MOUSE_MOVED event handler. When mouse moves, moves the selection square to tile that mouse is hovering over
         dc.getMapGUI().addEventHandler(MouseEvent.MOUSE_MOVED, e -> {
-            if (Configurations.getPhase() == 0) {
-                double x = e.getX(); 
-                double y = e.getY();
-                sq.moveSelection(x, y);
-            }
-        });
+                if (Configurations.getPhase() == 0) {
+                    double x = e.getX();
+                    double y = e.getY();
+                    sq.moveSelection(x, y);
+                }
+            });
 
-        // MOUSE_PRESSED event handler. When mouse is pressed, the tile at that spot
         // is claimed for the current player, if valid.
         // Does nothing if tile invalid
         dc.getMapGUI().addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
-            if (Configurations.getPhase() == 0) {
-                double x = e.getX();
-                double y = e.getY();
-                try {
-                    util.claimTile(x, y, sq.getTile(x, y, dc.getMap()));
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+                if (Configurations.getPhase() == 0) {
+                    double x = e.getX();
+                    double y = e.getY();
+                    try {
+                        util.claimTile(x, y, sq.getTile(x, y, dc.getMap()));
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                    if (Configurations.getRound() > 0) {
+                        sq.remove();
+                        Configurations.setPhase(1);
+                    }
                 }
-                if (Configurations.getRound() > 0) {
-                    sq.remove();
-                    Configurations.setPhase(1);
-                }
-            }
-        });
+            });
 
         /**
          * handler that checks for keypress "p"
          * when p is pressed, current player passes his / her turn
          */
         scene.addEventHandler(KeyEvent.KEY_PRESSED, p -> {
-            if (Configurations.getPhase() == 0 && p.getCode() == KeyCode.P) {
-                Configurations.getCurPlayer().setPassed(true);
-                try {
-                    util.incrementTurn();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (Configurations.getPhase() == 0
+                        && p.getCode() == KeyCode.P) {
+                    Configurations.getCurPlayer().setPassed(true);
+                    try {
+                        util.incrementTurn();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    if (Configurations.getRound() > 0) {
+                        sq.remove();
+                        Configurations.setPhase(1);
+                    }
                 }
-                if (Configurations.getRound() > 0) {
-                    sq.remove();
-                    Configurations.setPhase(1);
-                }
-            }
-        });
+            });
 
         layout.setHgap(20);
         layout.setVgap(20);
@@ -129,7 +136,11 @@ public class GameScreen {
     public void updateText() {
         updateText("");
     }
-    
+
+    /**
+     * updateText method
+     * @param message message
+     */
     public void updateText(String message) {
         Player cp = Configurations.getCurPlayer();
         gameText.setText(cp.getName() + "'s Turn. "
@@ -137,12 +148,14 @@ public class GameScreen {
                 + " | Food : " + cp.getFood()
                 + " | Energy : " + cp.getEnergy()
                 + " | Smithore : " + cp.getSmithore()
-                + "\nFood Mule : " + cp.getMule1()
+                + "\nFood Mule : "
+                + cp.getMule1()
                 + " | Energy Mule : " + cp.getMule2()
                 + " | Ore Mule : " + cp.getMule3()
                 + "\nScore : " + cp.getScore());
         if (dc.getLoopService() != null) {
-            gameText.setText(gameText.getText() + "\nTime : " + (120 - (int)dc.getLoopService().getTime()));
+            gameText.setText(gameText.getText() + "\nTime : "
+                    + (120 - (int) dc.getLoopService().getTime()));
         }
         gameText.setText(gameText.getText() + "\n" + message);
     }
