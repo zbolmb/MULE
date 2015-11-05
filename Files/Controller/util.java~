@@ -259,7 +259,7 @@ public class util {
         } else if (cp.getEnergy() < 0) {
             cp.setEnergy(0);
         }
-
+        
         return randomEvents[rand].getMessage();
     }
 }

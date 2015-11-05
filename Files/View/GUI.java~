@@ -31,6 +31,7 @@ public class GUI extends Application{
          * The next button in intro calls updateDC for playersettings, the 
          * player selection screens
          */
+        
 
         primaryStage.setScene(Configurations.getDisplayContents().getIntroScreenGUI());
         primaryStage.show();
