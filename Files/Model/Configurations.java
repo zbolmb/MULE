@@ -65,14 +65,14 @@ public class Configurations {
 
     /**
      * setMapType sets the map type
-     * @param map_Type map type
+     * @param mapType map type
      */
-    public static void setMapType(String map_Type) {
-        Configurations.mapType = map_Type;
+    public static void setMapType(String mapType) {
+        Configurations.mapType = mapType;
     }
 
     /**
-     * getNum_Players gets the number of players
+     * getNumPlayers gets the number of players
      * @return int the number of players
      */
     public static int getNumPlayers() {
@@ -80,11 +80,11 @@ public class Configurations {
     }
 
     /**
-     * setNum_Players sets the number of players
-     * @param num_Players the number of players
+     * setNumPlayers sets the number of players
+     * @param numPlayers the number of players
      */
-    public static void setNumPlayers(int num_Players) {
-        Configurations.numberPlayers = num_Players;
+    public static void setNumPlayers(int numPlayers) {
+        Configurations.numberPlayers = numPlayers;
     }
 
     /**
@@ -136,7 +136,7 @@ public class Configurations {
     }
 
     /**
-     * getting for phase
+     * getter for phase
      * @return int the phase
      */
     public static int getPhase() {

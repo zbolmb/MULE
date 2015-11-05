@@ -53,37 +53,37 @@ public class IntroScreen {
         Button easy;
         Button medium;
         Button hard;
-        Text difficulty_Text;
+        Text difficultyText;
         //MapType
         Button river;
         Button mountain;
         Button plain;
-        Text mapType_Text;
+        Text mapTypeText;
         //Player Number
         ComboBox<String> playerNum;
-        Text playerNum_Text;
+        Text playerNumText;
         //Next
         Button next;
         /**
          * Difficulty Settings
          */
-        difficulty_Text = new Text("Difficulty : Easy");
+        difficultyText = new Text("Difficulty : Easy");
         easy = new Button("Easy");
         easy.setOnAction(e -> {
                 Configurations.setDifficulty("Easy");
-                difficulty_Text.setText("Difficulty : "
+                difficultyText.setText("Difficulty : "
                         + Configurations.getDifficulty());
             });
         medium = new Button("Medium");
         medium.setOnAction(e -> {
                 Configurations.setDifficulty("Medium");
-                difficulty_Text.setText("Difficulty : "
+                difficultyText.setText("Difficulty : "
                         + Configurations.getDifficulty());
             });
         hard = new Button("Hard");
         hard.setOnAction(e -> {
                 Configurations.setDifficulty("Hard");
-                difficulty_Text.setText("Difficulty : "
+                difficultyText.setText("Difficulty : "
                         + Configurations.getDifficulty());
             });
         layout.add(easy, 1, 1);
@@ -93,23 +93,23 @@ public class IntroScreen {
         /**
          * Map Settings
          */
-        mapType_Text = new Text("Map Type : River");
+        mapTypeText = new Text("Map Type : River");
         river = new Button("River");
         river.setOnAction(e -> {
                 Configurations.setMapType("River");
-                mapType_Text.setText("Map Type : "
+                mapTypeText.setText("Map Type : "
                         + Configurations.getMapType());
             });
         mountain = new Button("Mountain");
         mountain.setOnAction(e -> {
                 Configurations.setMapType("Mountain");
-                mapType_Text.setText("Map Type : "
+                mapTypeText.setText("Map Type : "
                         + Configurations.getMapType());
             });
         plain = new Button("Plain");
         plain.setOnAction(e -> {
                 Configurations.setMapType("Plain");
-                mapType_Text.setText("Map Type : "
+                mapTypeText.setText("Map Type : "
                         + Configurations.getMapType());
             });
         layout.add(river, 1, 2);
@@ -119,7 +119,7 @@ public class IntroScreen {
         /**
          * Player Number Settings
          */
-        playerNum_Text = new Text("Number of Players : 1");
+        playerNumText = new Text("Number of Players : 1");
         ObservableList<String> options =
                 FXCollections.observableArrayList(
                         "1",
@@ -132,7 +132,7 @@ public class IntroScreen {
         playerNum.valueProperty().addListener(new ChangeListener<String>() {
             public void changed(ObservableValue ov, String t, String t1) {
                 Configurations.setNumPlayers(Integer.parseInt(t1));
-                playerNum_Text.setText("Players : " + t1);
+                playerNumText.setText("Players : " + t1);
             }
         });
         dc = Configurations.getDisplayContents();
@@ -146,8 +146,8 @@ public class IntroScreen {
          * Add To GridPane
          */
         VBox text = new VBox();
-        text.getChildren().addAll(difficulty_Text,
-                mapType_Text, playerNum_Text);
+        text.getChildren().addAll(difficultyText,
+                mapTypeText, playerNumText);
         layout.add(playerNum, 1, 3, 2, 1);
         layout.add(text, 4, 2);
         layout.add(next, 3, 5);

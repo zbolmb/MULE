@@ -3,7 +3,13 @@ package model;
 import java.util.Random;
 
 import controller.DisplayContents;
-import model.landTiles.*;
+import model.landTiles.MapTiles;
+import model.landTiles.m1Tile;
+import model.landTiles.m2Tile;
+import model.landTiles.m3Tile;
+import model.landTiles.plainsTile;
+import model.landTiles.riverTile;
+import model.landTiles.townTile;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;

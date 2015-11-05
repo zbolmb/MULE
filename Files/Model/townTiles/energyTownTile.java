@@ -5,9 +5,12 @@ import javafx.scene.paint.Color;
 /**
  * Created by willi on 9/28/2015.
  */
-public class energyTownTile extends TownTiles{
-    public energyTownTile() {
+public class EnergyTownTile extends TownTiles {
+
+    /**
+     * Constructor
+     */
+    public EnergyTownTile() {
         super("Pub", Color.YELLOW);
     }
-
 }
