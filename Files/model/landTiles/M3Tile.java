@@ -9,6 +9,6 @@ public class M3Tile extends MapTiles {
      */
     public M3Tile() {
         super(1, 1, 4, true, true, "Mountain 3"
-            , Color.web("0x382E1C"), new Image("Model/Tiles/m3_Tile.jpg"));
+            , Color.web("0x382E1C"), new Image("model/tiles/m3_Tile.jpg"));
     }
 }

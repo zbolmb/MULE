@@ -1,12 +1,15 @@
 package model;
 
 import controller.DisplayContents;
+import controller.Save;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import java.io.IOException;
+
 public class Store {
 
     protected static DisplayContents dc;
@@ -131,8 +134,9 @@ public class Store {
     /**
      * getGui method
      * @return data
+     * @throws IOException exception
      */
-    public Scene getGUI() {
+    public Scene getGUI() throws IOException {
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 800, 500);
@@ -178,6 +182,16 @@ public class Store {
         sellFood.setOnAction(e -> sell(3));
         sellEnergy = new Button("Sell Energy");
         sellEnergy.setOnAction(e -> sell(2));
+        
+        // save button
+        Button save = new Button("Save");
+        save.setOnAction(e -> {
+                try {
+                    controller.Save.save();
+                } catch (IOException x) {
+                    x.printStackTrace();
+                }
+            });
 
         updateText();
         back = new Button("Back");
@@ -196,7 +210,7 @@ public class Store {
                 buyMule3, buySmithore, buyCrystite, buyFood, buyEnergy, back);
         vbox2.getChildren().addAll(sellSmithore,
                 sellCrystite, sellFood, sellEnergy);
-        hbox.getChildren().addAll(vbox1, vbox2, stats);
+        hbox.getChildren().addAll(vbox1, vbox2, save, stats);
         pane.getChildren().add(hbox);
 
         return scene;
@@ -206,8 +220,12 @@ public class Store {
      * updateDC method
      */
     public void updateDC() {
-        dc.setStoreGUI(getGUI());
-        dc.setStore(this);
+        try {
+            dc.setStoreGUI(getGUI());
+            dc.setStore(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

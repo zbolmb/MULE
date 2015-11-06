@@ -29,11 +29,11 @@ public class Save {
             //true tells to append data.
             FileWriter fstream = new FileWriter("ihatemylife.txt", true);
             out = new BufferedWriter(fstream);
-            out.write(Configurations.getNum_Players());
+            out.write(Configurations.getNumPlayers());
             out.newLine();
             out.write(Configurations.getDifficulty());
             out.newLine();
-            out.write(Configurations.getMap_Type());
+            out.write(Configurations.getMapType());
             out.newLine();
             out.write(Configurations.getPhase());
             out.newLine();

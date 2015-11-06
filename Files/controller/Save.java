@@ -18,7 +18,7 @@ public class Save {
      */
     public static void save() throws IOException {
         try {
-            PrintWriter writer = new PrintWriter("ihatemylife.txt");
+            PrintWriter writer = new PrintWriter("savedGame.txt");
             writer.print("");
             writer.close();
         } catch (IOException e) {
@@ -27,44 +27,44 @@ public class Save {
         BufferedWriter out = null;
         try {
             //true tells to append data.
-            FileWriter fstream = new FileWriter("ihatemylife.txt", true);
+            FileWriter fstream = new FileWriter("savedGame.txt", true);
             out = new BufferedWriter(fstream);
-            out.write(Configurations.getNumPlayers());
+            out.write(Integer.toString(Configurations.getNumPlayers()).toString());
             out.newLine();
             out.write(Configurations.getDifficulty());
             out.newLine();
             out.write(Configurations.getMapType());
             out.newLine();
-            out.write(Configurations.getPhase());
+            out.write(Integer.toString(Configurations.getPhase()).toString());
             out.newLine();
-            out.write(Configurations.getRound());
+            out.write(Integer.toString(Configurations.getRound()).toString());
             out.newLine();
             out.write(Configurations.getCurPlayer().getName());
             out.newLine();
             for (Player p: Configurations.getPlayers()) {
-                out.write(p.getPhase());
+                out.write(Integer.toString(p.getPhase()));
                 out.newLine();
-                out.write(p.getCrystite());
+                out.write(Integer.toString(p.getCrystite()));
                 out.newLine();
-                out.write(p.getEnergy());
+                out.write(Integer.toString(p.getEnergy()));
                 out.newLine();
-                out.write(p.getFood());
+                out.write(Integer.toString(p.getFood()));
                 out.newLine();
                 out.write(p.getMessage());
                 out.newLine();
-                out.write(p.getMoney());
+                out.write(Integer.toString(p.getMoney()));
                 out.newLine();
-                out.write(p.getMule1());
+                out.write(Integer.toString(p.getMule1()));
                 out.newLine();
-                out.write(p.getMule2());
+                out.write(Integer.toString(p.getMule2()));
                 out.newLine();
-                out.write(p.getMule3());
+                out.write(Integer.toString(p.getMule3()));
                 out.newLine();
                 out.write(p.getName());
                 out.newLine();
                 out.write(p.getRace());
                 out.newLine();
-                out.write(p.getScore());
+                out.write(Integer.toString(p.getScore()));
                 out.newLine();
                 out.write(p.getColor().toString());
                 out.newLine();

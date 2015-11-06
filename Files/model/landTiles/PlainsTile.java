@@ -9,6 +9,6 @@ public class PlainsTile extends MapTiles {
      */
     public PlainsTile() {
         super(2, 3, 1, true, false, "Plains"
-            , Color.YELLOW, new Image("Model/Tiles/plains_Tile.jpg"));
+            , Color.YELLOW, new Image("model/tiles/plains_Tile.jpg"));
     }
 }

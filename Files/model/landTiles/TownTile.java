@@ -9,6 +9,6 @@ public class TownTile extends MapTiles {
      */
     public TownTile() {
         super(0, 0, 0, false, false, "Town"
-            , Color.BLACK, new Image("Model/Tiles/town_Tile.jpg"));
+            , Color.BLACK, new Image("model/tiles/town_Tile.jpg"));
     }
 }

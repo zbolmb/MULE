@@ -9,7 +9,7 @@ public class RiverTile extends MapTiles {
      */
     public RiverTile() {
         super(4, 2, 0, false, true, "River"
-            , Color.BLUE, new Image("Model/Tiles/river_Tile.jpg"));
+            , Color.BLUE, new Image("model/tiles/river_Tile.jpg"));
     }
 
 }
