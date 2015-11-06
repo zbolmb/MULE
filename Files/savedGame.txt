@@ -2,28 +2,32 @@
 Easy
 River
 1
-6
-dddd
-0
+2
+No Name
+1
+2
 0
 4
 0
-
-1624
+YOUR MULE WAS JUDGED 'BEST BUILT' AT THE COLONY FAIR. YOU WON $100.
+1100
 0
 0
 0
-dddd
+No Name
 Exile
-124
+0
 0x000000ff
-
+1
 Plains
 false
 false
 false
-Circle[centerX=250.0, centerY=150.0, radius=10.0, fill=0x000000ff]
-250.0
+675.0
+330.0
+10.0
+0x000000ff
+350.0
 150.0
-250.0
-150.0
+675.0
+330.0

@@ -257,10 +257,18 @@ public abstract class MapTiles {
     }
 
     /**
-     * getMuels
+     * get mules
      * @return mules
      */
     public boolean[] getMules() {
         return mules;
+    }
+
+    /**
+     * set mules
+     * @param mules boolean array
+     */
+    public void setMules(boolean[] mules) {
+        this.mules = mules;
     }
 }

@@ -1,4 +1,5 @@
 package controller;
+
 import model.Configurations;
 import model.Player;
 import java.io.BufferedWriter;
@@ -6,6 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javafx.scene.shape.Circle;
+import javafx.scene.paint.Color;
 
 /**
  * Created by William on 11/4/2015.
@@ -35,13 +38,16 @@ public class Save {
             out.newLine();
             out.write(Configurations.getMapType());
             out.newLine();
-            out.write(Integer.toString(Configurations.getPhase()).toString());
+            out.write(Integer.toString(Configurations.getPhase()));
             out.newLine();
-            out.write(Integer.toString(Configurations.getRound()).toString());
+            out.write(Integer.toString(Configurations.getRound()));
             out.newLine();
             out.write(Configurations.getCurPlayer().getName());
             out.newLine();
-            for (Player p: Configurations.getPlayers()) {
+            ArrayList<Player> list = Configurations.getPlayers();
+            out.write(Integer.toString(list.size()));
+            out.newLine();
+            for (Player p: list) {
                 out.write(Integer.toString(p.getPhase()));
                 out.newLine();
                 out.write(Integer.toString(p.getCrystite()));
@@ -50,7 +56,11 @@ public class Save {
                 out.newLine();
                 out.write(Integer.toString(p.getFood()));
                 out.newLine();
-                out.write(p.getMessage());
+                if (p.getMessage() == null || p.getMessage().equals("")) {
+                    out.write("empty");
+                } else{
+                    out.write(p.getMessage());
+                }
                 out.newLine();
                 out.write(Integer.toString(p.getMoney()));
                 out.newLine();
@@ -69,17 +79,25 @@ public class Save {
                 out.write(p.getColor().toString());
                 out.newLine();
                 ArrayList<model.landTiles.MapTiles> tiles = p.getOwned();
+                out.write(Integer.toString(tiles.size()));
                 out.newLine();
-                for (int i = 0; i < p.getOwned().size(); i++) {
+                for (int i = 0; i < tiles.size(); i++) {
                     out.write(tiles.get(i).getName());
                     out.newLine();
                     boolean[] mules = tiles.get(i).getMules();
-                    for (int j = 0; j < tiles.get(i).getMules().length; j++) {
+                    for (int j = 0; j < mules.length; j++) {
                         out.write(Boolean.toString(mules[j]));
                         out.newLine();
                     }
                 }
-                out.write(p.getPlayerIcon().toString());
+                Circle icon = p.getPlayerIcon();
+                out.write(Double.toString(icon.getCenterX()));
+                out.newLine();
+                out.write(Double.toString(icon.getCenterY()));
+                out.newLine();
+                out.write(Double.toString(icon.getRadius()));
+                out.newLine();
+                out.write(icon.getFill().toString());
                 out.newLine();
                 out.write(Double.toString(p.getStartX()));
                 out.newLine();

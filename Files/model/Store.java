@@ -182,12 +182,21 @@ public class Store {
         sellFood.setOnAction(e -> sell(3));
         sellEnergy = new Button("Sell Energy");
         sellEnergy.setOnAction(e -> sell(2));
-        
+
         // save button
         Button save = new Button("Save");
         save.setOnAction(e -> {
                 try {
                     controller.Save.save();
+                } catch (IOException x) {
+                    x.printStackTrace();
+                }
+            });
+
+        Button load = new Button("Load");
+        load.setOnAction(e -> {
+                try {
+                    controller.Load.load();
                 } catch (IOException x) {
                     x.printStackTrace();
                 }
@@ -210,7 +219,7 @@ public class Store {
                 buyMule3, buySmithore, buyCrystite, buyFood, buyEnergy, back);
         vbox2.getChildren().addAll(sellSmithore,
                 sellCrystite, sellFood, sellEnergy);
-        hbox.getChildren().addAll(vbox1, vbox2, save, stats);
+        hbox.getChildren().addAll(vbox1, vbox2, save, load, stats);
         pane.getChildren().add(hbox);
 
         return scene;

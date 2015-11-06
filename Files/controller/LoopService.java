@@ -30,7 +30,7 @@ public class LoopService extends AbstractLoopService {
     protected Player cp;
     protected int vx;
     protected int vy;
-    protected double time;
+    protected static double time;
     private Random rand = new Random();
 
     /**
@@ -199,11 +199,11 @@ public class LoopService extends AbstractLoopService {
                 move.setDir('u');
             }
             time = time + 0.02;
-            try {
-                Save.save();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            // try {
+            //     Save.save();
+            // } catch (IOException e) {
+            //     e.printStackTrace();
+            // }
         }
     }
 
@@ -220,5 +220,12 @@ public class LoopService extends AbstractLoopService {
      */
     public double getTime() {
         return time;
+    }
+
+    /**
+     * sets time to 120 seconds
+     */
+    public static void setTime() {
+        time = 120;
     }
 }
