@@ -128,4 +128,12 @@ public class TownMap {
     public void setAMap(TownTiles[][] aMap) {
         this.aMap = aMap;
     }
+    
+    /**
+     * getter for pane
+     * @return Pane pane
+     */
+    public Pane getPane() {
+        return pane;
+    }
 }

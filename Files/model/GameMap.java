@@ -176,7 +176,8 @@ public class GameMap {
             if (m == 2) {
                 t.setText("O");
             }
-            if (Configurations.getCurPlayer().getColor() == Color.BLACK) {
+            if (Configurations.getCurPlayer().getColor() == Color.BLACK 
+                    || Configurations.getCurPlayer().getColor().toString().equals("0x000000ff")) {
                 t.setFill(Color.WHITE);
             }
             mule.setFill(Configurations.getCurPlayer().getColor());

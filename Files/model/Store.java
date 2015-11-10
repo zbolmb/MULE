@@ -196,7 +196,7 @@ public class Store {
         Button load = new Button("Load");
         load.setOnAction(e -> {
                 try {
-                    controller.Load.load();
+                    controller.Load.load(dc.getMainWindow());
                 } catch (IOException x) {
                     x.printStackTrace();
                 }

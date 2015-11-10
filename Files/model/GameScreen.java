@@ -49,16 +49,12 @@ public class GameScreen {
 
         layout.add(dc.getMapGUI(), 1, 1);
 
-        sq = new SelectionSquare();
-        for (Rectangle r : sq.sq) {
-            dc.getMapGUI().getChildren().add(r);
-        }
-
-        updateText();
-        Util.addMovementHandlers(scene);
-        Util.addMovementHandlers(dc.getTownMapGUI());
-
-        dc.getMapGUI().addEventHandler(MouseEvent.MOUSE_MOVED, e -> {
+        if (Configurations.getRound() <= 0) {
+            sq = new SelectionSquare();
+            for (Rectangle r : sq.sq) {
+                dc.getMapGUI().getChildren().add(r);
+            }
+            dc.getMapGUI().addEventHandler(MouseEvent.MOUSE_MOVED, e -> {
                 if (Configurations.getPhase() == 0) {
                     double x = e.getX();
                     double y = e.getY();
@@ -66,9 +62,9 @@ public class GameScreen {
                 }
             });
 
-        // is claimed for the current player, if valid.
-        // Does nothing if tile invalid
-        dc.getMapGUI().addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+            // is claimed for the current player, if valid.
+            // Does nothing if tile invalid
+            dc.getMapGUI().addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
                 if (Configurations.getPhase() == 0) {
                     double x = e.getX();
                     double y = e.getY();
@@ -84,11 +80,11 @@ public class GameScreen {
                 }
             });
 
-        /**
-         * handler that checks for keypress "p"
-         * when p is pressed, current player passes his / her turn
-         */
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, p -> {
+            /**
+             * handler that checks for keypress "p"
+             * when p is pressed, current player passes his / her turn
+             */
+            scene.addEventHandler(KeyEvent.KEY_PRESSED, p -> {
                 if (Configurations.getPhase() == 0
                         && p.getCode() == KeyCode.P) {
                     Configurations.getCurPlayer().setPassed(true);
@@ -103,6 +99,13 @@ public class GameScreen {
                     }
                 }
             });
+        }
+
+        updateText();
+        Util.addMovementHandlers(scene);
+        Util.addMovementHandlers(dc.getTownMapGUI());
+
+      
 
         layout.setHgap(20);
         layout.setVgap(20);

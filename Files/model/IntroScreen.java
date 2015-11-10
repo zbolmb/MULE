@@ -13,6 +13,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import java.io.IOException;
+
 
 
 /**
@@ -64,6 +66,7 @@ public class IntroScreen {
         Text playerNumText;
         //Next
         Button next;
+        Button load;
         /**
          * Difficulty Settings
          */
@@ -142,6 +145,15 @@ public class IntroScreen {
                 dc.getMainWindow().setScene((dc.getPlayerSettingsGUI()).get(0));
                 dc.getMainWindow().setTitle("Player 1");
             });
+
+        load = new Button("Load");
+        load.setOnAction(e -> {
+                try {
+                    controller.Load.load(dc.getMainWindow());
+                } catch (IOException x) {
+                    x.printStackTrace();
+                }
+            });
         /**
          * Add To GridPane
          */
@@ -150,7 +162,8 @@ public class IntroScreen {
                 mapTypeText, playerNumText);
         layout.add(playerNum, 1, 3, 2, 1);
         layout.add(text, 4, 2);
-        layout.add(next, 3, 5);
+        layout.add(load, 3, 5);
+        layout.add(next, 2, 5);
         layout.setHgap(20);
         layout.setVgap(20);
         layout.setPadding(new Insets(30, 0, 0, 35));

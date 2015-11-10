@@ -41,7 +41,7 @@ public class Player {
      * Constructor for Player
      */
     public Player() {
-        name = "No Name";
+        name = "NoName";
         race = "Exile";
         color = Color.BLACK;
         money = 1000;
