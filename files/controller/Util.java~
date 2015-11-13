@@ -178,6 +178,15 @@ public class Util {
             dc.getGameScreen().updateText();
         }
     }
+    
+    /**
+     * adds players in Util
+     */
+    public static void addPlayers() {
+        for (Player p : Configurations.getPlayers()) {
+            playerOrder.add(p);
+        }
+    }
 
     /**
      * Handlers check for keypresses left, right, up, down arrow keys
@@ -232,7 +241,7 @@ public class Util {
             return;
         }
         DisplayContents dc = Configurations.getDisplayContents();
-        if (!(tile instanceof townTile) && tile.getOwner().equals("None")) {
+        if (!(tile instanceof TownTile) && tile.getOwner().equals("None")) {
             Player cp = Configurations.getCurPlayer();
             if (cp.getOwned().size() <= 0) {
                 int rx = (int) (x / 100) * 100;
@@ -285,7 +294,7 @@ public class Util {
                 }
             }
         }
-        Save.save();
+        // Save.save();
     }
 
     /**

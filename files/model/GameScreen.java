@@ -55,57 +55,57 @@ public class GameScreen {
                 dc.getMapGUI().getChildren().add(r);
             }
             dc.getMapGUI().addEventHandler(MouseEvent.MOUSE_MOVED, e -> {
-                if (Configurations.getPhase() == 0) {
-                    double x = e.getX();
-                    double y = e.getY();
-                    sq.moveSelection(x, y);
-                }
-            });
+                    if (Configurations.getPhase() == 0) {
+                        double x = e.getX();
+                        double y = e.getY();
+                        sq.moveSelection(x, y);
+                    }
+                });
 
             // is claimed for the current player, if valid.
             // Does nothing if tile invalid
             dc.getMapGUI().addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
-                if (Configurations.getPhase() == 0) {
-                    double x = e.getX();
-                    double y = e.getY();
-                    try {
-                        Util.claimTile(x, y, sq.getTile(x, y, dc.getMap()));
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
+                    if (Configurations.getPhase() == 0) {
+                        double x = e.getX();
+                        double y = e.getY();
+                        try {
+                            Util.claimTile(x, y, sq.getTile(x, y, dc.getMap()));
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
+                        if (Configurations.getRound() > 0) {
+                            sq.remove();
+                            Configurations.setPhase(1);
+                        }
                     }
-                    if (Configurations.getRound() > 0) {
-                        sq.remove();
-                        Configurations.setPhase(1);
-                    }
-                }
-            });
+                });
 
             /**
              * handler that checks for keypress "p"
              * when p is pressed, current player passes his / her turn
              */
             scene.addEventHandler(KeyEvent.KEY_PRESSED, p -> {
-                if (Configurations.getPhase() == 0
-                        && p.getCode() == KeyCode.P) {
-                    Configurations.getCurPlayer().setPassed(true);
-                    try {
-                        Util.incrementTurn();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if (Configurations.getPhase() == 0
+                            && p.getCode() == KeyCode.P) {
+                        Configurations.getCurPlayer().setPassed(true);
+                        try {
+                            Util.incrementTurn();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        if (Configurations.getRound() > 0) {
+                            sq.remove();
+                            Configurations.setPhase(1);
+                        }
                     }
-                    if (Configurations.getRound() > 0) {
-                        sq.remove();
-                        Configurations.setPhase(1);
-                    }
-                }
-            });
+                });
         }
 
         updateText();
         Util.addMovementHandlers(scene);
         Util.addMovementHandlers(dc.getTownMapGUI());
 
-      
+
 
         layout.setHgap(20);
         layout.setVgap(20);

@@ -58,6 +58,7 @@ public class JUnitHsu {
     public void testProduce() throws IOException {
         Player p1 = new Player();
         p1.setOwned(tiles1);
+        p1.setEnergy(0);
         Player p2 = new Player();
         p2.setOwned(tiles2);
         Player p3 = new Player();
@@ -70,11 +71,15 @@ public class JUnitHsu {
         players.add(p4);
         Configurations.setPlayers(players);
         Util.produce();
-        assertEquals(2, players.get(0).getFood());
+        //tests for no energy, nothing produced
+        assertEquals(0, players.get(0).getFood());
+        //everything produced, 4 energy - 2 + 1 = 3
         assertEquals(4, players.get(1).getFood());
         assertEquals(3, players.get(1).getEnergy());
         assertEquals(0, players.get(1).getSmithore());
+
         assertEquals(4, players.get(2).getEnergy());
+
         assertEquals(7, players.get(3).getSmithore());
 
 

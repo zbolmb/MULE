@@ -59,6 +59,9 @@ public class Player {
 
     /**
      * Constructor taking in stuff
+     * @param name String
+     * @param race String
+     * @param color Color
      */
     public Player(String name, String race, Color color) {
         this.name = name;

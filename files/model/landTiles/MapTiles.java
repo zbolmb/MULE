@@ -33,9 +33,6 @@ public abstract class MapTiles {
     private Color mapType;
     //-----------------------------------------------------------------
 
-
-
-
     /**
      * The map tile class
      * @param food the food generated

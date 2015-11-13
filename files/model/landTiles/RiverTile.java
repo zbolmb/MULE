@@ -12,6 +12,10 @@ public class RiverTile extends MapTiles {
             , Color.BLUE, new Image("files/model/tiles/river_Tile.jpg"));
     }
 
+    /**
+     * constructor for RiverTile
+     * @param a int
+     */
     public RiverTile(int a) {
         super(4, 2, a, false, true, "River"
                 , Color.BLUE);

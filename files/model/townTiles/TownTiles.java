@@ -18,7 +18,11 @@ public abstract class TownTiles {
     private Color mapType;
     //-----------------------------------------------------------------
 
-
+    /**
+     * constructor for Towntiles
+     * @param name String
+     * @param mapType Color
+     */
     public TownTiles(String name, Color mapType) {
         this.mapType = mapType;
         this.name = name;
@@ -26,18 +30,61 @@ public abstract class TownTiles {
     }
 
     /**
-     * Getters and Setters
-     * @return various
+     * gets map type
+     * @return Color mapType
      */
+    public Color getMapType() {
+        return mapType;
+    }
 
-    public Color getMapType() { return mapType; }
-    public void getMapType(Color mapType) { this.mapType = mapType; }
-    public String getName() { return name; }
-    public static int getW() { return w; };
-    public static int getH() { return h; };
+    /**
+     * sets map type
+     * @param mapType Color
+     */
+    public void setMapType(Color mapType) {
+        this.mapType = mapType;
+    }
+
+    /**
+     * gets name
+     * @return String name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * gets width
+     * @return int width
+     */
+    public static int getW() {
+        return w;
+    }
+
+    /**
+     * gets height
+     * @return int height
+     */
+    public static int getH() {
+        return h;
+    }
+
     //-------------------------------------------------------------------
-    public Rectangle getMapTileGui() { return mapTileGui;}
-    public void setMapTileGui(Rectangle mapTileGui) { this.mapTileGui = mapTileGui; };
+    /**
+     * gets map tile gui
+     * @return Rectangle map tile gui
+     */
+    public Rectangle getMapTileGui() {
+        return mapTileGui;
+    }
+
+    /**
+     * sets map tile gui
+     * @param mapTileGui Rectangle
+     */
+    public void setMapTileGui(Rectangle mapTileGui) {
+        this.mapTileGui = mapTileGui;
+    }
     //-------------------------------------------------------------------
 
 }

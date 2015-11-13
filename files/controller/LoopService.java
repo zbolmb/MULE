@@ -59,8 +59,7 @@ public class LoopService extends AbstractLoopService {
                 Util.next();
                 time = 0;
             }
-            //System.out.println(cp.getPlayerIcon().getCenterX() + ":" + cp.getPlayerIcon().getCenterY());
-            //System.out.println(cp.getPhase());
+
             /**In Game Screen**/
             if (cp.getPhase() == 0) {
                 cp = Configurations.getCurPlayer();
@@ -125,7 +124,6 @@ public class LoopService extends AbstractLoopService {
                 /** In Town **/
             } else if (cp.getPhase() == 1) {
                 cp = Configurations.getCurPlayer();
-                //System.out.println(cp.getPlayerIcon().getCenterX() + ":" + cp.getPlayerIcon().getCenterY());
                 //leaving town
                 if (cp.getX() < 5 || cp.getX() > 795
                     || cp.getY() < 5 || cp.getY() > 495) {

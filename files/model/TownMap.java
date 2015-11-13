@@ -128,7 +128,7 @@ public class TownMap {
     public void setAMap(TownTiles[][] aMap) {
         this.aMap = aMap;
     }
-    
+
     /**
      * getter for pane
      * @return Pane pane

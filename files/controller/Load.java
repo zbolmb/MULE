@@ -2,9 +2,6 @@ package files.controller;
 
 import files.model.Configurations;
 import files.model.Player;
-import files.model.landTiles.PlainsTile;
-import files.model.landTiles.RiverTile;
-import files.model.landTiles.TownTile;
 import files.model.landTiles.MapTiles;
 import files.model.GameScreen;
 
@@ -12,7 +9,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -28,6 +24,7 @@ public class Load {
     /**
      * loads the saved game from savedGame.txt
      * @throws IOException exception
+     * @param primaryStage Stage needed
      */
     public static void load(Stage primaryStage) throws IOException {
 
@@ -65,24 +62,8 @@ public class Load {
                 String pCol = br.readLine();
                 p.setColor(Color.web(pCol));
 
-                ArrayList<files.model.landTiles.MapTiles> tiles = new ArrayList<>();
-                //                int numTiles = Integer.parseInt(br.readLine());
-                //                for (int j = 0; j < numTiles; j++) {
-                //                    String tileType = br.readLine();
-                //                    MapTiles tile;
-                //                    if (tileType.equals("Plains")) {
-                //                        tile = new PlainsTile();
-                //                    } else if (tileType.equals("River")) {
-                //                        tile = new RiverTile();
-                //                    } else {
-                //                        tile = new TownTile();
-                //                    }
-                //                    boolean[] mules = new boolean[3];
-                //                    for (int k = 0; k < 3; k++) {
-                //                        mules[k] = stringBoolean(br.readLine());
-                //                    }
-                //                    tile.setMules(mules);
-                //                }
+                ArrayList<files.model.landTiles.MapTiles> tiles =
+                        new ArrayList<>();
 
                 double cX = Double.parseDouble(br.readLine());
                 double cY = Double.parseDouble(br.readLine());
@@ -101,7 +82,8 @@ public class Load {
             Configurations.setCurPlayer(Util.playerOrder.peek());
             GameScreen gameScreen = new GameScreen();
             gameScreen.updateDC();
-            MapTiles[][] map = Configurations.getDisplayContents().getMap().getAMap();
+            MapTiles[][] map = Configurations.getDisplayContents()
+                    .getMap().getAMap();
             String tmp;
             boolean[] mules = new boolean[3];
             for (int i = 0; i < map.length; i++) {
@@ -112,7 +94,8 @@ public class Load {
                         for (Player p : Configurations.getPlayers()) {
                             if (p.getName().equals(map[i][j].getOwner())) {
                                 p.getOwned().add(map[i][j]);
-                                Rectangle[] sq = Util.drawSelectionSq(i * 100, j * 100, p.getColor());
+                                Rectangle[] sq = Util.drawSelectionSq(
+                                        i * 100, j * 100, p.getColor());
                                 for (Rectangle r : sq) {
                                     dc.getMapGUI().getChildren().add(r);
                                 }
@@ -138,13 +121,18 @@ public class Load {
                 if (p.getPhase() == 0) {
                     dc.getMapGUI().getChildren().add(p.getPlayerIcon());
                 } else {
-                    dc.getTownMap().getPane().getChildren().add(p.getPlayerIcon());
+                    dc.getTownMap().getPane().getChildren()
+                            .add(p.getPlayerIcon());
                 }
             }
             if (Configurations.getCurPlayer().getPhase() == 0) {
-                Configurations.getDisplayContents().getMainWindow().setScene(Configurations.getDisplayContents().getGameScreenGUI());
+                Configurations.getDisplayContents().getMainWindow()
+                        .setScene(Configurations.getDisplayContents()
+                        .getGameScreenGUI());
             } else {
-                Configurations.getDisplayContents().getMainWindow().setScene(Configurations.getDisplayContents().getTownMapGUI());
+                Configurations.getDisplayContents().getMainWindow()
+                        .setScene(Configurations.getDisplayContents()
+                        .getTownMapGUI());
             }
 
         } catch (IOException e) {
@@ -159,7 +147,8 @@ public class Load {
 
     /**
      * converts String to boolean
-     * @param String boolean value
+     * @param str String boolean value
+     * @return boolean value
      */
     private static boolean stringBoolean(String str) {
         return str.equals("true");

@@ -12,6 +12,10 @@ public class M2Tile extends MapTiles {
             , Color.BROWN, new Image("files/model/tiles/m2_Tile.jpg"));
     }
 
+    /**
+     * constructor for M2Tile
+     * @param a int
+     */
     public M2Tile(int a) {
         super(a, 1, 3, true, true, "Mountain 2"
                 , Color.BROWN);

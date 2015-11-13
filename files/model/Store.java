@@ -1,7 +1,6 @@
 package files.model;
 
 import files.controller.DisplayContents;
-import files.controller.Save;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -24,7 +23,7 @@ public class Store {
     protected int mule3;
 
     /**
-     * Store method
+     * constructor for Store
      */
     public Store() {
         dc = Configurations.getDisplayContents();
@@ -130,14 +129,12 @@ public class Store {
                     cp.setMoney(cp.getMoney() - 300);
                 }
             }
-        } else {
-           // System.out.print("Not enoough money");
         }
     }
 
     /**
      * getGui method
-     * @return data
+     * @return Scene data
      * @throws IOException exception
      */
     public Scene getGUI() throws IOException {
@@ -162,7 +159,7 @@ public class Store {
 
         Button back;
 
-        // -------------------- Action Handlers of Buttons ---------------------
+        // ------------------ Action Handlers of Buttons --------------------
 
         buyMule1 = new Button("Buy Food Mule");
         buyMule1.setOnAction(e -> buyMule(1));
@@ -197,15 +194,6 @@ public class Store {
                 }
             });
 
-        Button load = new Button("Load");
-        load.setOnAction(e -> {
-                try {
-                    files.controller.Load.load(dc.getMainWindow());
-                } catch (IOException x) {
-                    x.printStackTrace();
-                }
-            });
-
         updateText();
         back = new Button("Back");
         back.setOnAction(e -> {
@@ -223,7 +211,7 @@ public class Store {
                 buyMule3, buySmithore, buyCrystite, buyFood, buyEnergy, back);
         vbox2.getChildren().addAll(sellSmithore,
                 sellCrystite, sellFood, sellEnergy);
-        hbox.getChildren().addAll(vbox1, vbox2, save, load, stats);
+        hbox.getChildren().addAll(vbox1, vbox2, save, stats);
         pane.getChildren().add(hbox);
 
         return scene;
@@ -257,6 +245,7 @@ public class Store {
 
     /**
      * getter for mules
+     * @return int][] mules
      */
     public int[] getMules() {
         int[] mules = {mule1, mule2, mule3};
@@ -265,6 +254,7 @@ public class Store {
 
     /**
      * getter for smithore
+     * @return int smithore
      */
     public int getSmithore() {
         return smithore;
@@ -272,6 +262,7 @@ public class Store {
 
     /**
      * getter for energy
+     * @return int energy
      */
     public int getEnergy() {
         return energy;
@@ -279,6 +270,7 @@ public class Store {
 
     /**
      * getter for food
+     * @return int food
      */
     public int getFood() {
         return food;
@@ -286,6 +278,7 @@ public class Store {
 
     /**
      * getter for crystite
+     * @return int crystite
      */
     public int getCrystite() {
         return crystite;

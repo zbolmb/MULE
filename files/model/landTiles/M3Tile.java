@@ -8,10 +8,15 @@ public class M3Tile extends MapTiles {
      * The m3Tile class
      */
     public M3Tile() {
-        super(1, 1, 4, true, true, "Mountain 3"
-            , Color.web("0x382E1C"), new Image("files/model/tiles/m3_Tile.jpg"));
+        super(1, 1, 4, true, true, "Mountain 3",
+                Color.web("0x382E1C"),
+                new Image("files/model/tiles/m3_Tile.jpg"));
     }
 
+    /**
+     * constructor for M3Tile
+     * @param a int
+     */
     public M3Tile(int a) {
         super(a, 1, 4, true, true, "Mountain 3"
                 , Color.web("0x382E1C"));

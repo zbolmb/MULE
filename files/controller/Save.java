@@ -11,7 +11,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javafx.scene.shape.Circle;
-import javafx.scene.paint.Color;
 
 /**
  * Created by William on 11/4/2015.
@@ -35,7 +34,8 @@ public class Save {
             //true tells to append data.
             FileWriter fstream = new FileWriter("savedGame.txt", true);
             out = new BufferedWriter(fstream);
-            out.write(Integer.toString(Configurations.getNumPlayers()).toString());
+            out.write(Integer.toString(Configurations
+                    .getNumPlayers()).toString());
             out.newLine();
             out.write(Configurations.getDifficulty());
             out.newLine();
@@ -104,10 +104,11 @@ public class Save {
                 out.newLine();
                 out.write(Double.toString(p.getY()) + "\n");
             }
-            MapTiles[][] map = Configurations.getDisplayContents().getMap().getAMap();
+            MapTiles[][] map = Configurations.getDisplayContents()
+                    .getMap().getAMap();
             for (int i = 0; i < map.length; i++) {
                 for (int j = 0; j < map[0].length; j++) {
-                    out.write(map[i][j].getOwner() + " " 
+                    out.write(map[i][j].getOwner() + " "
                             + map[i][j].getMules()[0] + " "
                             + map[i][j].getMules()[1] + " "
                             + map[i][j].getMules()[2] + "\n");

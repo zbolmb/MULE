@@ -12,6 +12,10 @@ public class PlainsTile extends MapTiles {
             , Color.YELLOW, new Image("files/model/tiles/plains_Tile.jpg"));
     }
 
+    /**
+     * constructor for PlainsTile
+     * @param a int
+     */
     public PlainsTile(int a) {
         super(2, 3, a, true, false, "Plains"
                 , Color.YELLOW);

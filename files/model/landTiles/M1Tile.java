@@ -12,6 +12,10 @@ public class M1Tile extends MapTiles {
                 new Image("files/model/tiles/m1_Tile.jpg"));
     }
 
+    /**
+     * constructor for M1Tile
+     * @param a int
+     */
     public M1Tile(int a) {
         super(a, 1, 2, true, true, "Mountain 1", Color.web("0xBAA378"));
     }

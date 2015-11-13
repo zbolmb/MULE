@@ -178,7 +178,10 @@ public class Util {
             dc.getGameScreen().updateText();
         }
     }
-    
+
+    /**
+     * adds players in Util
+     */
     public static void addPlayers() {
         for (Player p : Configurations.getPlayers()) {
             playerOrder.add(p);
@@ -328,5 +331,13 @@ public class Util {
         }
 
         return randomEvents[rand].getMessage();
+    }
+
+    /**
+     * gets player order
+     * @return PriorityQueue playerOrder
+     */
+    public static PriorityQueue<Player> getPlayerOrder() {
+        return playerOrder;
     }
 }
