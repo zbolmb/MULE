@@ -284,4 +284,35 @@ public class Store {
     public int getCrystite() {
         return crystite;
     }
+
+    /*
+     * setter for smithore
+     * @param s number of smithore
+     */
+    public void setSmithore(int s) {
+        smithore = s;
+    }
+
+    /*
+     * setter for energy
+     * @param e number of energy
+     */
+    public void setEnergy(int e) {
+        energy = e;
+    }
+
+    /*
+     * setter for food
+     * @param f number of food
+     */
+    public void setFood(int f) {
+        food = f;
+    }
+
+    /* setter for crystite
+     * @param c number of crystite
+     */
+    public void setCrystite(int c) {
+        crystite = c;
+    }
 }
