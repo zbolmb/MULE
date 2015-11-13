@@ -1,0 +1,165 @@
+package files.controller;
+
+import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
+
+import javafx.concurrent.ScheduledService;
+import javafx.concurrent.Task;
+import javafx.util.Duration;
+
+/**
+ * Simple Looping Service. Useful for games, Simulations,
+ * or other items that require a running "Loop".
+ *
+ * @author William Hsu, Zhijian Li, Min Jung, Will Su, Karl Nicodemus
+ */
+public abstract class AbstractLoopService extends ScheduledService<Void> {
+    private final long oneNano = 1_000_000_000L;
+    private final double oneNanoInv = 1f / 1_000_000_000L;
+
+    private long startTime
+    private long previousTime;
+    private double frameRate
+    private double deltaTime;
+
+    private final LoopThreadFactory tf = new LoopThreadFactory();
+    private final ExecutorService cachedExecutor =
+            Executors.newCachedThreadPool(tf);
+
+    /**
+     * constructor
+     */
+    protected AbstractLoopService() {
+        this.setPeriod(Duration.millis(16.667)); // eqiv to 60 fps
+        this.setExecutor(cachedExecutor);
+    }
+
+    /**
+     * get time elapsed
+     * @return double time elapsed
+     */
+    protected final double getTimeElapsed() {
+        return getCurrentTime() * oneNanoInv;
+    }
+
+    /**
+     * get current time
+     * @return long current time
+     */
+    protected final long getCurrentTime() {
+        return System.nanoTime() - startTime;
+    }
+
+    /**
+     * get frame rate
+     * @return double frame rate
+     */
+    protected final double getFrameRate() {
+        return frameRate;
+    }
+
+    /**
+     * get delta time
+     * @return double delta time
+     */
+    protected final double getDeltaTime() {
+        return deltaTime;
+    }
+
+    /**
+     * update time
+     */
+    private void updateTimer() {
+        deltaTime = (getCurrentTime() - previousTime) * (1.0f / oneNano);
+        frameRate = 1.0f / deltaTime;
+        previousTime = getCurrentTime();
+    }
+
+    @Override
+    public void start() {
+        super.start();
+        if (startTime <= 0) {
+            startTime = System.nanoTime();
+        }
+    }
+
+    @Override
+    public void reset() {
+        super.reset();
+        startTime = System.nanoTime();
+        previousTime = getCurrentTime();
+    }
+
+    @Override
+    protected Task<Void> createTask() {
+        return new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                updateTimer();
+                // perform needed background tasks here ..
+                runInBackground();
+
+                return null;
+            }
+        };
+    }
+
+    @Override
+    protected void succeeded() {
+        super.succeeded();
+        // Setup to handle Actions for UI here
+        try {
+            runOnFXThread();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void failed() {
+        getException().printStackTrace(System.err);
+    }
+
+    @Override
+    public String toString() {
+        return "ElapsedTime: " + getCurrentTime() + "\nTime in seconds: "
+                + getTimeElapsed()
+                + "\nFrame Rate: " + getFrameRate()
+                + "\nDeltaTime: " + getDeltaTime();
+    }
+
+    /**------------------------------------------------------------------------
+     * Methods for access
+     */
+
+    /**
+     * runs on FX thread
+     * @throws IOException exception
+     */
+    protected abstract void runOnFXThread() throws IOException;
+
+    /**
+     * runs in background
+     */
+    protected abstract void runInBackground();
+
+    /**------------------------------------------------------------------------
+     * loop thread factory
+     */
+    private final class LoopThreadFactory implements ThreadFactory {
+
+        // public LoopThreadFactory() {
+        // }
+
+        @Override
+        public Thread newThread(Runnable r) {
+            Thread t = new Thread(r, "NanoTimerThread");
+            t.setPriority(Thread.NORM_PRIORITY + 1);
+            t.setDaemon(true);
+            return t;
+        }
+
+    }
+}
