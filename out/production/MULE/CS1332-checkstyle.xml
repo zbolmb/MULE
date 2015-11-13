@@ -8,11 +8,11 @@
 
         <property name="basedir" value="${basedir}"/>
     -->
-    
+
     <!-- Checks for Size Violations.                    -->
     <!-- See http://checkstyle.sf.net/config_sizes.html -->
     <module name="FileLength"/>
-    
+
     <!-- Checks for whitespace                               -->
     <!-- See http://checkstyle.sf.net/config_whitespace.html -->
     <module name="FileTabCharacter"/>
@@ -81,13 +81,12 @@
 
         <!-- Checks for common coding problems               -->
         <!-- See http://checkstyle.sf.net/config_coding.html -->
-        
+
         <module name="EmptyStatement"/>
         <module name="IllegalInstantiation"/>
         <module name="InnerAssignment"/>
 
         <module name="MissingSwitchDefault"/>
-        <module name="FallThrough"/>
         <!--<module name="RedundantThrows"/>-->
         <module name="SimplifyBooleanExpression"/>
         <module name="SimplifyBooleanReturn"/>
@@ -122,7 +121,9 @@
         <module name="DefaultComesLast"/>
         <module name="OneStatementPerLine"/>
         <module name="InnerTypeLast"/>
-        <module name="OneTopLevelClass"/>
+        <module name="OneTopLevelClass">
+            <property name="tokens" value="CLASS_DEF"/>
+        </module>
     </module>
 
 </module>

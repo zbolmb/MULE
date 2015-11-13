@@ -1,1 +1,1 @@
-java View.GUI
+java files.view.GUI

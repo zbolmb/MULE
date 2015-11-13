@@ -63,6 +63,32 @@ public abstract class MapTiles {
         this.img = img;
         this.mules = new boolean[3];
     }
+
+    /**
+     * The map tile class
+     * @param food the food generated
+     * @param energy the energy generated
+     * @param ore the ore generated
+     * @param crystite whether crystite is present
+     * @param highlightable if it is highlitable
+     * @param mapType ** This is temporary. Should be an image **
+     * @param name The name of the tile
+     *
+     */
+    public MapTiles(int food, int energy, int ore, boolean crystite,
+                    boolean highlightable, String name,
+                    Color mapType) {
+        this.food = food;
+        this.energy = energy;
+        this.ore = ore;
+        this.crystite = crystite;
+        this.highlightable = highlightable;
+        this.mapTileGui = new Rectangle(w, h, mapType);
+        this.mapType = mapType;
+        this.owner = "None";
+        this.name = name;
+        this.mules = new boolean[3];
+    }
     /**
     * Getters and Setters
     * @return various
