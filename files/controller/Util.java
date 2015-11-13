@@ -33,30 +33,30 @@ public class Util {
     protected static DisplayContents dc = Configurations.getDisplayContents();
     protected static PriorityQueue<Player> playerOrder =
             new PriorityQueue<>((Player a, Player b) -> {
-                return b.getScore() - a.getScore();
-            });
+            return b.getScore() - a.getScore();
+        });
 
     protected static RandomEvent[] randomEvents = {
-            new RandomEvent(100, 0, 0, "YOU FOUND A DEAD MOOSE RAT AND SOLD "
-                    + "THE HIDE. YOU EARNED $100."),
-            new RandomEvent(100, 0, 0, "YOUR MULE WAS JUDGED 'BEST BUILT' "
-                    + "AT THE COLONY FAIR. YOU WON $100."),
-            new RandomEvent(150, 0, 0, "A CHARITY FROM YOUR HOME-WORLD TOOK "
-                    + "PITY ON YOU AND SENT $150."),
-            new RandomEvent(400, 0, 0, "THE MUSEUM BOUGHT YOUR ANTIQUE "
-                    + "PERSONAL COMPUTER FOR $400."),
-            new RandomEvent(300, 0, 0, "YOUR OFFWORLD INVESTMENTS IN "
-                    + "ARTIFICIAL DUMBNESS PAID $300 IN DIVIDENDS."),
-            new RandomEvent(-300, 0, 0, "YOUR SPACE GYPSY INLAWS MADE A "
-                    + "MESS OF THE TOWN. IT COST YOU $300 TO CLEAN IT UP."),
-            new RandomEvent(-200, 0, 0, "YOUR CHILD WAS BITTEN BY A BAT "
-                    + "LIZARD AND THE HOSPITAL BILL COST YOU $200."),
-            new RandomEvent(-200, 0, 0, "YOU LOST $200 BETTING ON THE "
-                    + "TWO-LEGGED KAZINGA RACES."),
-            new RandomEvent(-150, 0, 0, "ONE OF YOUR MULES LOST A BOLT. "
-                    + "REPAIRS COST YOU $150."),
-            new RandomEvent(-200, 0, 0, "FLYING CAT-BUGS ATE THE ROOF "
-                    + "OFF YOUR HOUSE. REPAIRS COST $200.")
+        new RandomEvent(100, 0, 0, "YOU FOUND A DEAD MOOSE RAT AND SOLD "
+                + "THE HIDE. YOU EARNED $100."),
+        new RandomEvent(100, 0, 0, "YOUR MULE WAS JUDGED 'BEST BUILT' "
+                + "AT THE COLONY FAIR. YOU WON $100."),
+        new RandomEvent(150, 0, 0, "A CHARITY FROM YOUR HOME-WORLD TOOK "
+                + "PITY ON YOU AND SENT $150."),
+        new RandomEvent(400, 0, 0, "THE MUSEUM BOUGHT YOUR ANTIQUE "
+                + "PERSONAL COMPUTER FOR $400."),
+        new RandomEvent(300, 0, 0, "YOUR OFFWORLD INVESTMENTS IN "
+                + "ARTIFICIAL DUMBNESS PAID $300 IN DIVIDENDS."),
+        new RandomEvent(-300, 0, 0, "YOUR SPACE GYPSY INLAWS MADE A "
+                + "MESS OF THE TOWN. IT COST YOU $300 TO CLEAN IT UP."),
+        new RandomEvent(-200, 0, 0, "YOUR CHILD WAS BITTEN BY A BAT "
+                + "LIZARD AND THE HOSPITAL BILL COST YOU $200."),
+        new RandomEvent(-200, 0, 0, "YOU LOST $200 BETTING ON THE "
+                + "TWO-LEGGED KAZINGA RACES."),
+        new RandomEvent(-150, 0, 0, "ONE OF YOUR MULES LOST A BOLT. "
+                + "REPAIRS COST YOU $150."),
+        new RandomEvent(-200, 0, 0, "FLYING CAT-BUGS ATE THE ROOF "
+                + "OFF YOUR HOUSE. REPAIRS COST $200.")
     };
 
     /**
@@ -199,33 +199,33 @@ public class Util {
      */
     public static void addMovementHandlers(Scene scene) {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, k -> {
-            if (k.getCode() == KeyCode.LEFT) {
-                dc.getLoopService().move.setL(-5);
-            }
-            if (k.getCode() == KeyCode.RIGHT) {
-                dc.getLoopService().move.setR(5);
-            }
-            if (k.getCode() == KeyCode.UP) {
-                dc.getLoopService().move.setU(-5);
-            }
-            if (k.getCode() == KeyCode.DOWN) {
-                dc.getLoopService().move.setD(5);
-            }
-        });
+                if (k.getCode() == KeyCode.LEFT) {
+                    dc.getLoopService().move.setL(-5);
+                }
+                if (k.getCode() == KeyCode.RIGHT) {
+                    dc.getLoopService().move.setR(5);
+                }
+                if (k.getCode() == KeyCode.UP) {
+                    dc.getLoopService().move.setU(-5);
+                }
+                if (k.getCode() == KeyCode.DOWN) {
+                    dc.getLoopService().move.setD(5);
+                }
+            });
         scene.addEventHandler(KeyEvent.KEY_RELEASED, k -> {
-            if (k.getCode() == KeyCode.LEFT) {
-                dc.getLoopService().move.setL(0);
-            }
-            if (k.getCode() == KeyCode.RIGHT) {
-                dc.getLoopService().move.setR(0);
-            }
-            if (k.getCode() == KeyCode.UP) {
-                dc.getLoopService().move.setU(0);
-            }
-            if (k.getCode() == KeyCode.DOWN) {
-                dc.getLoopService().move.setD(0);
-            }
-        });
+                if (k.getCode() == KeyCode.LEFT) {
+                    dc.getLoopService().move.setL(0);
+                }
+                if (k.getCode() == KeyCode.RIGHT) {
+                    dc.getLoopService().move.setR(0);
+                }
+                if (k.getCode() == KeyCode.UP) {
+                    dc.getLoopService().move.setU(0);
+                }
+                if (k.getCode() == KeyCode.DOWN) {
+                    dc.getLoopService().move.setD(0);
+                }
+            });
     }
 
     /**
