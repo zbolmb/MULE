@@ -76,7 +76,7 @@ public class Store {
             food--;
             cp.setMoney(cp.getMoney() - 50);
         } else {
-            System.out.println("Not enough money or store does not carry");
+            //System.out.println("Not enough money or store does not carry");
         }
     }
 
@@ -103,8 +103,6 @@ public class Store {
             cp.setFood(cp.getFood() - 1);
             food++;
             cp.setMoney(cp.getMoney() + 50);
-        } else {
-            System.out.println("Can't sell, do not have enough of that item");
         }
     }
 
@@ -127,7 +125,7 @@ public class Store {
                 mule3--;
             }
         } else {
-            System.out.print("Not enoough money");
+           // System.out.print("Not enoough money");
         }
     }
 
@@ -257,5 +255,33 @@ public class Store {
     public int[] getMules() {
         int[] mules = {mule1, mule2, mule3};
         return mules;
+    }
+
+    /**
+     * getter for smithore
+     */
+    public int getSmithore() {
+        return smithore;
+    }
+
+    /**
+     * getter for energy
+     */
+    public int getEnergy() {
+        return energy;
+    }
+
+    /**
+     * getter for food
+     */
+    public int getFood() {
+        return food;
+    }
+
+    /**
+     * getter for crystite
+     */
+    public int getCrystite() {
+        return crystite;
     }
 }
