@@ -250,4 +250,12 @@ public class Store {
                 + "\nOre Mule($300): " + mule3
                 + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
     }
+
+    /**
+     * getter for mules
+     */
+    public int[] getMules() {
+        int[] mules = {mule1, mule2, mule3};
+        return mules;
+    }
 }
