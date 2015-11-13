@@ -1,9 +1,10 @@
-package files.controller;
+package files;
 
 import files.model.Configurations;
 import files.model.Player;
 import files.model.Store;
 import javafx.scene.paint.Color;
+import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by williamsu on 11/12/15.
  */
-public class Will_JUNIT {
+public class JUnitSu {
     private Store store;
     @Before
     public void setUp() {
@@ -29,6 +30,10 @@ public class Will_JUNIT {
         Configurations.setPlayers(listOfPlayer);
         Configurations.setCurPlayer(p1);
         store = new Store();
+        store.setSmithore(10);
+        store.setCrystite(10);
+        store.setEnergy(10);
+        store.setFood(10);
     }
 
     @Test
@@ -45,13 +50,13 @@ public class Will_JUNIT {
 
         store.buy(2);
         assertTrue(9 == store.getEnergy());
-        assertTrue(1 == Configurations.getCurPlayer().getEnergy());
-        assertTrue(Configurations.getCurPlayer().getEnergy() == 675);
+        assertTrue(5 == Configurations.getCurPlayer().getEnergy());
+        assertTrue(Configurations.getCurPlayer().getMoney() == 675);
 
         store.buy(3);
         assertTrue(9 == store.getFood());
         assertTrue(1 == Configurations.getCurPlayer().getFood());
-        assertTrue(Configurations.getCurPlayer().getFood() == 625);
+        assertTrue(Configurations.getCurPlayer().getMoney() == 625);
 
         //Testing for no item in store
 
@@ -74,13 +79,13 @@ public class Will_JUNIT {
 
         store.buy(2);
         assertTrue(0 == store.getEnergy());
-        assertTrue(1 == Configurations.getCurPlayer().getEnergy());
-        assertTrue(Configurations.getCurPlayer().getEnergy() == 675);
+        assertTrue(5 == Configurations.getCurPlayer().getEnergy());
+        assertTrue(Configurations.getCurPlayer().getMoney() == 1000);
 
         store.buy(3);
         assertTrue(0 == store.getFood());
         assertTrue(1 == Configurations.getCurPlayer().getFood());
-        assertTrue(Configurations.getCurPlayer().getFood() == 625);
+        assertTrue(Configurations.getCurPlayer().getMoney() == 1000);
 
     }
 

@@ -1,0 +1,128 @@
+package files;
+
+/**
+ * JUnit tests buyMule() method in files.model.townTiles.Store
+ * @author Min Je Jung
+ *
+ */
+
+import files.model.Configurations;
+import files.model.Player;
+import files.model.Store;
+import javafx.scene.paint.Color;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+
+public class JUnitJung {
+
+    private Store store;
+
+    @Before
+    public void setUp() {
+        Player p1 = new Player("Jingers", "Orc", Color.BLACK);
+        Player p2 = new Player("Will", "Elin", Color.YELLOW);
+        ArrayList<Player> players = new ArrayList<>();
+        players.add(p1);
+        players.add(p2);
+
+        Configurations.setPlayers(players);
+        Configurations.setDifficulty("Easy");
+        Configurations.setMapType("River");
+        Configurations.setNumPlayers(2);
+        Configurations.setCurPlayer(p1);
+
+        store = new Store();
+
+    }
+
+    @Test(timeout = 200)
+    public void testBuyMule() {
+        store.buyMule(1);
+        assertTrue(9 == store.getMules()[0]);
+        assertTrue(Configurations.getCurPlayer().getMoney() == 700);
+        assertTrue(Configurations.getPlayers().get(1).getMoney() == 1000);
+
+        store.buyMule(2);
+        assertTrue(9 == store.getMules()[1]);
+        assertTrue(Configurations.getCurPlayer().getMoney() == 400);
+        assertTrue(Configurations.getPlayers().get(1).getMoney() == 1000);
+
+        store.buyMule(3);
+        assertTrue(9 == store.getMules()[2]);
+        assertTrue(Configurations.getCurPlayer().getMoney() == 100);
+        assertTrue(Configurations.getPlayers().get(1).getMoney() == 1000);
+
+
+        store.buyMule(1);
+        assertTrue(9 == store.getMules()[0]);
+        assertTrue(Configurations.getCurPlayer().getMoney() == 100);
+        assertTrue(Configurations.getPlayers().get(1).getMoney() == 1000);
+
+
+
+        Configurations.setCurPlayer(Configurations.getPlayers().get(1));
+        Configurations.getPlayers().get(0).setMoney(1000);
+
+        store.buyMule(1);
+        assertTrue(8 == store.getMules()[0]);
+        assertTrue(Configurations.getCurPlayer().getMoney() == 700);
+        assertTrue(Configurations.getPlayers().get(0).getMoney() == 1000);
+
+        store.buyMule(2);
+        assertTrue(8 == store.getMules()[1]);
+        assertTrue(Configurations.getCurPlayer().getMoney() == 400);
+        assertTrue(Configurations.getPlayers().get(0).getMoney() == 1000);
+
+        store.buyMule(3);
+        assertTrue(8 == store.getMules()[2]);
+        assertTrue(Configurations.getCurPlayer().getMoney() == 100);
+        assertTrue(Configurations.getPlayers().get(0).getMoney() == 1000);
+
+        store.buyMule(1);
+        assertTrue(8 == store.getMules()[0]);
+        assertTrue(Configurations.getCurPlayer().getMoney() == 100);
+        assertTrue(Configurations.getPlayers().get(0).getMoney() == 1000);
+
+        store.setMule1(0);
+        store.setMule2(0);
+        store.setMule3(0);
+
+        Configurations.getCurPlayer().setMoney(1000);
+        Configurations.getPlayers().get(0).setMoney(1000);
+
+        store.buyMule(1);
+        assertTrue(0 == store.getMules()[0]);
+        assertTrue(Configurations.getCurPlayer().getMoney() == 1000);
+        assertTrue(Configurations.getPlayers().get(0).getMoney() == 1000);
+
+        store.buyMule(2);
+        assertTrue(0 == store.getMules()[1]);
+        assertTrue(Configurations.getCurPlayer().getMoney() == 1000);
+        assertTrue(Configurations.getPlayers().get(0).getMoney() == 1000);
+
+        store.buyMule(3);
+        assertTrue(0 == store.getMules()[2]);
+        assertTrue(Configurations.getCurPlayer().getMoney() == 1000);
+        assertTrue(Configurations.getPlayers().get(0).getMoney() == 1000);
+
+        Configurations.setCurPlayer(Configurations.getPlayers().get(0));
+
+        store.buyMule(1);
+        assertTrue(0 == store.getMules()[0]);
+        assertTrue(Configurations.getCurPlayer().getMoney() == 1000);
+        assertTrue(Configurations.getPlayers().get(0).getMoney() == 1000);
+
+        store.buyMule(2);
+        assertTrue(0 == store.getMules()[1]);
+        assertTrue(Configurations.getCurPlayer().getMoney() == 1000);
+        assertTrue(Configurations.getPlayers().get(0).getMoney() == 1000);
+
+        store.buyMule(3);
+        assertTrue(0 == store.getMules()[2]);
+        assertTrue(Configurations.getCurPlayer().getMoney() == 1000);
+        assertTrue(Configurations.getPlayers().get(0).getMoney() == 1000);
+    }
+}

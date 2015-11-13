@@ -75,8 +75,6 @@ public class Store {
             cp.setFood(cp.getFood() + 1);
             food--;
             cp.setMoney(cp.getMoney() - 50);
-        } else {
-            //System.out.println("Not enough money or store does not carry");
         }
     }
 
@@ -94,8 +92,8 @@ public class Store {
             cp.setCrystite(cp.getCrystite() - 1);
             crystite++;
             cp.setMoney(cp.getMoney() + 200);
-
         } else if (resource == 2 && cp.getEnergy() > 0) {
+            System.out.println("HI");
             cp.setEnergy(cp.getEnergy() - 1);
             energy++;
             cp.setMoney(cp.getMoney() + 25);
@@ -113,16 +111,24 @@ public class Store {
     public void buyMule(int mule) {
         cp = Configurations.getCurPlayer();
         if (cp.getMoney() >= 300) {
-            cp.setMoney(cp.getMoney() - 300);
             if (mule == 1) {
-                cp.setMule1(cp.getMule1() + 1);
-                mule1--;
+                if (mule1 > 0) {
+                    cp.setMule1(cp.getMule1() + 1);
+                    mule1--;
+                    cp.setMoney(cp.getMoney() - 300);
+                }
             } else if (mule == 2) {
-                cp.setMule2(cp.getMule2() + 1);
-                mule2--;
+                if (mule2 > 0) {
+                    cp.setMule2(cp.getMule2() + 1);
+                    mule2--;
+                    cp.setMoney(cp.getMoney() - 300);
+                }
             } else {
-                cp.setMule3(cp.getMule3() + 1);
-                mule3--;
+                if (mule3 > 0) {
+                    cp.setMule3(cp.getMule3() + 1);
+                    mule3--;
+                    cp.setMoney(cp.getMoney() - 300);
+                }
             }
         } else {
            // System.out.print("Not enoough money");
@@ -285,7 +291,7 @@ public class Store {
         return crystite;
     }
 
-    /*
+    /**
      * setter for smithore
      * @param s number of smithore
      */
@@ -293,7 +299,7 @@ public class Store {
         smithore = s;
     }
 
-    /*
+    /**
      * setter for energy
      * @param e number of energy
      */
@@ -301,7 +307,7 @@ public class Store {
         energy = e;
     }
 
-    /*
+    /**
      * setter for food
      * @param f number of food
      */
@@ -309,10 +315,35 @@ public class Store {
         food = f;
     }
 
-    /* setter for crystite
+    /**
+     * setter for crystite
      * @param c number of crystite
      */
     public void setCrystite(int c) {
         crystite = c;
+    }
+
+    /**
+     * setter for mule1
+     * @param mule1 mule
+     */
+    public void setMule1(int mule1) {
+        this.mule1 = mule1;
+    }
+
+    /**
+     * setter for mule2
+     * @param mule2 mule
+     */
+    public void setMule2(int mule2) {
+        this.mule2 = mule2;
+    }
+
+    /**
+     * setter for mule3
+     * @param mule3 mule
+     */
+    public void setMule3(int mule3) {
+        this.mule3 = mule3;
     }
 }
