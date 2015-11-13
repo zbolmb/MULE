@@ -27,14 +27,14 @@ public class JUNITWilliam {
     public void setUp() {
         players = new ArrayList<>();
         tiles1 = new ArrayList<>();
-        tiles1.add((MapTiles) new PlainsTile());
+        tiles1.add((MapTiles) new PlainsTile(1));
         tiles2 = new ArrayList<>();
-        tiles2.add((MapTiles) new RiverTile());
+        tiles2.add((MapTiles) new RiverTile(0));
         tiles3 = new ArrayList<>();
-        tiles3.add((MapTiles) new M1Tile());
+        tiles3.add((MapTiles) new M1Tile(1));
         tiles4 = new ArrayList<>();
-        tiles4.add((MapTiles) new M2Tile());
-        tiles4.add((MapTiles) new M3Tile());
+        tiles4.add((MapTiles) new M2Tile(1));
+        tiles4.add((MapTiles) new M3Tile(1));
     }
 
     @Test(timeout = TIMEOUT)

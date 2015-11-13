@@ -11,4 +11,9 @@ public class PlainsTile extends MapTiles {
         super(2, 3, 1, true, false, "Plains"
             , Color.YELLOW, new Image("files/model/tiles/plains_Tile.jpg"));
     }
+
+    public PlainsTile(int a) {
+        super(2, 3, a, true, false, "Plains"
+                , Color.YELLOW);
+    }
 }

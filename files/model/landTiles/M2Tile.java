@@ -11,4 +11,9 @@ public class M2Tile extends MapTiles {
         super(1, 1, 3, true, true, "Mountain 2"
             , Color.BROWN, new Image("files/model/tiles/m2_Tile.jpg"));
     }
+
+    public M2Tile(int a) {
+        super(a, 1, 3, true, true, "Mountain 2"
+                , Color.BROWN);
+    }
 }
