@@ -1,5 +1,5 @@
-javac ./view/GUI.java
-javac ./model/*.java
-javac ./model/landTiles/*.java
-javac ./model/townTiles/*.java
-javac ./controller/*.java
+javac ./files/view/GUI.java
+javac ./files/model/*.java
+javac ./files/model/landTiles/*.java
+javac ./files/model/townTiles/*.java
+javac ./files/controller/*.java

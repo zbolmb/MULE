@@ -3,13 +3,13 @@
   <component name="CheckStyle-IDEA">
     <option name="configuration">
       <map>
-        <entry key="active-configuration" value="LOCAL_FILE:$PRJ_DIR$/Files/CS1332-checkstyle.xml:checkstyle" />
+        <entry key="active-configuration" value="LOCAL_FILE:C:/Users/William/Documents/1332stuff/CS1332-checkstyle.xml:checkstyle" />
         <entry key="check-nonjava-files" value="false" />
         <entry key="check-test-classes" value="false" />
         <entry key="location-0" value="CLASSPATH:/sun_checks.xml:The default Checkstyle rules" />
-        <entry key="location-1" value="LOCAL_FILE:$PRJ_DIR$/Files/CS1332-checkstyle.xml:checkstyle" />
+        <entry key="location-1" value="LOCAL_FILE:C:/Users/William/Documents/1332stuff/CS1332-checkstyle.xml:checkstyle" />
         <entry key="suppress-errors" value="false" />
-        <entry key="thirdparty-classpath" value="$PRJ_DIR$\Files\checkstyle-6.9.jar" />
+        <entry key="thirdparty-classpath" value="$PRJ_DIR$\checkstyle-6.2.jar" />
       </map>
     </option>
   </component>

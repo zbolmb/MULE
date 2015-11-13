@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="checkstyle-6.91">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/production/MULE/checkstyle-6.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

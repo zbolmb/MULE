@@ -11,4 +11,9 @@ public class M3Tile extends MapTiles {
         super(1, 1, 4, true, true, "Mountain 3"
             , Color.web("0x382E1C"), new Image("files/model/tiles/m3_Tile.jpg"));
     }
+
+    public M3Tile(int a) {
+        super(a, 1, 4, true, true, "Mountain 3"
+                , Color.web("0x382E1C"));
+    }
 }
