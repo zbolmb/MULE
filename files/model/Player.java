@@ -58,6 +58,15 @@ public class Player {
     }
 
     /**
+     * Constructor taking in stuff
+     */
+    public Player(String name, String race, Color color) {
+        this.name = name;
+        this.race = race;
+        this.color = color;
+    }
+
+    /**
      * Moves the player
      * @param vx the x velocity
      * @param vy the y velocity
