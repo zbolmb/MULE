@@ -60,20 +60,36 @@ public class Store {
         if (resource == 0 && smithore > 0 && cp.getMoney() >= 100) {
             cp.setSmithore(cp.getSmithore() + 1);
             smithore--;
-            cp.setMoney(cp.getMoney() - 100);
+            if (cp.getName() == "Elin") {
+                cp.setMoney(cp.getMoney() - 90);
+            } else {
+                cp.setMoney(cp.getMoney() - 100);
+            }
         } else if (resource == 1 && crystite > 0 && cp.getMoney() >= 200) {
             cp.setCrystite(cp.getCrystite() + 1);
             crystite--;
-            cp.setMoney(cp.getMoney() - 200);
+            if (cp.getName() == "Blood Elves") {
+                cp.setMoney(cp.getMoney() - 190);
+            } else {
+                cp.setMoney(cp.getMoney() - 200);
+            }
 
         } else if (resource == 2 && energy > 0 && cp.getMoney() >= 25) {
             cp.setEnergy(cp.getEnergy() + 1);
             energy--;
-            cp.setMoney(cp.getMoney() - 25);
+            if (cp.getName() == "Orc") {
+                cp.setMoney(cp.getMoney() - 15);
+            } else {
+                cp.setMoney(cp.getMoney() - 25);
+            }
         } else if (resource == 3 && food > 0 && cp.getMoney() >= 50) {
             cp.setFood(cp.getFood() + 1);
             food--;
-            cp.setMoney(cp.getMoney() - 50);
+            if (cp.getName() == "High Humans") {
+                cp.setMoney(cp.getMoney() - 40);
+            } else {
+                cp.setMoney(cp.getMoney() - 50);
+            }
         }
     }
 
@@ -92,7 +108,7 @@ public class Store {
             crystite++;
             cp.setMoney(cp.getMoney() + 200);
         } else if (resource == 2 && cp.getEnergy() > 0) {
-            System.out.println("HI");
+            //System.out.println("HI");
             cp.setEnergy(cp.getEnergy() - 1);
             energy++;
             cp.setMoney(cp.getMoney() + 25);
@@ -114,19 +130,31 @@ public class Store {
                 if (mule1 > 0) {
                     cp.setMule1(cp.getMule1() + 1);
                     mule1--;
-                    cp.setMoney(cp.getMoney() - 300);
+                    if (cp.getName() == "Protoss") {
+                        cp.setMoney(cp.getMoney() - 290);
+                    } else {
+                        cp.setMoney(cp.getMoney() - 300);
+                    }
                 }
             } else if (mule == 2) {
                 if (mule2 > 0) {
                     cp.setMule2(cp.getMule2() + 1);
                     mule2--;
-                    cp.setMoney(cp.getMoney() - 300);
+                    if (cp.getName() == "Protoss") {
+                        cp.setMoney(cp.getMoney() - 290);
+                    } else {
+                        cp.setMoney(cp.getMoney() - 300);
+                    }
                 }
             } else {
                 if (mule3 > 0) {
                     cp.setMule3(cp.getMule3() + 1);
                     mule3--;
-                    cp.setMoney(cp.getMoney() - 300);
+                    if (cp.getName() == "Protoss") {
+                        cp.setMoney(cp.getMoney() - 290);
+                    } else {
+                        cp.setMoney(cp.getMoney() - 300);
+                    }
                 }
             }
         }
