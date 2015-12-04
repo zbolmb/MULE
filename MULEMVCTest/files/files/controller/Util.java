@@ -138,7 +138,7 @@ public class Util {
                 Configurations.getCurPlayer().setMessage(applyRandomEvent());
                 Configurations.getGameScreenController().updateText(
                         Configurations.getCurPlayer().getMessage());
-
+                Configurations.getLoopService().start();
                 movePhaseTurnIncre();
                 return;
             }
@@ -200,30 +200,30 @@ public class Util {
     public static void addMovementHandlers(Scene scene) {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, k -> {
                 if (k.getCode() == KeyCode.LEFT) {
-                    dc.getLoopService().move.setL(-5);
+                    Configurations.getLoopService().setL(-5);
                 }
                 if (k.getCode() == KeyCode.RIGHT) {
-                    dc.getLoopService().move.setR(5);
+                    Configurations.getLoopService().setR(5);
                 }
                 if (k.getCode() == KeyCode.UP) {
-                    dc.getLoopService().move.setU(-5);
+                    Configurations.getLoopService().setU(-5);
                 }
                 if (k.getCode() == KeyCode.DOWN) {
-                    dc.getLoopService().move.setD(5);
+                    Configurations.getLoopService().setD(5);
                 }
             });
         scene.addEventHandler(KeyEvent.KEY_RELEASED, k -> {
                 if (k.getCode() == KeyCode.LEFT) {
-                    dc.getLoopService().move.setL(0);
+                    Configurations.getLoopService().setL(0);
                 }
                 if (k.getCode() == KeyCode.RIGHT) {
-                    dc.getLoopService().move.setR(0);
+                    Configurations.getLoopService().setR(0);
                 }
                 if (k.getCode() == KeyCode.UP) {
-                    dc.getLoopService().move.setU(0);
+                    Configurations.getLoopService().setU(0);
                 }
                 if (k.getCode() == KeyCode.DOWN) {
-                    dc.getLoopService().move.setD(0);
+                    Configurations.getLoopService().setD(0);
                 }
             });
     }
@@ -254,7 +254,8 @@ public class Util {
                         cp.getStartY(),
                         10,
                         cp.getColor()));
-                dc.getMapGUI().getChildren().add(cp.getPlayerIcon());
+                Configurations.getGameMapController().add(cp.getPlayerIcon());
+
             }
             cp.getOwned().add(tile);
             tile.setOwner(cp.getName());
@@ -264,7 +265,7 @@ public class Util {
             Rectangle[] sq = Util.drawSelectionSq(x, y, cp.getColor());
 
             for (Rectangle r : sq) {
-                dc.getMapGUI().getChildren().add(r);
+                Configurations.getGameMapController().add(r);
             }
             incrementTurn();
         }

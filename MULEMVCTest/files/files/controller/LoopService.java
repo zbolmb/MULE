@@ -5,6 +5,7 @@ import java.util.Random;
 
 import files.model.Configurations;
 import files.model.Player;
+import files.view.GameMapView;
 import javafx.scene.layout.Pane;
 
 /**
@@ -23,7 +24,7 @@ public class LoopService extends AbstractLoopService {
 
     protected static DisplayContents dc;
     protected files.model.landTiles.MapTiles[][] map;
-    protected Pane mapGUI;
+    protected GameMapView mapGUI;
     protected PlayerMove move;
     protected double x;
     protected double y;
@@ -34,12 +35,11 @@ public class LoopService extends AbstractLoopService {
     private Random rand = new Random();
 
     /**
-     * Constructor
+     * initialization
      */
-    public LoopService() {
-        dc = Configurations.getDisplayContents();
-        map = dc.getMap().getAMap();
-        mapGUI = dc.getMapGUI();
+    public void init() {
+        map = Configurations.getGameMapController().getMap().getAMap();
+        mapGUI = Configurations.getGameMapController().getMapView();
         move = new PlayerMove();
     }
 
@@ -227,5 +227,21 @@ public class LoopService extends AbstractLoopService {
      */
     public static void setTime() {
         time = 0;
+    }
+    
+    public void setR(int i) {
+        move.setR(i);
+    }
+    
+    public void setL(int i) {
+        move.setL(i);
+    }
+    
+    public void setU(int i) {
+        move.setU(i);
+    }
+    
+    public void setD(int i) {
+        move.setD(i);
     }
 }

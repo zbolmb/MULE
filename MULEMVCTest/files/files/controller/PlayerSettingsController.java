@@ -163,6 +163,9 @@ public class PlayerSettingsController {
                 if (curPlayer == Configurations.getNumPlayers() - 1) {
                     Configurations.setCurPlayer(Configurations.getPlayers().get(0));
                     Configurations.getGameMapController().updateView();
+                    LoopService ls = new LoopService();
+                    Configurations.initLS(ls);
+                    ls.init();
                     gameScreenController.updateView();
                     try {
                         Util.incrementTurn();

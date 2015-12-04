@@ -136,7 +136,7 @@ public class GameScreenController {
                 + " | Energy Mule : " + cp.getMule2()
                 + " | Ore Mule : " + cp.getMule3()
                 + "\nScore : " + cp.getScore()
-                + "\nTime : " + 120
+                + "\nTime : " + (120 - (int)Configurations.getLoopService().getTime())
                 + "\n" + message);
         screenView.setGameText(screen.getGameText());
     }
