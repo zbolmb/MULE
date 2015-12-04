@@ -170,4 +170,8 @@ public class Store {
     public void setMule3(int mule3) {
         this.mule3 = mule3;
     }
+    
+    public String getText() {
+        return stats;
+    }
 }

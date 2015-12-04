@@ -146,7 +146,7 @@ public class GameScreenController {
      * @param p player
      */
     public void addPlayerToTown(Player p) {
-        screenView.remove(p.getPlayerIcon());
+        mapController.remove(p.getPlayerIcon());
         townMapController.add(p.getPlayerIcon());
 
     }
@@ -157,7 +157,7 @@ public class GameScreenController {
      */
     public void removePlayerFromTown(Player p) {
         townMapController.remove(p.getPlayerIcon());
-        screenView.add(p.getPlayerIcon());
+        mapController.add(p.getPlayerIcon());
     }
     
     /**
