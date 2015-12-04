@@ -240,7 +240,7 @@ public class Store {
         save.setOnAction(e -> {
                 try {
                     files.controller.Save.save();
-                } catch (IOException x) {
+                } catch (Exception x) {
                     x.printStackTrace();
                 }
             });

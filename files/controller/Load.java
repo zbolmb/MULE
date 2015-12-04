@@ -15,6 +15,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.sql.*;
+import java.io.PrintWriter;
+import java.io.InputStream;
+import java.util.Scanner;
+
+import java.io.File;
+
 /**
  * This class allows the game to load previously saved games
  * @author Min Jung, William Hsu, Karl Nicodemus, Zhijian Li, Will Su
@@ -27,7 +34,57 @@ public class Load {
      * @param primaryStage Stage needed
      */
     public static void load(Stage primaryStage) throws IOException {
+    
+        final String dbClassName = "com.mysql.jdbc.Driver";  
+        final String URL = "jdbc:mysql://localhost/save";
+        
+        Connection conn = null;
+        Statement stmt = null;
+        File file = null;
+        try{
+            Class.forName(dbClassName);
 
+            conn = DriverManager.getConnection(URL, "mule", "mule");
+
+            stmt = conn.createStatement();
+
+            String sql = "SELECT id FROM DataFile";
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+
+            InputStream id  = rs.getAsciiStream(1);
+            rs.close();
+            
+            Scanner scn = new Scanner(id);
+            
+            file = new File("savedGame.txt");
+            file.createNewFile();
+            
+            PrintWriter writer = new PrintWriter("savedGame.txt");
+            System.out.println(scn.hasNext());
+            while (scn.hasNext()) {
+                writer.print(scn.nextLine() + "\n");
+            }
+            writer.close();
+        }catch(SQLException se){
+            se.printStackTrace();
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            try{
+                if(stmt!=null)
+                    conn.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }
+            try{
+                if(conn!=null)
+                    conn.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+        
         BufferedReader br = null;
 
         try {
@@ -143,6 +200,7 @@ public class Load {
             }
         }
         br.close();
+        //file.delete();
     }
 
     /**

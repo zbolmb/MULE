@@ -12,6 +12,14 @@ import java.util.ArrayList;
 
 import javafx.scene.shape.Circle;
 
+import java.sql.*;
+import java.util.Properties;
+import java.io.File;
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
 /**
  * Created by William on 11/4/2015.
  * The save function
@@ -21,7 +29,7 @@ public class Save {
      * saves game
      * @throws IOException the exception
      */
-    public static void save() throws IOException {
+    public static void save() throws Exception {
         try {
             PrintWriter writer = new PrintWriter("savedGame.txt");
             writer.print("");
@@ -75,18 +83,7 @@ public class Save {
                 out.newLine();
                 out.write(p.getColor().toString());
                 out.newLine();
-//                ArrayList<model.landTiles.MapTiles> tiles = p.getOwned();
-//                out.write(Integer.toString(tiles.size()));
-//                out.newLine();
-//                for (int i = 0; i < tiles.size(); i++) {
-//                    out.write(tiles.get(i).getName());
-//                    out.newLine();
-//                    boolean[] mules = tiles.get(i).getMules();
-//                    for (int j = 0; j < mules.length; j++) {
-//                        out.write(Boolean.toString(mules[j]));
-//                        out.newLine();
-//                    }
-//                }
+
                 Circle icon = p.getPlayerIcon();
                 out.write(Double.toString(icon.getCenterX()));
                 out.newLine();
@@ -120,6 +117,37 @@ public class Save {
             if (out != null) {
                 out.close();
             }
+        }
+        
+        // shoots it up to database
+        final String dbClassName = "com.mysql.jdbc.Driver";
+        final String CONNECTION = "jdbc:mysql://localhost/save";
+        Class.forName(dbClassName);
+        Properties p = new Properties();
+        p.put("user","mule");
+        p.put("password","mule");
+        Connection c = null;
+        PreparedStatement pstmt = null;
+        FileInputStream fis = null;
+        File file = null;
+        try {
+            c = DriverManager.getConnection(CONNECTION,p);
+            c.setAutoCommit(false);
+            file = new File("savedGame.txt");
+            fis = new FileInputStream(file);
+            c.createStatement().execute("drop table DataFile");
+            c.createStatement().execute("create table DataFile(id VARCHAR(50000))");
+            pstmt = c.prepareStatement("insert into DataFile(id) values (?)");
+            pstmt.setAsciiStream(1, fis, (int) file.length());
+            pstmt.executeUpdate();
+            c.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pstmt.close();
+            file.delete();
+            fis.close();
+            c.close();
         }
     }
 }
