@@ -102,15 +102,15 @@ public class Load {
                         }
                         mules[0] = Boolean.parseBoolean(tmp.split(" ")[1]);
                         if (mules[0]) {
-                            dc.getMap().addMule(i, j, 0);
+                            Configurations.getGameMapController().addMule(i, j, 0);
                         }
                         mules[1] = Boolean.parseBoolean(tmp.split(" ")[2]);
                         if (mules[1]) {
-                            dc.getMap().addMule(i, j, 1);
+                            Configurations.getGameMapController().addMule(i, j, 1);
                         }
                         mules[2] = Boolean.parseBoolean(tmp.split(" ")[3]);
                         if (mules[2]) {
-                            dc.getMap().addMule(i, j, 2);
+                            Configurations.getGameMapController().addMule(i, j, 2);
                         }
                         map[i][j].setMules(mules);
                     }
@@ -120,7 +120,7 @@ public class Load {
                 if (p.getPhase() == 0) {
                     dc.getMapGUI().getChildren().add(p.getPlayerIcon());
                 } else {
-                    dc.getTownMap().getPane().getChildren()
+                    Configurations.getTownMapController()
                             .add(p.getPlayerIcon());
                 }
             }
