@@ -233,7 +233,7 @@ public class Configurations {
         this.storeController = storeController;
     }
 
-    public TownMapController getTownMapController() {
+    public static TownMapController getTownMapController() {
         return townMapController;
     }
 
