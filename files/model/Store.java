@@ -21,6 +21,7 @@ public class Store {
     protected int mule1;
     protected int mule2;
     protected int mule3;
+    protected int mule4;
 
     /**
      * constructor for Store
@@ -37,6 +38,7 @@ public class Store {
             mule1 = 10;
             mule2 = 10;
             mule3 = 10;
+            mule4 = 10;
         } else {
             food = 8;
             energy = 8;
@@ -45,6 +47,7 @@ public class Store {
             mule1 = 5;
             mule2 = 5;
             mule3 = 5;
+            mule4 = 5;
         }
     }
 
@@ -151,7 +154,7 @@ public class Store {
                         cp.setMoney(cp.getMoney() - 300);
                     }
                 }
-            } else {
+            } else if (mule == 3){
                 if (mule3 > 0) {
                     cp.setMule3(cp.getMule3() + 1);
                     mule3--;
@@ -162,6 +165,16 @@ public class Store {
                         //System.out.println("why3");
                         cp.setMoney(cp.getMoney() - 300);
                     }
+                }
+            } else {
+                cp.setMule4(cp.getMule4() + 1);
+                mule4--;
+                if (cp.getRace() == "Protoss") {
+                    //System.out.println("pls1");
+                    cp.setMoney(cp.getMoney() - 290);
+                } else {
+                    //System.out.println("why3");
+                    cp.setMoney(cp.getMoney() - 300);
                 }
             }
         }
@@ -181,6 +194,7 @@ public class Store {
         Button buyMule1;
         Button buyMule2;
         Button buyMule3;
+        Button buyMule4;
         Button buySmithore;
         Button buyCrystite;
         Button buyFood;
@@ -202,6 +216,8 @@ public class Store {
         buyMule2.setOnAction(e -> buyMule(2));
         buyMule3 = new Button("Buy Ore Mule");
         buyMule3.setOnAction(e -> buyMule(3));
+        buyMule4 = new Button("Buy Crystite Mule");
+        buyMule4.setOnAction(e -> buyMule(4));
         buySmithore = new Button("Buy Smithores");
         buySmithore.setOnAction(e -> buy(0));
         buyCrystite = new Button("Buy Crystites");
@@ -243,7 +259,7 @@ public class Store {
         VBox vbox2 = new VBox();
         HBox hbox = new HBox();
         vbox1.getChildren().addAll(buyMule1, buyMule2,
-                buyMule3, buySmithore, buyCrystite, buyFood, buyEnergy, back);
+                buyMule3, buyMule4, buySmithore, buyCrystite, buyFood, buyEnergy, back);
         vbox2.getChildren().addAll(sellSmithore,
                 sellCrystite, sellFood, sellEnergy);
         hbox.getChildren().addAll(vbox1, vbox2, save, stats);
@@ -277,6 +293,7 @@ public class Store {
                     + "\nFood Mule($300): " + mule1
                     + "\nEnergy Mule($300): " + mule2
                     + "\nOre Mule($300): " + mule3
+                    + "\nCrystite Mule($300): " + mule4
                     + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
         } else if (Configurations.getCurPlayer().getRace() == "Blood Elves") {
             stats.setText("Smithore($100): " + smithore
@@ -286,6 +303,7 @@ public class Store {
                     + "\nFood Mule($300): " + mule1
                     + "\nEnergy Mule($300): " + mule2
                     + "\nOre Mule($300): " + mule3
+                    + "\nCrystite Mule($300): " + mule4
                     + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
         } else if (Configurations.getCurPlayer().getRace() == "Orc") {
             stats.setText("Smithore($100): " + smithore
@@ -295,6 +313,8 @@ public class Store {
                     + "\nFood Mule($300): " + mule1
                     + "\nEnergy Mule($300): " + mule2
                     + "\nOre Mule($300): " + mule3
+                    + "\nCrystite Mule($300): " + mule4
+
                     + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
         } else if (Configurations.getCurPlayer().getRace() == "High Humans") {
             stats.setText("Smithore($100): " + smithore
@@ -304,6 +324,7 @@ public class Store {
                     + "\nFood Mule($300): " + mule1
                     + "\nEnergy Mule($300): " + mule2
                     + "\nOre Mule($300): " + mule3
+                    + "\nCrystite Mule($300): " + mule4
                     + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
         } else if (Configurations.getCurPlayer().getRace() == "Protoss") {
             stats.setText("Smithore($100): " + smithore
@@ -313,6 +334,8 @@ public class Store {
                     + "\nFood Mule($290): " + mule1
                     + "\nEnergy Mule($290): " + mule2
                     + "\nOre Mule($290): " + mule3
+                    + "\nCrystite Mule($300): " + mule4
+
                     + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
         } else {
         stats.setText("Smithore($100): " + smithore
@@ -322,6 +345,8 @@ public class Store {
                 + "\nFood Mule($300): " + mule1
                 + "\nEnergy Mule($300): " + mule2
                 + "\nOre Mule($300): " + mule3
+                + "\nCrystite Mule($300): " + mule4
+
                 + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
         }
     }
@@ -331,7 +356,7 @@ public class Store {
      * @return int][] mules
      */
     public int[] getMules() {
-        int[] mules = {mule1, mule2, mule3};
+        int[] mules = {mule1, mule2, mule3, mule4};
         return mules;
     }
 
@@ -421,5 +446,13 @@ public class Store {
      */
     public void setMule3(int mule3) {
         this.mule3 = mule3;
+    }
+
+    /**
+     * setter for mule4
+     * @param mule4 mule
+     */
+    public void setMule4(int mule4) {
+        this.mule4 = mule4;
     }
 }

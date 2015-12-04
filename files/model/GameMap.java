@@ -176,6 +176,9 @@ public class GameMap {
             if (m == 2) {
                 t.setText("O");
             }
+            if (m == 3) {
+                t.setText("C");
+            }
             if (Configurations.getCurPlayer().getColor() == Color.BLACK
                     || Configurations.getCurPlayer().getColor().toString()
                     .equals("0x000000ff")) {

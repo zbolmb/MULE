@@ -286,9 +286,12 @@ public class Util {
                         } else if (i == 1) {
                             p.setEnergy(p.getEnergy() + tile.getEnergy());
                             p.setEnergy(p.getEnergy() - 1);
-                        } else {
+                        } else if (i == 2){
                             p.setSmithore(p.getSmithore()
                                     + tile.getOre());
+                            p.setEnergy(p.getEnergy() - 1);
+                        } else {
+                            p.setCrystite(p.getCrystite() + 1);
                             p.setEnergy(p.getEnergy() - 1);
                         }
                     }

@@ -58,7 +58,7 @@ public abstract class MapTiles {
         this.owner = "None";
         this.name = name;
         this.img = img;
-        this.mules = new boolean[3];
+        this.mules = new boolean[4];
     }
 
     /**
@@ -84,7 +84,7 @@ public abstract class MapTiles {
         this.mapType = mapType;
         this.owner = "None";
         this.name = name;
-        this.mules = new boolean[3];
+        this.mules = new boolean[4];
     }
     /**
     * Getters and Setters
