@@ -22,6 +22,9 @@ public class TownMapView extends Scene {
      * adds Node n to the root pane
      */
     public void add(Node n) {
+        if (root.getChildren().contains(n)) {
+            root.getChildren().remove(n);
+        }
         root.getChildren().add(n);
     }
     

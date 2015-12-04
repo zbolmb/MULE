@@ -80,7 +80,8 @@ public class LoopService extends AbstractLoopService {
                     > 400 && cp.getY()
                     < 300 && cp.getY() > 200) {
                     Configurations.getGameScreenController().addPlayerToTown(cp);
-                    dc.getMainWindow().setScene(dc.getTownMapGUI());
+                    Configurations.getGuiController()
+                    .setScene(Configurations.getTownMapController().getView());
                     cp.setX(400);
                     cp.setY(250);
                     cp.setPhase(1);

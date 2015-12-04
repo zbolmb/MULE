@@ -83,7 +83,7 @@ public class GameScreenController {
              * handler that checks for keypress "p"
              * when p is pressed, current player passes his / her turn
              */
-            mapController.addEventHandler(KeyEvent.KEY_PRESSED, p -> {
+            screenView.addEventHandler(KeyEvent.KEY_PRESSED, p -> {
                     if (Configurations.getPhase() == 0
                             && ((KeyEvent) p).getCode() == KeyCode.P) {
                         Configurations.getCurPlayer().setPassed(true);
@@ -126,7 +126,7 @@ public class GameScreenController {
     public void updateText(String message) {
         
         Player cp = Configurations.getCurPlayer();
-        System.out.println(cp.getName());
+        //System.out.println(cp.getName());
         screen.setGameText(cp.getName() + "'s Turn. "
                 + "\nMoney : $" + cp.getMoney()
                 + " | Food : " + cp.getFood()
@@ -146,8 +146,9 @@ public class GameScreenController {
      * @param p player
      */
     public void addPlayerToTown(Player p) {
-        townMapController.add(p.getPlayerIcon());
         screenView.remove(p.getPlayerIcon());
+        townMapController.add(p.getPlayerIcon());
+
     }
 
     /**

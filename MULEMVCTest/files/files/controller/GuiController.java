@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import files.model.Configurations;
 import files.view.IntroScreenView;
+import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -40,10 +41,15 @@ public class GuiController {
                 , introScreenController
                 , playerSettingsController
                 , storeController
-                , townMapController);
+                , townMapController
+                , this);
         mainWindow.setScene(introScreenController.getView());
         mainWindow.setTitle("M.U.L.E.");
         mainWindow.setResizable(true);
         mainWindow.show();
+    }
+    
+    public void setScene(Scene s) {
+        mainWindow.setScene(s);
     }
 }

@@ -3,6 +3,7 @@ package files.model;
 import files.controller.DisplayContents;
 import files.controller.GameMapController;
 import files.controller.GameScreenController;
+import files.controller.GuiController;
 import files.controller.IntroScreenController;
 import files.controller.LoopService;
 import files.controller.PlayerSettingsController;
@@ -28,6 +29,7 @@ public class Configurations {
     private static StoreController storeController;
     private static TownMapController townMapController;
     private static LoopService loopService;
+    private static GuiController guiController;
 
     /**
      * -2 = land grant. Two rounds
@@ -50,13 +52,15 @@ public class Configurations {
             , IntroScreenController introScreenControllert
             , PlayerSettingsController playerSettingsControllert
             , StoreController storeControllert
-            , TownMapController townMapControllert) {
+            , TownMapController townMapControllert
+            , GuiController guiControllert) {
         gameMapController = gameMapControllert;
         gameScreenController = gameScreenControllert;
         introScreenController = introScreenControllert;
         playerSettingsController = playerSettingsControllert;
         storeController = storeControllert;
         townMapController = townMapControllert;
+        guiController = guiControllert;
     }
     
     public static void initLS(LoopService ls) {
@@ -232,7 +236,7 @@ public class Configurations {
         this.playerSettingsController = playerSettingsController;
     }
 
-    public StoreController getStoreController() {
+    public static StoreController getStoreController() {
         return storeController;
     }
 
@@ -246,6 +250,10 @@ public class Configurations {
 
     public void setTownMapController(TownMapController townMapController) {
         this.townMapController = townMapController;
+    }
+    
+    public static GuiController getGuiController() {
+        return guiController;
     }
     
     public static LoopService getLoopService() {
