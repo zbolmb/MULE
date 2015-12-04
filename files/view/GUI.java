@@ -10,7 +10,11 @@ import files.model.GameScreen;
 import files.model.IntroScreen;
 import files.controller.PlayerSettings;
 import javafx.application.Application;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+
+import java.net.URL;
 
 public class GUI extends Application {
 
@@ -26,6 +30,11 @@ public class GUI extends Application {
         GameScreen gameScreen = new GameScreen();
         intro.updateDC();
 
+        final URL resource = getClass().getResource("/files/model/music.mp3");
+        final Media media = new Media(resource.toString());
+        final MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+
         /**
          * WHEN CREATING NEW CONTENT, FOLLOW THESE STEPS
          * each piece of content (store, town) contain its own class
@@ -38,7 +47,7 @@ public class GUI extends Application {
          */
 
         primaryStage.setScene(Configurations
-            .getDisplayContents().getIntroScreenGUI());
+                .getDisplayContents().getIntroScreenGUI());
         primaryStage.show();
         primaryStage.setTitle("M.U.L.E.");
         primaryStage.setResizable(true);
