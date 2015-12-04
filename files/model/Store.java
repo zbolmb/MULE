@@ -268,7 +268,7 @@ public class Store {
      * updateText method
      */
     public void updateText() {
-        if (cp.getRace() == "Elin") {
+        if (Configurations.getCurPlayer().getRace() == "Elin") {
             //System.out.print("pls");
             stats.setText("Smithore($90): " + smithore
                     + "\nCrystite($200): " + crystite
@@ -278,7 +278,7 @@ public class Store {
                     + "\nEnergy Mule($300): " + mule2
                     + "\nOre Mule($300): " + mule3
                     + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
-        } else if (cp.getRace() == "Blood Elves") {
+        } else if (Configurations.getCurPlayer().getRace() == "Blood Elves") {
             stats.setText("Smithore($100): " + smithore
                     + "\nCrystite($190): " + crystite
                     + "\nFood($50): " + food
@@ -287,7 +287,7 @@ public class Store {
                     + "\nEnergy Mule($300): " + mule2
                     + "\nOre Mule($300): " + mule3
                     + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
-        } else if (cp.getRace() == "Orc") {
+        } else if (Configurations.getCurPlayer().getRace() == "Orc") {
             stats.setText("Smithore($100): " + smithore
                     + "\nCrystite($200): " + crystite
                     + "\nFood($50): " + food
@@ -296,7 +296,7 @@ public class Store {
                     + "\nEnergy Mule($300): " + mule2
                     + "\nOre Mule($300): " + mule3
                     + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
-        } else if (cp.getRace() == "High Humans") {
+        } else if (Configurations.getCurPlayer().getRace() == "High Humans") {
             stats.setText("Smithore($100): " + smithore
                     + "\nCrystite($200): " + crystite
                     + "\nFood($40): " + food
@@ -305,7 +305,7 @@ public class Store {
                     + "\nEnergy Mule($300): " + mule2
                     + "\nOre Mule($300): " + mule3
                     + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
-        } else if (cp.getRace() == "Protoss") {
+        } else if (Configurations.getCurPlayer().getRace() == "Protoss") {
             stats.setText("Smithore($100): " + smithore
                     + "\nCrystite($200): " + crystite
                     + "\nFood($50): " + food
