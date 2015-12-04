@@ -223,9 +223,9 @@ public class Store {
         buyCrystite = new Button("Buy Crystites");
         buyCrystite.setOnAction(e -> buy(1));
         buyFood = new Button("Buy Food");
-        buyFood.setOnAction(e -> buy(2));
+        buyFood.setOnAction(e -> buy(3));
         buyEnergy = new Button("Buy Energy");
-        buyEnergy.setOnAction(e -> buy(3));
+        buyEnergy.setOnAction(e -> buy(2));
         sellSmithore = new Button("Sell Smithores");
         sellSmithore.setOnAction(e -> sell(0));
         sellCrystite = new Button("Sell Crystites");
