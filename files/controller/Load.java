@@ -200,7 +200,7 @@ public class Load {
             }
         }
         br.close();
-        //file.delete();
+        file.delete();
     }
 
     /**
