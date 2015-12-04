@@ -214,6 +214,11 @@ public class StoreController {
                 + "\nEnergy Mule($300): " + store.getMule2()
                 + "\nOre Mule($300): " + store.getMule3()
                 + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
+        storeView.setText(store.getText());
+    }
+    
+    public StoreView getView() {
+        return storeView;
     }
 
 }

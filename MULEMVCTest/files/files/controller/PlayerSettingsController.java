@@ -167,6 +167,13 @@ public class PlayerSettingsController {
                     Configurations.initLS(ls);
                     ls.init();
                     gameScreenController.updateView();
+                    Configurations.getTownMapController().updateView();
+                    try {
+                        Configurations.getStoreController().updateView();
+                    } catch (Exception e2) {
+                        // TODO Auto-generated catch block
+                        e2.printStackTrace();
+                    }
                     try {
                         Util.incrementTurn();
                     } catch (IOException e1) {

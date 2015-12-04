@@ -50,7 +50,6 @@ public class GameScreenView extends Scene {
      * @param n the Node to add
      */
     public void add(Node n) {
-        
     }
     
     /**

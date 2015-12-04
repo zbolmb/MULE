@@ -187,6 +187,10 @@ public class GameMapController {
         mapView.getChildren().add(n);
     }
     
+    public void remove(Node n) {
+        mapView.getChildren().remove(n);
+    }
+    
     /**
      * Adds event handlers to the mapView
      * @param e the event type

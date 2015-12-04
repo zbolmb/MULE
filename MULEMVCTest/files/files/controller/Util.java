@@ -102,7 +102,8 @@ public class Util {
             Configurations.getGameScreenController().removePlayerFromTown(cp);
             cp.setPhase(0);
         }
-        dc.getMainWindow().setScene(dc.getGameScreenGUI());
+        Configurations.getGuiController()
+            .setScene(Configurations.getGameScreenController().getView());
     }
 
     /**
@@ -128,9 +129,6 @@ public class Util {
                     playerOrder.add(p);
                 }
             }
-
-
-
             if (playerOrder.isEmpty()) {
                 Configurations.setRound(Configurations.getRound() + 1);
 
@@ -241,7 +239,6 @@ public class Util {
                 && Configurations.getCurPlayer().getMoney() < 300) {
             return;
         }
-        DisplayContents dc = Configurations.getDisplayContents();
         if (!(tile instanceof TownTile) && tile.getOwner().equals("None")) {
             Player cp = Configurations.getCurPlayer();
             if (cp.getOwned().size() <= 0) {

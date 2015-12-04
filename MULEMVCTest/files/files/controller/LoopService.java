@@ -52,7 +52,7 @@ public class LoopService extends AbstractLoopService {
         if (Configurations.getPhase() == 1) {
             cp = Configurations.getCurPlayer();
             Configurations.getGameScreenController().updateText(cp.getMessage());
-            Configurations.getGameScreenController().updateText();
+            Configurations.getStoreController().updateText();
             if (time <= 120) {
                 cp.move(vx, vy);
             } else {
@@ -80,7 +80,8 @@ public class LoopService extends AbstractLoopService {
                     > 400 && cp.getY()
                     < 300 && cp.getY() > 200) {
                     Configurations.getGameScreenController().addPlayerToTown(cp);
-                    dc.getMainWindow().setScene(dc.getTownMapGUI());
+                    Configurations.getGuiController()
+                        .setScene(Configurations.getTownMapController().getView());
                     cp.setX(400);
                     cp.setY(250);
                     cp.setPhase(1);
@@ -127,7 +128,8 @@ public class LoopService extends AbstractLoopService {
                 //leaving town
                 if (cp.getX() < 5 || cp.getX() > 795
                     || cp.getY() < 5 || cp.getY() > 495) {
-                    dc.getMainWindow().setScene(dc.getGameScreenGUI());
+                    Configurations.getGuiController()
+                        .setScene(Configurations.getGameScreenController().getView());
                     Configurations.getGameScreenController().removePlayerFromTown(cp);
                     cp.setPhase(0);
                     move.setL(0);
@@ -166,7 +168,8 @@ public class LoopService extends AbstractLoopService {
                     //in Store
                 } else if (cp.getX() > 635 && cp.getX() < 800
                     && cp.getY() > 327 && cp.getY() < 493) {
-                    dc.getMainWindow().setScene(dc.getStoreGUI());
+                    Configurations.getGuiController()
+                        .setScene(Configurations.getStoreController().getView());
                     cp.setPhase(2);
                     move.setL(0);
                     move.setR(0);
@@ -205,13 +208,6 @@ public class LoopService extends AbstractLoopService {
             //     e.printStackTrace();
             // }
         }
-    }
-
-    /**
-     * Updates DC
-     */
-    public void updateDC() {
-        dc.setLoopService(this);
     }
 
     /**
