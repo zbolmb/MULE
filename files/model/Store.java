@@ -60,7 +60,7 @@ public class Store {
         if (resource == 0 && smithore > 0 && cp.getMoney() >= 100) {
             cp.setSmithore(cp.getSmithore() + 1);
             smithore--;
-            if (cp.getName() == "Elin") {
+            if (cp.getRace() == "Elin") {
                 cp.setMoney(cp.getMoney() - 90);
             } else {
                 cp.setMoney(cp.getMoney() - 100);
@@ -68,7 +68,7 @@ public class Store {
         } else if (resource == 1 && crystite > 0 && cp.getMoney() >= 200) {
             cp.setCrystite(cp.getCrystite() + 1);
             crystite--;
-            if (cp.getName() == "Blood Elves") {
+            if (cp.getRace() == "Blood Elves") {
                 cp.setMoney(cp.getMoney() - 190);
             } else {
                 cp.setMoney(cp.getMoney() - 200);
@@ -77,7 +77,7 @@ public class Store {
         } else if (resource == 2 && energy > 0 && cp.getMoney() >= 25) {
             cp.setEnergy(cp.getEnergy() + 1);
             energy--;
-            if (cp.getName() == "Orc") {
+            if (cp.getRace() == "Orc") {
                 cp.setMoney(cp.getMoney() - 15);
             } else {
                 cp.setMoney(cp.getMoney() - 25);
@@ -85,7 +85,7 @@ public class Store {
         } else if (resource == 3 && food > 0 && cp.getMoney() >= 50) {
             cp.setFood(cp.getFood() + 1);
             food--;
-            if (cp.getName() == "High Humans") {
+            if (cp.getRace() == "High Humans") {
                 cp.setMoney(cp.getMoney() - 40);
             } else {
                 cp.setMoney(cp.getMoney() - 50);
@@ -124,15 +124,18 @@ public class Store {
      * @param mule mule
      */
     public void buyMule(int mule) {
+        //System.out.println("heyoh");
         cp = Configurations.getCurPlayer();
         if (cp.getMoney() >= 300) {
             if (mule == 1) {
                 if (mule1 > 0) {
                     cp.setMule1(cp.getMule1() + 1);
                     mule1--;
-                    if (cp.getName() == "Protoss") {
+                    if (cp.getRace() == "Protoss") {
+                        //System.out.println("pls1");
                         cp.setMoney(cp.getMoney() - 290);
                     } else {
+                        //System.out.println("why1");
                         cp.setMoney(cp.getMoney() - 300);
                     }
                 }
@@ -140,9 +143,11 @@ public class Store {
                 if (mule2 > 0) {
                     cp.setMule2(cp.getMule2() + 1);
                     mule2--;
-                    if (cp.getName() == "Protoss") {
+                    if (cp.getRace() == "Protoss") {
+                        //System.out.println("pls1");
                         cp.setMoney(cp.getMoney() - 290);
                     } else {
+                        //System.out.println("why2");
                         cp.setMoney(cp.getMoney() - 300);
                     }
                 }
@@ -150,9 +155,11 @@ public class Store {
                 if (mule3 > 0) {
                     cp.setMule3(cp.getMule3() + 1);
                     mule3--;
-                    if (cp.getName() == "Protoss") {
+                    if (cp.getRace() == "Protoss") {
+                        //System.out.println("pls1");
                         cp.setMoney(cp.getMoney() - 290);
                     } else {
+                        //System.out.println("why3");
                         cp.setMoney(cp.getMoney() - 300);
                     }
                 }
@@ -261,6 +268,53 @@ public class Store {
      * updateText method
      */
     public void updateText() {
+        if (cp.getRace() == "Elin") {
+            //System.out.print("pls");
+            stats.setText("Smithore($90): " + smithore
+                    + "\nCrystite($200): " + crystite
+                    + "\nFood($50): " + food
+                    + "\nEnergy($25): " + energy
+                    + "\nFood Mule($300): " + mule1
+                    + "\nEnergy Mule($300): " + mule2
+                    + "\nOre Mule($300): " + mule3
+                    + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
+        } else if (cp.getRace() == "Blood Elves") {
+            stats.setText("Smithore($100): " + smithore
+                    + "\nCrystite($190): " + crystite
+                    + "\nFood($50): " + food
+                    + "\nEnergy($25): " + energy
+                    + "\nFood Mule($300): " + mule1
+                    + "\nEnergy Mule($300): " + mule2
+                    + "\nOre Mule($300): " + mule3
+                    + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
+        } else if (cp.getRace() == "Orc") {
+            stats.setText("Smithore($100): " + smithore
+                    + "\nCrystite($200): " + crystite
+                    + "\nFood($50): " + food
+                    + "\nEnergy($15): " + energy
+                    + "\nFood Mule($300): " + mule1
+                    + "\nEnergy Mule($300): " + mule2
+                    + "\nOre Mule($300): " + mule3
+                    + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
+        } else if (cp.getRace() == "High Humans") {
+            stats.setText("Smithore($100): " + smithore
+                    + "\nCrystite($200): " + crystite
+                    + "\nFood($40): " + food
+                    + "\nEnergy($25): " + energy
+                    + "\nFood Mule($300): " + mule1
+                    + "\nEnergy Mule($300): " + mule2
+                    + "\nOre Mule($300): " + mule3
+                    + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
+        } else if (cp.getRace() == "Protoss") {
+            stats.setText("Smithore($100): " + smithore
+                    + "\nCrystite($200): " + crystite
+                    + "\nFood($50): " + food
+                    + "\nEnergy($25): " + energy
+                    + "\nFood Mule($290): " + mule1
+                    + "\nEnergy Mule($290): " + mule2
+                    + "\nOre Mule($290): " + mule3
+                    + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
+        } else {
         stats.setText("Smithore($100): " + smithore
                 + "\nCrystite($200): " + crystite
                 + "\nFood($50): " + food
@@ -269,6 +323,7 @@ public class Store {
                 + "\nEnergy Mule($300): " + mule2
                 + "\nOre Mule($300): " + mule3
                 + "\nMoney : $" + Configurations.getCurPlayer().getMoney());
+        }
     }
 
     /**
