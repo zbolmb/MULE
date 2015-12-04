@@ -4,6 +4,7 @@ import files.controller.DisplayContents;
 import files.controller.GameMapController;
 import files.controller.GameScreenController;
 import files.controller.IntroScreenController;
+import files.controller.LoopService;
 import files.controller.PlayerSettingsController;
 import files.controller.StoreController;
 import files.controller.TownMapController;
@@ -26,6 +27,7 @@ public class Configurations {
     private static PlayerSettingsController playerSettingsController;
     private static StoreController storeController;
     private static TownMapController townMapController;
+    private static LoopService loopService;
 
     /**
      * -2 = land grant. Two rounds
@@ -48,7 +50,7 @@ public class Configurations {
             , IntroScreenController introScreenControllert
             , PlayerSettingsController playerSettingsControllert
             , StoreController storeControllert
-            ,TownMapController townMapControllert) {
+            , TownMapController townMapControllert) {
         gameMapController = gameMapControllert;
         gameScreenController = gameScreenControllert;
         introScreenController = introScreenControllert;
@@ -56,6 +58,11 @@ public class Configurations {
         storeController = storeControllert;
         townMapController = townMapControllert;
     }
+    
+    public static void initLS(LoopService ls) {
+        loopService = ls;
+    }
+    
     /**
      * initDC initializes DC
      * @param primaryStage Stage, the primary window
@@ -239,6 +246,10 @@ public class Configurations {
 
     public void setTownMapController(TownMapController townMapController) {
         this.townMapController = townMapController;
+    }
+    
+    public static LoopService getLoopService() {
+        return loopService;
     }
     
     
