@@ -99,6 +99,7 @@ public class LoopService extends AbstractLoopService {
                         cp.setMule1(0);
                         cp.setMule2(0);
                         cp.setMule3(0);
+                        cp.setMule4(0);
                     } else {
                         //can only have one mule of that type
                         //on map, so lose 1 of those mules
@@ -117,6 +118,11 @@ public class LoopService extends AbstractLoopService {
                             .getOwner().equals(cp.getName())) {
                             cp.setMule3(cp.getMule3() - 1);
                             dc.getMap().addMule(x, y, 2);
+                        }
+                        if (cp.getMule4() > 0 && map[x][y]
+                            .getOwner().equals(cp.getName())) {
+                            cp.setMule4(cp.getMule4() - 1);
+                            dc.getMap().addMule(x, y, 3);
                         }
                     }
                 }

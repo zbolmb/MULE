@@ -151,10 +151,12 @@ public class GameScreen {
                 + " | Food : " + cp.getFood()
                 + " | Energy : " + cp.getEnergy()
                 + " | Smithore : " + cp.getSmithore()
+                + " | Crystite : " + cp.getCrystite()
                 + "\nFood Mule : "
                 + cp.getMule1()
                 + " | Energy Mule : " + cp.getMule2()
                 + " | Ore Mule : " + cp.getMule3()
+                + " | Crystite Mule : " + cp.getMule4()
                 + "\nScore : " + cp.getScore());
         if (dc.getLoopService() != null) {
             gameText.setText(gameText.getText() + "\nTime : "

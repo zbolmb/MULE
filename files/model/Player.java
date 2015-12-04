@@ -36,6 +36,7 @@ public class Player {
     private int mule1;
     private int mule2;
     private int mule3;
+    private int mule4;
 
     /**
      * Constructor for Player
@@ -54,6 +55,7 @@ public class Player {
         mule1 = 0;
         mule2 = 0;
         mule3 = 0;
+        mule4 = 0;
         message = "";
     }
 
@@ -77,6 +79,7 @@ public class Player {
         mule1 = 0;
         mule2 = 0;
         mule3 = 0;
+        mule4 = 0;
         message = "";
     }
 
@@ -393,5 +396,16 @@ public class Player {
      */
     public void setMule3(int mule3) {
         this.mule3 = mule3;
+    }
+
+    public int getMule4() {
+        return mule4;
+    }
+    /**
+     * setter for mule4
+     * @param mule4 the mule4
+     */
+    public void setMule4(int mule4) {
+        this.mule4 = mule4;
     }
 }
